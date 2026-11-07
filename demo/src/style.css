@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "@fontsource/patrick-hand";
+@import "@fontsource/lxgw-wenkai-tc";
+@import "lxgw-wenkai-webfont/lxgwwenkai-regular.css";
+@import "inkpaperui-css";
+@import "inkpaperui-icons";
+
+@source "../index.html";

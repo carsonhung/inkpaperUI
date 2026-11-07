@@ -1,0 +1,96 @@
+/* Checkboxes and radios on the native inputs, so forms, labels and keyboards work as usual:
+   <label class="ip-choice"><input type="checkbox" class="ip-checkbox"> Label</label>.
+   A ticked box gets a red pen tick that runs past its edge, as a hand would; a chosen radio a red dot. */
+@layer components {
+  .ip-checkbox,
+  .ip-radio {
+    appearance: none;
+    position: relative;
+    flex: none;
+    width: 1.35rem;
+    height: 1.35rem;
+    margin: 0;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    background: var(--color-ip-paper);
+    cursor: pointer;
+  }
+
+  .ip-checkbox {
+    border-radius: var(--ip-shape-c);
+  }
+
+  .ip-checkbox::before {
+    content: "";
+    position: absolute;
+    inset: -0.3rem -0.45rem 0 0;
+    background: var(--color-ip-accent-ink);
+    mask: var(--ip-tick) center / contain no-repeat;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path var(--ip-motion-base) ease-out;
+  }
+
+  .ip-checkbox:checked::before {
+    clip-path: inset(0 0 0 0);
+  }
+
+  .ip-radio {
+    border-radius: 50% 46% 52% 48%;
+  }
+
+  .ip-radio::before {
+    content: "";
+    position: absolute;
+    inset: 0.2rem;
+    border-radius: 48% 52% 46% 50%;
+    background: var(--color-ip-accent);
+    transform: scale(0);
+    transition: transform var(--ip-motion-fast) ease-out;
+  }
+
+  .ip-radio:checked::before {
+    transform: scale(1);
+  }
+
+  .ip-checkbox:focus-visible,
+  .ip-radio:focus-visible {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: 3px;
+  }
+
+  .ip-checkbox:disabled,
+  .ip-radio:disabled {
+    border-style: dashed;
+    border-color: var(--color-ip-ink-soft);
+    cursor: not-allowed;
+  }
+
+  .ip-choice {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    cursor: pointer;
+  }
+
+  .ip-choice:has(:disabled) {
+    color: var(--color-ip-ink-soft);
+    cursor: not-allowed;
+  }
+
+  .ip-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .ip-choices > legend {
+    margin-bottom: 0.4rem;
+    padding: 0;
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-md);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+}

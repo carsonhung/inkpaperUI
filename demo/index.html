@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>inkpaperUI</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="ip-page min-h-screen">
+    <main class="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-10">
+      <header class="flex flex-wrap items-end justify-between gap-6">
+        <div class="flex flex-col gap-2">
+          <h1 class="ip-display ip-scribble m-0"><span class="text-ip-accent">*</span> inkpaperUI</h1>
+          <p class="ip-hint m-0" data-i18n="tagline">Line-art UI for Tailwind CSS v4: ink on warm paper.</p>
+        </div>
+        <div class="ip-tabs" role="tablist" aria-label="Language" data-lang-tabs>
+          <button class="ip-tab" role="tab" aria-selected="true" data-lang="en" lang="en">English</button>
+          <button class="ip-tab" role="tab" aria-selected="false" data-lang="zh-Hant" lang="zh-Hant">繁中</button>
+          <button class="ip-tab" role="tab" aria-selected="false" data-lang="zh-Hans" lang="zh-Hans">简中</button>
+        </div>
+      </header>
+
+      <div class="grid gap-10 md:grid-cols-2">
+        <section class="flex flex-col gap-4" aria-labelledby="buttons-title">
+          <h2 class="ip-heading m-0" id="buttons-title" data-i18n="buttons">Buttons</h2>
+          <div class="flex flex-wrap gap-4">
+            <button class="ip-btn ip-btn-primary" data-i18n="primary">Primary</button>
+            <button class="ip-btn" data-i18n="secondary">Secondary</button>
+            <button class="ip-btn ip-btn-solid" data-i18n="solid">Order now</button>
+          </div>
+          <div class="flex flex-wrap items-center gap-4">
+            <button class="ip-btn ip-btn-ghost ip-btn-sm" data-i18n="ghost">Ghost</button>
+            <button class="ip-btn ip-btn-sm" disabled data-i18n="disabled">Disabled</button>
+            <span class="ip-tooltip">
+              <button class="ip-btn ip-btn-icon" data-i18n-label="favourite" aria-label="Favourite" aria-describedby="tip-favourite">
+                <span class="ip-icon ip-i-heart" aria-hidden="true"></span>
+              </button>
+              <span class="ip-tooltip-content" role="tooltip" id="tip-favourite" data-i18n="favouriteTip">Keep it in your notebook</span>
+            </span>
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-4" aria-labelledby="card-title-head">
+          <h2 class="ip-heading m-0" id="card-title-head" data-i18n="card">Card</h2>
+          <article class="ip-card">
+            <div class="ip-card-media" aria-hidden="true">
+              <svg viewBox="0 0 160 120" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M96 10 136 38" />
+                <path d="M88 16 130 46" />
+                <path d="M62 52c-2-10 4-18 1-28M74 52c3-11-3-19 1-29M86 52c-2-9 5-17 2-26" />
+                <path d="M18 56h124c-2 30-26 48-62 48S20 86 18 56z" />
+                <path d="M56 104l-4 10h56l-4-10" />
+                <path d="M30 62c16 8 34 9 50 2s34-6 50 2" stroke="var(--color-ip-accent)" />
+                <circle cx="48" cy="72" r="5" stroke="var(--color-ip-accent)" />
+                <circle cx="112" cy="74" r="4" />
+              </svg>
+            </div>
+            <div class="ip-card-body">
+              <h3 class="ip-card-title" data-i18n="noodles">Wonton noodles</h3>
+              <p class="ip-card-text" data-i18n="noodlesText">Springy egg noodles, shrimp wontons and a clear broth. Good at any hour.</p>
+              <a class="ip-card-action" href="#"><span data-i18n="recipe">View recipe</span><span class="ip-icon ip-i-arrow-right" aria-hidden="true"></span></a>
+            </div>
+          </article>
+        </section>
+
+        <section class="flex flex-col gap-4" aria-labelledby="tabs-title">
+          <h2 class="ip-heading m-0" id="tabs-title" data-i18n="tabs">Tabs</h2>
+          <div class="ip-tabs" role="tablist" aria-labelledby="tabs-title" data-tabs>
+            <button class="ip-tab" role="tab" id="tab-a" aria-controls="panel-a" aria-selected="true" data-i18n="tabArticles">Articles</button>
+            <button class="ip-tab" role="tab" id="tab-b" aria-controls="panel-b" aria-selected="false" tabindex="-1" data-i18n="tabRecipes">Recipes</button>
+            <button class="ip-tab" role="tab" id="tab-c" aria-controls="panel-c" aria-selected="false" tabindex="-1" data-i18n="tabNotes">Notes</button>
+          </div>
+          <div class="ip-tabpanel" role="tabpanel" id="panel-a" aria-labelledby="tab-a" tabindex="0" data-i18n="panelArticles">Three new stories from the market this week.</div>
+          <div class="ip-tabpanel" role="tabpanel" id="panel-b" aria-labelledby="tab-b" tabindex="0" hidden data-i18n="panelRecipes">Egg waffles, milk tea and a pineapple bun.</div>
+          <div class="ip-tabpanel" role="tabpanel" id="panel-c" aria-labelledby="tab-c" tabindex="0" hidden data-i18n="panelNotes">Buy more evaporated milk.</div>
+        </section>
+
+        <section class="flex flex-col gap-4" aria-labelledby="controls-title">
+          <h2 class="ip-heading m-0" id="controls-title" data-i18n="controls">Toggle and progress</h2>
+          <div class="flex flex-wrap gap-6">
+            <label class="ip-choice">
+              <input class="ip-switch" type="checkbox" role="switch" />
+              <span data-i18n="notify">Notify me</span>
+            </label>
+            <label class="ip-choice">
+              <input class="ip-switch" type="checkbox" role="switch" checked />
+              <span data-i18n="sound">Sound</span>
+            </label>
+          </div>
+          <div class="ip-progress-row">
+            <div class="ip-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60" style="--ip-value: 60%" data-i18n-label="cooking" aria-label="Cooking" data-progress></div>
+            <span class="ip-progress-value" data-progress-value>60%</span>
+            <button class="ip-btn ip-btn-icon ip-btn-sm" data-step="-20" data-i18n-label="less" aria-label="Less"><span class="ip-icon ip-icon-sm ip-i-minus" aria-hidden="true"></span></button>
+            <button class="ip-btn ip-btn-icon ip-btn-sm" data-step="20" data-i18n-label="more" aria-label="More"><span class="ip-icon ip-icon-sm ip-i-plus" aria-hidden="true"></span></button>
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-4" aria-labelledby="input-title">
+          <h2 class="ip-heading m-0" id="input-title" data-i18n="input">Text input</h2>
+          <label class="ip-field">
+            <span class="ip-field-label" data-i18n="nameLabel">Your name</span>
+            <input class="ip-input" type="text" data-i18n-placeholder="namePlaceholder" placeholder="Write it here…" />
+            <span class="ip-field-hint" data-i18n="nameHint">Shown on your orders.</span>
+          </label>
+          <label class="ip-field">
+            <span class="ip-field-label" data-i18n="emailLabel">Email</span>
+            <input class="ip-input" type="email" value="kason@" aria-invalid="true" aria-describedby="email-error" />
+            <span class="ip-field-error" id="email-error"><span class="ip-icon ip-icon-sm ip-i-close" aria-hidden="true"></span><span data-i18n="emailError">That email is missing its ending.</span></span>
+          </label>
+        </section>
+
+        <section class="flex flex-col gap-4" aria-labelledby="dialog-title-head">
+          <h2 class="ip-heading m-0" id="dialog-title-head" data-i18n="dialog">Dialog</h2>
+          <div><button class="ip-btn ip-btn-primary" data-open-dialog data-i18n="openDialog">Open dialog</button></div>
+          <dialog class="ip-dialog" aria-labelledby="dialog-title" data-dialog>
+            <div class="ip-dialog-head">
+              <h3 class="ip-dialog-title" id="dialog-title" data-i18n="dialogTitle">Saved</h3>
+              <button class="ip-btn ip-btn-ghost ip-btn-icon ip-btn-sm" data-close-dialog data-i18n-label="close" aria-label="Close"><span class="ip-icon ip-icon-sm ip-i-close" aria-hidden="true"></span></button>
+            </div>
+            <p class="ip-dialog-body" data-i18n="dialogText">Your recipe is in the notebook. You can change it any time.</p>
+            <div class="ip-dialog-actions">
+              <button class="ip-btn ip-btn-sm" data-close-dialog data-i18n="later">Later</button>
+              <button class="ip-btn ip-btn-solid ip-btn-sm" data-close-dialog data-i18n="gotIt">Got it</button>
+            </div>
+          </dialog>
+        </section>
+        <section class="flex flex-col gap-4" aria-labelledby="choices-title">
+          <h2 class="ip-heading m-0" id="choices-title" data-i18n="choices">Checkboxes and radios</h2>
+          <div class="flex flex-wrap gap-10">
+            <fieldset class="ip-choices">
+              <legend data-i18n="extras">Extras</legend>
+              <label class="ip-choice"><input class="ip-checkbox" type="checkbox" checked /><span data-i18n="extraChives">Chives</span></label>
+              <label class="ip-choice"><input class="ip-checkbox" type="checkbox" /><span data-i18n="extraChilli">Chilli oil</span></label>
+              <label class="ip-choice"><input class="ip-checkbox" type="checkbox" disabled /><span data-i18n="extraSoldOut">Fish balls (sold out)</span></label>
+            </fieldset>
+            <fieldset class="ip-choices">
+              <legend data-i18n="size">Size</legend>
+              <label class="ip-choice"><input class="ip-radio" type="radio" name="size" /><span data-i18n="sizeSmall">Small</span></label>
+              <label class="ip-choice"><input class="ip-radio" type="radio" name="size" checked /><span data-i18n="sizeRegular">Regular</span></label>
+              <label class="ip-choice"><input class="ip-radio" type="radio" name="size" /><span data-i18n="sizeLarge">Large</span></label>
+            </fieldset>
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-4" aria-labelledby="alerts-title">
+          <h2 class="ip-heading m-0" id="alerts-title" data-i18n="alerts">Badges and alerts</h2>
+          <div class="flex flex-wrap gap-3">
+            <span class="ip-badge" data-i18n="badgeNew">New</span>
+            <span class="ip-badge ip-badge-primary" data-i18n="badgeHot">Hot</span>
+            <span class="ip-badge ip-badge-success"><span class="ip-icon ip-i-check" aria-hidden="true"></span><span data-i18n="badgeReady">Ready</span></span>
+            <span class="ip-badge ip-badge-warning" data-i18n="badgeLow">Low stock</span>
+            <span class="ip-badge ip-badge-solid">3</span>
+          </div>
+          <div class="ip-alert ip-alert-success" role="status">
+            <span class="ip-icon ip-i-check ip-alert-icon" aria-hidden="true"></span>
+            <div class="ip-alert-body"><p class="ip-alert-title" data-i18n="alertDoneTitle">Order sent</p><p data-i18n="alertDoneText">The kitchen has it. About ten minutes.</p></div>
+          </div>
+          <div class="ip-alert ip-alert-warning">
+            <span class="ip-icon ip-i-warning ip-alert-icon" aria-hidden="true"></span>
+            <div class="ip-alert-body"><p class="ip-alert-title" data-i18n="alertWarnTitle">Nearly out</p><p data-i18n="alertWarnText">Only two egg waffles left today.</p></div>
+          </div>
+          <div class="ip-alert ip-alert-danger">
+            <span class="ip-icon ip-i-close ip-alert-icon" aria-hidden="true"></span>
+            <div class="ip-alert-body"><p class="ip-alert-title" data-i18n="alertErrorTitle">Not sent</p><p data-i18n="alertErrorText">No connection. Your order is saved; try again.</p></div>
+          </div>
+        </section>
+      </div>
+
+      <section class="flex flex-col gap-4" aria-labelledby="icons-title">
+        <h2 class="ip-heading m-0" id="icons-title" data-i18n="icons">Icons</h2>
+        <ul class="m-0 grid list-none grid-cols-4 gap-4 p-0 sm:grid-cols-8" data-icons></ul>
+      </section>
+
+      <section class="flex flex-col gap-4" aria-labelledby="colours-title">
+        <h2 class="ip-heading m-0" id="colours-title" data-i18n="colours">Colours</h2>
+        <ul class="m-0 grid list-none grid-cols-2 gap-4 p-0 sm:grid-cols-4">
+          <li class="flex flex-col gap-1"><span class="h-14 rounded border-2 border-ip-ink bg-ip-accent"></span><span class="ip-hand text-sm">Accent #E6392B</span></li>
+          <li class="flex flex-col gap-1"><span class="h-14 rounded border-2 border-ip-ink bg-ip-accent-ink"></span><span class="ip-hand text-sm">Accent ink #C42A1E</span></li>
+          <li class="flex flex-col gap-1"><span class="h-14 rounded border-2 border-ip-ink bg-ip-paper"></span><span class="ip-hand text-sm">Paper #F2F0EC</span></li>
+          <li class="flex flex-col gap-1"><span class="h-14 rounded border-2 border-ip-ink bg-ip-ink"></span><span class="ip-hand text-sm">Ink #111111</span></li>
+        </ul>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

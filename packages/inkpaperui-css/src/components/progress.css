@@ -1,0 +1,42 @@
+/* A progress bar: an inked track with a red fill. Set the amount with style="--ip-value: 60%" and say
+   it with role="progressbar" and aria-valuenow, since the fill alone tells a screen reader nothing. */
+@layer components {
+  .ip-progress {
+    --ip-value: 0%;
+
+    position: relative;
+    height: 1rem;
+    overflow: hidden;
+    border: var(--ip-line-thin) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-c);
+    background: var(--color-ip-ink-faint);
+  }
+
+  .ip-progress::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    width: var(--ip-value);
+    background: var(--color-ip-accent);
+    border-right: var(--ip-line-thin) solid var(--color-ip-ink);
+    transition: width var(--ip-motion-slow) ease-out;
+  }
+
+  .ip-progress-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .ip-progress-row > .ip-progress {
+    flex: 1;
+  }
+
+  .ip-progress-value {
+    min-width: 3ch;
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    text-align: right;
+  }
+}

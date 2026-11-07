@@ -1,0 +1,90 @@
+/* <span class="ip-tooltip"><button aria-describedby="t1">?</button>
+     <span class="ip-tooltip-content" role="tooltip" id="t1">Hint</span></span>
+   A note in ink on paper with a small tail, shown on hover (pointer devices) and on keyboard or tap
+   focus. ip-tooltip-bottom drops it below; ip-tooltip-end lines it up with the trigger's end edge. */
+@layer components {
+  .ip-tooltip {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .ip-tooltip-content {
+    position: absolute;
+    bottom: calc(100% + 0.6rem);
+    left: 50%;
+    z-index: var(--ip-z-modal);
+    width: max-content;
+    max-width: 16rem;
+    padding: 0.35rem 0.6rem;
+    border: var(--ip-line-thin) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-a);
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+    font-size: var(--ip-text-sm);
+    line-height: 1.4;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 3px);
+    transition:
+      opacity var(--ip-motion-fast),
+      transform var(--ip-motion-fast);
+  }
+
+  .ip-tooltip-content::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-right: var(--ip-line-thin) solid var(--color-ip-ink);
+    border-bottom: var(--ip-line-thin) solid var(--color-ip-ink);
+    background: var(--color-ip-paper);
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  @media (hover: hover) {
+    .ip-tooltip:hover > .ip-tooltip-content {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  .ip-tooltip:focus-within > .ip-tooltip-content {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .ip-tooltip-bottom > .ip-tooltip-content {
+    top: calc(100% + 0.6rem);
+    bottom: auto;
+  }
+
+  .ip-tooltip-bottom > .ip-tooltip-content::after {
+    top: auto;
+    bottom: 100%;
+    transform: translate(-50%, 50%) rotate(225deg);
+  }
+
+  .ip-tooltip-end > .ip-tooltip-content {
+    left: auto;
+    right: 0;
+    transform: translate(0, 3px);
+  }
+
+  .ip-tooltip-end > .ip-tooltip-content::after {
+    left: auto;
+    right: 1rem;
+    transform: translate(50%, -50%) rotate(45deg);
+  }
+
+  .ip-tooltip-end:focus-within > .ip-tooltip-content {
+    transform: translate(0, 0);
+  }
+
+  @media (hover: hover) {
+    .ip-tooltip-end:hover > .ip-tooltip-content {
+      transform: translate(0, 0);
+    }
+  }
+}

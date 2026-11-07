@@ -1,0 +1,119 @@
+/* An ink-outlined button. On hover the line thickens and a pen stroke draws in under the label;
+   pressed, it sinks a pixel. `ip-btn-primary` is the one red thing on a screen, `ip-btn-solid` the
+   filled version of it, `ip-btn-ghost` has no outline until hovered. */
+@layer components {
+  .ip-btn {
+    --ip-btn-line: var(--color-ip-ink);
+    --ip-btn-text: var(--color-ip-ink);
+    --ip-btn-fill: var(--color-ip-paper);
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 1.25rem 0.6rem;
+    border: var(--ip-line) solid var(--ip-btn-line);
+    border-radius: var(--ip-shape);
+    background: var(--ip-btn-fill);
+    color: var(--ip-btn-text);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      box-shadow var(--ip-motion-fast),
+      transform var(--ip-motion-fast),
+      background-color var(--ip-motion-fast);
+  }
+
+  .ip-btn:lang(zh),
+  :lang(zh) .ip-btn {
+    letter-spacing: 0.02em;
+  }
+
+  .ip-btn::after {
+    content: "";
+    position: absolute;
+    inset-inline: 1rem;
+    bottom: 0.3rem;
+    height: 0.35rem;
+    background: var(--ip-btn-text);
+    mask: var(--ip-scribble) center / 100% 100% no-repeat;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path var(--ip-motion-slow) ease-out;
+    pointer-events: none;
+  }
+
+  .ip-btn:hover:not(:disabled, [aria-disabled="true"]) {
+    box-shadow: inset 0 0 0 0.75px var(--ip-btn-line), 0 0 0 0.75px var(--ip-btn-line);
+  }
+
+  .ip-btn:hover:not(:disabled, [aria-disabled="true"])::after {
+    clip-path: inset(0 0 0 0);
+  }
+
+  .ip-btn:active:not(:disabled, [aria-disabled="true"]) {
+    transform: translateY(1px);
+    background: var(--ip-btn-pressed, var(--color-ip-ink-faint));
+  }
+
+  .ip-btn:focus-visible {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: 3px;
+  }
+
+  .ip-btn:disabled,
+  .ip-btn[aria-disabled="true"] {
+    --ip-btn-line: var(--color-ip-ink-faint);
+    --ip-btn-text: var(--color-ip-ink-soft);
+    --ip-btn-fill: var(--color-ip-paper);
+
+    border-style: dashed;
+    cursor: not-allowed;
+  }
+
+  .ip-btn-primary {
+    --ip-btn-line: var(--color-ip-accent);
+    --ip-btn-text: var(--color-ip-accent-ink);
+  }
+
+  .ip-btn-solid {
+    --ip-btn-line: var(--color-ip-accent-ink);
+    --ip-btn-text: var(--color-ip-on-accent);
+    --ip-btn-fill: var(--color-ip-accent-ink);
+    --ip-btn-pressed: var(--color-ip-accent-ink);
+  }
+
+  .ip-btn-ghost {
+    --ip-btn-line: transparent;
+  }
+
+  .ip-btn-ghost:hover:not(:disabled, [aria-disabled="true"]) {
+    --ip-btn-line: var(--color-ip-ink);
+  }
+
+  .ip-btn-sm {
+    min-height: 2.25rem;
+    padding: 0.3rem 0.85rem 0.4rem;
+    font-size: var(--ip-text-md);
+  }
+
+  .ip-btn-sm::after {
+    inset-inline: 0.65rem;
+    bottom: 0.2rem;
+  }
+
+  /* An icon alone: square, and the label goes in aria-label. */
+  .ip-btn-icon {
+    min-width: 2.75rem;
+    padding: 0.5rem;
+  }
+
+  .ip-btn-icon::after {
+    display: none;
+  }
+}

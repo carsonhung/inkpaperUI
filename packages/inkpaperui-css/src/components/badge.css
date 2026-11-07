@@ -1,0 +1,49 @@
+/* A small inked label: a count, a status, a tag. Colour is never the only sign, so a badge's words
+   say what it means; the tones only back them up. */
+@layer components {
+  .ip-badge {
+    --ip-badge-tone: var(--color-ip-ink);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.05rem 0.5rem 0.1rem;
+    border: var(--ip-line-thin) solid var(--ip-badge-tone);
+    border-radius: var(--ip-shape-c);
+    background: var(--color-ip-paper);
+    color: var(--ip-badge-tone);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-sm);
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .ip-badge > .ip-icon {
+    --ip-icon-size: 0.85rem;
+  }
+
+  .ip-badge-primary,
+  .ip-badge-danger {
+    --ip-badge-tone: var(--color-ip-accent-ink);
+  }
+
+  .ip-badge-success {
+    --ip-badge-tone: var(--color-ip-success);
+  }
+
+  .ip-badge-warning {
+    --ip-badge-tone: var(--color-ip-warning);
+  }
+
+  .ip-badge-solid {
+    border-color: var(--color-ip-accent-ink);
+    background: var(--color-ip-accent-ink);
+    color: var(--color-ip-on-accent);
+  }
+
+  .ip-badge-ghost {
+    border-color: transparent;
+  }
+}

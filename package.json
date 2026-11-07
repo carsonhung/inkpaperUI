@@ -1,0 +1,23 @@
+{
+  "name": "inkpaperui-monorepo",
+  "private": true,
+  "description": "Line-art UI for Tailwind CSS v4: ink outlines on warm paper, one red accent, lines that look drawn by hand.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carsonhung/inkpaperUI.git"
+  },
+  "author": "Carson Hung (https://github.com/carsonhung)",
+  "workspaces": [
+    "packages/*",
+    "demo"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=inkpaperui-icons && npm run build --workspace=inkpaperui-demo",
+    "test": "npm run check --workspace=inkpaperui-icons && npm run check --workspace=inkpaperui-css",
+    "demo": "npm run dev --workspace=inkpaperui-demo"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.0"
+  }
+}

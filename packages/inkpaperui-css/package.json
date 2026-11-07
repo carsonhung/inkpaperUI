@@ -1,0 +1,29 @@
+{
+  "name": "inkpaperui-css",
+  "version": "0.1.0",
+  "description": "Tailwind CSS v4 line-art UI: ink-outlined buttons, cards, tabs, switches, checkboxes, progress bars, inputs, badges, alerts, tooltips and dialogs on warm paper.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carsonhung/inkpaperUI.git",
+    "directory": "packages/inkpaperui-css"
+  },
+  "author": "Carson Hung (https://github.com/carsonhung)",
+  "style": "./src/index.css",
+  "exports": {
+    ".": {
+      "style": "./src/index.css",
+      "default": "./src/index.css"
+    },
+    "./*.css": "./src/*.css"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "check": "node scripts/check.mjs"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4.1.0"
+  }
+}

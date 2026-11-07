@@ -1,0 +1,61 @@
+/* A switch on a native checkbox: <input type="checkbox" role="switch" class="ip-switch">. Off is an
+   empty outline, on fills red and the knob slides across. The only pill shape in the kit. */
+@layer components {
+  .ip-switch {
+    appearance: none;
+    position: relative;
+    flex: none;
+    width: 3.25rem;
+    height: 1.85rem;
+    margin: 0;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: 999px 900px 950px 999px;
+    background: var(--color-ip-ink-faint);
+    cursor: pointer;
+    transition: background-color var(--ip-motion-base);
+  }
+
+  .ip-switch::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0.2rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: 50% 46% 52% 48%;
+    background: var(--color-ip-paper);
+    transform: translateY(-50%);
+    transition: left var(--ip-motion-base) ease-out;
+  }
+
+  .ip-switch:checked {
+    background: var(--color-ip-accent);
+  }
+
+  .ip-switch:checked::before {
+    left: calc(100% - 1.45rem);
+  }
+
+  .ip-switch:focus-visible {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: 3px;
+  }
+
+  .ip-switch:disabled {
+    border-style: dashed;
+    border-color: var(--color-ip-ink-soft);
+    cursor: not-allowed;
+  }
+
+  .ip-switch:disabled::before {
+    border-color: var(--color-ip-ink-soft);
+  }
+
+  .ip-choice {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    cursor: pointer;
+  }
+}

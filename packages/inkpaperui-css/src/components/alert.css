@@ -1,0 +1,61 @@
+/* An inline message boxed in ink, with a tone line down its start edge and an icon that says the
+   same as the colour. Use role="alert" only for urgent errors; otherwise role="status" or none.
+   <div class="ip-alert ip-alert-success"><span class="ip-icon ip-i-check ip-alert-icon"></span>
+   <div class="ip-alert-body"><p class="ip-alert-title">…</p>…</div></div> */
+@layer components {
+  .ip-alert {
+    --ip-alert-tone: var(--color-ip-ink);
+
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 0.75rem;
+    padding: 0.8rem 1rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-inline-start: calc(var(--ip-line) * 3) solid var(--ip-alert-tone);
+    border-radius: var(--ip-shape-b);
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+    font-size: var(--ip-text-md);
+  }
+
+  .ip-alert-icon {
+    margin-top: 0.05rem;
+    color: var(--ip-alert-tone);
+  }
+
+  .ip-alert-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .ip-alert-body > p {
+    margin: 0;
+  }
+
+  .ip-alert-title {
+    margin: 0;
+    color: var(--ip-alert-tone);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .ip-alert-info {
+    --ip-alert-tone: var(--color-ip-ink);
+  }
+
+  .ip-alert-success {
+    --ip-alert-tone: var(--color-ip-success);
+  }
+
+  .ip-alert-warning {
+    --ip-alert-tone: var(--color-ip-warning);
+  }
+
+  .ip-alert-danger {
+    --ip-alert-tone: var(--color-ip-danger);
+  }
+}

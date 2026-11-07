@@ -1,0 +1,60 @@
+/* A dialog on the native <dialog> element (showModal gives focus trapping and Escape for free).
+   Head with a title and a close button, a body, and actions on the right. */
+@layer components {
+  /* Tailwind's reset zeroes every margin, which also undoes the browser's own centring of a modal. */
+  .ip-dialog {
+    margin: auto;
+    width: min(26rem, calc(100vw - 2rem));
+    padding: 1.1rem 1.25rem 1.25rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-a);
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+    font-family: var(--font-ip-body);
+  }
+
+  .ip-dialog[open] {
+    animation: ip-dialog-in var(--ip-motion-base) ease-out;
+  }
+
+  .ip-dialog::backdrop {
+    background: var(--color-ip-veil);
+  }
+
+  .ip-dialog-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .ip-dialog-title {
+    margin: 0;
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .ip-dialog-body {
+    margin: 0;
+    font-size: var(--ip-text-md);
+  }
+
+  .ip-dialog-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  @keyframes ip-dialog-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px) rotate(-0.4deg);
+    }
+  }
+}

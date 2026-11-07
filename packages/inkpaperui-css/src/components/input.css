@@ -1,0 +1,63 @@
+/* A labelled text box: <label class="ip-field"><span class="ip-field-label">…</span><input class="ip-input">.
+   Focus draws the red ring; aria-invalid turns the line red and dashed. */
+@layer components {
+  .ip-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .ip-field-label {
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-md);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .ip-input {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.55rem 0.8rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-c);
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+    font: inherit;
+    font-size: var(--ip-text-lg);
+  }
+
+  .ip-input::placeholder {
+    color: var(--color-ip-ink-soft);
+    font-style: italic;
+  }
+
+  .ip-input:focus {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: 3px;
+  }
+
+  .ip-input[aria-invalid="true"] {
+    border-color: var(--color-ip-danger);
+    border-style: dashed;
+  }
+
+  .ip-input:disabled {
+    border-style: dashed;
+    border-color: var(--color-ip-ink-faint);
+    color: var(--color-ip-ink-soft);
+    cursor: not-allowed;
+  }
+
+  .ip-field-hint {
+    color: var(--color-ip-ink-soft);
+    font-size: var(--ip-text-sm);
+  }
+
+  .ip-field-error {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--color-ip-danger);
+    font-size: var(--ip-text-sm);
+  }
+}

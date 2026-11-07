@@ -1,0 +1,84 @@
+/* A card drawn as one outline: a line drawing on one side, the words on the other, and an action
+   link that ends in an arrow. `ip-card-stack` puts the drawing on top for narrow columns. */
+@layer components {
+  .ip-card {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-b);
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+  }
+
+  .ip-card-stack,
+  .ip-card:not(:has(.ip-card-media)) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ip-card-media {
+    display: block;
+    width: 100%;
+    color: var(--color-ip-ink);
+  }
+
+  .ip-card-media > svg,
+  .ip-card-media > img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .ip-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  .ip-card-title {
+    margin: 0;
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .ip-card-text {
+    margin: 0;
+    font-size: var(--ip-text-md);
+  }
+
+  .ip-card-action {
+    align-self: flex-end;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+    color: var(--color-ip-accent-ink);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-md);
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .ip-card-action > .ip-icon {
+    --ip-icon-size: 1.1rem;
+
+    transition: transform var(--ip-motion-base);
+  }
+
+  .ip-card-action:hover > .ip-icon {
+    transform: translateX(3px);
+  }
+
+  .ip-card-action:focus-visible {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: 3px;
+    border-radius: var(--ip-shape-c);
+  }
+}

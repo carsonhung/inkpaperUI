@@ -1,0 +1,38 @@
+---
+description: inkpaperUI project overview and conventions
+alwaysApply: true
+---
+
+# inkpaperUI (working name)
+
+A line-art UI kit for Tailwind CSS v4: ink outlines on warm paper, one red accent. A sister to
+`../gamifiedUI`; the design brief is `docs/BRIEF.md` and is the source of truth for the look.
+
+## Layout
+
+- `packages/inkpaperui-css`: tokens (`src/tokens.css`), type (`src/base.css`), one file per
+  component in `src/components`, each imported from `src/index.css`.
+- `packages/inkpaperui-icons`: icons as stroke paths on a 24px grid in `icons.mjs`; `npm run build`
+  writes `src/index.css`, `svg/` and `icons.json`. Never edit the generated files.
+- `demo`: one page on port 5395 (5391 to 5394 belong to 掃街, Taste Quest and the gamifiedUI demo).
+
+## Rules
+
+- Class names, modifiers and markup mirror gamifiedUI (`gx-btn-primary` there is
+  `ip-btn-primary` here), so a game can switch kits by swapping imports. Check gamifiedUI's
+  component before naming a new one; icons share gamifiedui-icons' names where both have one.
+- Colours live only in `tokens.css`; components use the `--color-ip-*` tokens. Text colours must
+  reach 4.5:1 on paper; the bright accent is for lines, fills and large type only.
+- Outlines are CSS borders with the uneven `--ip-shape-*` radii; pen strokes (underlines, ticks)
+  are SVG masks over a colour, drawn in black because they are masks.
+- Every state is shown by more than colour: dashed lines for disabled, an icon and words for
+  danger. Focus is the 3px red ring, on keyboard focus.
+- Motion uses the `--ip-motion-*` tokens, which drop to 0 under reduced motion.
+- Demo text goes through the three locale tables in `demo/src/main.ts` (en, zh-Hant Cantonese,
+  zh-Hans with mainland words).
+- Style: single quotes, semicolons, 2-space indent, trailing commas; comments explain why, never
+  what.
+- Done means `npm test` and `npm run build` pass and the demo is checked in a browser.
+- Public repo `carsonhung/inkpaperUI` (Apache-2.0); every push to `main` deploys the demo to
+  GitHub Pages at /inkpaperUI/. Commit messages are one plain sentence; never commit `.env`.
+  Don't commit, push or publish to npm without the user's go-ahead.

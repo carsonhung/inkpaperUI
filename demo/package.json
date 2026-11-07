@@ -1,0 +1,31 @@
+{
+  "name": "inkpaperui-demo",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Demo page of inkpaperUI.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carsonhung/inkpaperUI.git",
+    "directory": "demo"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource/lxgw-wenkai-tc": "^5.3.0",
+    "@fontsource/patrick-hand": "^5.3.0",
+    "inkpaperui-css": "*",
+    "inkpaperui-icons": "*",
+    "lxgw-wenkai-webfont": "^1.7.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "~5.9.3",
+    "vite": "^6.0.0"
+  }
+}

@@ -1,0 +1,65 @@
+/* The page and its type: paper underneath, hand lettering for headings, plain sans for reading. */
+@layer components {
+  .ip-page {
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+    font-family: var(--font-ip-body);
+    line-height: 1.5;
+  }
+
+  .ip-hand {
+    font-family: var(--font-ip-hand);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Capitals and wide tracking suit Latin letters; Chinese characters read better set close. */
+  :lang(zh) .ip-hand,
+  .ip-hand:lang(zh) {
+    letter-spacing: 0.02em;
+  }
+
+  .ip-display {
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-display);
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .ip-heading {
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .ip-hint {
+    color: var(--color-ip-ink-soft);
+    font-size: var(--ip-text-md);
+  }
+
+  /* The underline under a page title or a link: one pen stroke, drawn in from the left. */
+  .ip-scribble {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.45em;
+  }
+
+  .ip-scribble::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 0.4em;
+    background: var(--ip-scribble-color, var(--color-ip-accent));
+    mask: var(--ip-scribble) center / 100% 100% no-repeat;
+  }
+
+  .ip-divider {
+    border: 0;
+    border-top: var(--ip-line-thin) solid var(--color-ip-ink);
+    border-radius: 2px;
+    margin-block: 1rem;
+  }
+}

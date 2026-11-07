@@ -1,0 +1,28 @@
+/* Any inkpaperui-icons icon: `ip-icon ip-i-heart`. The icon is a mask over currentColor, so it takes
+   the text colour around it. Decorative icons get aria-hidden="true"; meaningful ones role="img" and
+   a label. */
+@layer components {
+  .ip-icon {
+    --ip-icon-size: 1.5rem;
+
+    display: inline-block;
+    flex: none;
+    width: var(--ip-icon-size);
+    height: var(--ip-icon-size);
+    vertical-align: middle;
+    background: var(--ip-icon-color, currentColor);
+    mask: var(--ip-icon) center / contain no-repeat;
+  }
+
+  .ip-icon-sm {
+    --ip-icon-size: 1rem;
+  }
+
+  .ip-icon-lg {
+    --ip-icon-size: 2rem;
+  }
+
+  .ip-icon-accent {
+    --ip-icon-color: var(--color-ip-accent);
+  }
+}
