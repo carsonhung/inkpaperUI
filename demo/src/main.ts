@@ -23,7 +23,7 @@ const TEXT: Record<Locale, Record<string, string>> = {
     panelArticles: 'Three new stories from the market this week.',
     panelRecipes: 'Egg waffles, milk tea and a pineapple bun.',
     panelNotes: 'Buy more evaporated milk.',
-    controls: 'Toggle and progress',
+    controls: 'Switch and progress',
     notify: 'Notify me',
     sound: 'Sound',
     cooking: 'Cooking',
