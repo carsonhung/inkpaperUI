@@ -1,0 +1,54 @@
+/* A side sheet on a native <dialog class="ip-drawer"> opened with showModal(), so focus trapping
+   and Escape come free. Slides in from the end edge; .ip-drawer-start comes from the start edge.
+   Reuses .ip-dialog-head and .ip-dialog-title for its top row. */
+@layer components {
+  .ip-drawer {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(22rem, calc(100vw - 3rem));
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 1.1rem 1.25rem;
+    padding-inline-end: calc(1.25rem + env(safe-area-inset-right));
+    padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
+    border: 0;
+    border-inline-start: var(--ip-line) solid var(--color-ip-ink);
+    overflow-y: auto;
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+    font-family: var(--font-ip-body);
+  }
+
+  .ip-drawer[open] {
+    animation: ip-drawer-in var(--ip-motion-base) ease-out both;
+  }
+
+  .ip-drawer::backdrop {
+    background: var(--color-ip-veil);
+  }
+
+  .ip-drawer-start {
+    inset: 0 auto 0 0;
+    padding-inline: calc(1.25rem + env(safe-area-inset-left)) 1.25rem;
+    border-inline-start: 0;
+    border-inline-end: var(--ip-line) solid var(--color-ip-ink);
+  }
+
+  .ip-drawer-start[open] {
+    animation-name: ip-drawer-in-start;
+  }
+
+  @keyframes ip-drawer-in {
+    from {
+      translate: 100% 0;
+    }
+  }
+
+  @keyframes ip-drawer-in-start {
+    from {
+      translate: -100% 0;
+    }
+  }
+}

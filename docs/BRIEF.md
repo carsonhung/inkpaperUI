@@ -93,7 +93,12 @@ hover.
 The eight parts on the board, built and shown on one demo page in en, 繁中 and 简中:
 button (primary, secondary, solid, ghost), card, tabs, switch, progress bar, text input, dialog and
 the icons above. The second batch adds checkbox and radio (a red pen tick and dot), badge, alert
-(a tone line down the start edge plus an icon) and tooltip.
+(a tone line down the start edge plus an icon) and tooltip. The third batch brings over
+gamifiedUI's everyday parts: accordion (ruled like a notebook list), chip, menu and dropdown (a red
+pen arrow at the current item), pagination (the current page circled in red) and breadcrumb, table
+(ruled like a ledger, places 1 to 3 as a red, an ink and a dashed ring), toast, drawer and panel.
+Toasts are shown by a small script in the demo for now; a utilities package like gamifiedui-utils
+would be its home once a game needs it.
 
 ## Open questions
 

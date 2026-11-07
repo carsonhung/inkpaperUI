@@ -1,0 +1,29 @@
+/* A plain boxed area for grouping: settings, a summary, a sidebar block. Unlike ip-card it has no
+   media slot or action row. .ip-panel-deep fills it with the deeper paper, for a panel that sits
+   on another bordered area and needs to stand apart without a second heavy line. */
+@layer components {
+  .ip-panel {
+    display: block;
+    padding: 1rem 1.25rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-b);
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+  }
+
+  .ip-panel-title {
+    margin: 0 0 0.6rem;
+    color: var(--color-ip-accent-ink);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .ip-panel-deep {
+    border-color: transparent;
+    background: var(--color-ip-paper-deep);
+  }
+}

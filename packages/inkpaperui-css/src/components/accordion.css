@@ -1,0 +1,79 @@
+/* Notebook entries on native <details> / <summary>: keyboard, state and find-in-page for free.
+   Give a group the same name="" to make it exclusive (one open at a time). Consecutive entries
+   share their ruled lines, like a list in a notebook, rather than stacking separate boxes. */
+@layer components {
+  .ip-accordion {
+    border-block: var(--ip-line-thin) solid var(--color-ip-ink);
+    color: var(--color-ip-ink);
+  }
+
+  .ip-accordion + .ip-accordion {
+    border-top: 0;
+  }
+
+  .ip-accordion > summary {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    padding: 0.6rem 0.25rem;
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+    text-transform: uppercase;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .ip-accordion > summary:lang(zh),
+  :lang(zh) .ip-accordion > summary {
+    letter-spacing: 0.02em;
+  }
+
+  .ip-accordion > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .ip-accordion > summary::before {
+    content: "";
+    flex: none;
+    width: 1.1rem;
+    height: 1.1rem;
+    background: var(--color-ip-accent);
+    mask: var(--ip-chevron) center / contain no-repeat;
+    transition: rotate var(--ip-motion-base) ease-out;
+  }
+
+  .ip-accordion[open] > summary::before {
+    rotate: 90deg;
+  }
+
+  .ip-accordion > summary:focus-visible {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: 2px;
+    border-radius: var(--ip-shape-c);
+  }
+
+  .ip-accordion-meta {
+    flex: none;
+    margin-inline-start: auto;
+    color: var(--color-ip-ink-soft);
+    font-size: var(--ip-text-md);
+    white-space: nowrap;
+  }
+
+  .ip-accordion-body {
+    padding: 0 0.25rem 1rem 2.1rem;
+    font-size: var(--ip-text-md);
+    line-height: 1.6;
+  }
+
+  .ip-accordion-body > :first-child {
+    margin-top: 0;
+  }
+
+  .ip-accordion-body > :last-child {
+    margin-bottom: 0;
+  }
+}

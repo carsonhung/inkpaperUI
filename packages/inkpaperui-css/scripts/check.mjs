@@ -19,6 +19,18 @@ for (const file of files) {
   if (hex) problems.push(`${file} has raw colours: ${[...new Set(hex)].join(', ')}`);
 }
 
+/** Each class is owned by one file; a second file declaring the same bare class means two parts
+    share a name (as the page wrapper and the pagination button once did). */
+const owners = new Map();
+for (const file of files) {
+  const css = readFileSync(join(src, file), 'utf8');
+  for (const [, name] of css.matchAll(/^\s*\.(ip-[a-z0-9-]+)\s*[{,]/gm)) {
+    const owner = owners.get(name);
+    if (owner && owner !== file) problems.push(`.${name} is declared in both ${owner} and ${file}`);
+    else owners.set(name, file);
+  }
+}
+
 if (problems.length > 0) {
   console.error(problems.join('\n'));
   process.exit(1);

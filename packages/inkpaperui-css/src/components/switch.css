@@ -51,11 +51,4 @@
   .ip-switch:disabled::before {
     border-color: var(--color-ip-ink-soft);
   }
-
-  .ip-choice {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.65rem;
-    cursor: pointer;
-  }
 }

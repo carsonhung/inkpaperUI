@@ -1,0 +1,96 @@
+/* Tags and filter chips. Static: <span class="ip-chip">. Toggle: <button class="ip-chip" aria-pressed>,
+   which gains a red pen tick and red line when pressed, so the state never rests on colour alone.
+   Divider with words: <div class="ip-divider-text" role="separator">Or</div>. */
+@layer components {
+  .ip-chip {
+    --ip-chip-tone: var(--color-ip-ink);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 1.9rem;
+    padding: 0.2rem 0.8rem 0.25rem;
+    border: var(--ip-line-thin) solid var(--ip-chip-tone);
+    border-radius: 999px 900px 999px 950px;
+    background: var(--color-ip-paper);
+    color: var(--ip-chip-tone);
+    font-family: var(--font-ip-body);
+    font-size: var(--ip-text-md);
+    line-height: 1.25;
+  }
+
+  .ip-chip > .ip-icon {
+    --ip-icon-size: 1rem;
+  }
+
+  button.ip-chip {
+    min-height: 2.75rem;
+    cursor: pointer;
+    transition: background-color var(--ip-motion-fast);
+  }
+
+  @media (hover: hover) {
+    button.ip-chip:hover {
+      background: var(--color-ip-paper-deep);
+    }
+  }
+
+  button.ip-chip:focus-visible {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: 3px;
+  }
+
+  button.ip-chip[aria-pressed="true"] {
+    --ip-chip-tone: var(--color-ip-accent-ink);
+
+    border-width: var(--ip-line);
+  }
+
+  button.ip-chip[aria-pressed="true"]::before {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    margin-inline-start: -0.2rem;
+    background: currentColor;
+    mask: var(--ip-tick) center / contain no-repeat;
+  }
+
+  .ip-chip-primary,
+  .ip-chip-danger {
+    --ip-chip-tone: var(--color-ip-accent-ink);
+  }
+
+  .ip-chip-success {
+    --ip-chip-tone: var(--color-ip-success);
+  }
+
+  .ip-chip-warning {
+    --ip-chip-tone: var(--color-ip-warning);
+  }
+
+  .ip-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .ip-divider-text {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-block: 1rem;
+    color: var(--color-ip-ink-soft);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-md);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .ip-divider-text::before,
+  .ip-divider-text::after {
+    content: "";
+    flex: 1;
+    border-top: var(--ip-line-thin) solid var(--color-ip-ink);
+    border-radius: 2px;
+  }
+}

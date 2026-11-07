@@ -9,7 +9,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
-  <body class="ip-page min-h-screen">
+  <body class="ip-paper min-h-screen">
     <main class="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-10">
       <header class="flex flex-wrap items-end justify-between gap-6">
         <div class="flex flex-col gap-2">
@@ -168,6 +168,137 @@
           </div>
         </section>
       </div>
+
+      <div class="grid gap-10 md:grid-cols-2">
+        <section class="flex flex-col gap-4" aria-labelledby="accordion-title">
+          <h2 class="ip-heading m-0" id="accordion-title" data-i18n="accordion">Accordion</h2>
+          <div>
+            <details class="ip-accordion" name="faq" open>
+              <summary><span data-i18n="faqHours">Opening hours</span><span class="ip-accordion-meta" data-i18n="faqHoursMeta">Daily</span></summary>
+              <div class="ip-accordion-body"><p data-i18n="faqHoursText">Every day, 7 am to 11 pm.</p></div>
+            </details>
+            <details class="ip-accordion" name="faq">
+              <summary data-i18n="faqWhere">Where to find us</summary>
+              <div class="ip-accordion-body"><p data-i18n="faqWhereText">Shop 3, Temple Street, Yau Ma Tei.</p></div>
+            </details>
+            <details class="ip-accordion" name="faq">
+              <summary data-i18n="faqAllergy">Allergies</summary>
+              <div class="ip-accordion-body"><p data-i18n="faqAllergyText">Wontons contain shrimp and egg. Ask us for a list.</p></div>
+            </details>
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-4" aria-labelledby="chips-title">
+          <h2 class="ip-heading m-0" id="chips-title" data-i18n="chips">Chips</h2>
+          <div class="ip-chips" data-chips>
+            <button class="ip-chip" type="button" aria-pressed="true" data-i18n="chipNoodles">Noodles</button>
+            <button class="ip-chip" type="button" aria-pressed="false" data-i18n="chipRice">Rice</button>
+            <button class="ip-chip" type="button" aria-pressed="false" data-i18n="chipCongee">Congee</button>
+            <button class="ip-chip" type="button" aria-pressed="false" data-i18n="chipSweets">Sweets</button>
+          </div>
+          <div class="ip-divider-text m-0" role="separator" data-i18n="or">Or</div>
+          <div class="ip-chips">
+            <span class="ip-chip ip-chip-success" data-i18n="chipVegan">Vegetarian</span>
+            <span class="ip-chip ip-chip-danger" data-i18n="chipSpicy">Spicy</span>
+            <span class="ip-chip ip-chip-warning" data-i18n="chipLimited">Today only</span>
+            <span class="ip-chip"><span class="ip-icon ip-i-clock" aria-hidden="true"></span><span data-i18n="chipQuick">10 min</span></span>
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-4" aria-labelledby="menu-title">
+          <h2 class="ip-heading m-0" id="menu-title" data-i18n="menus">Menu and dropdown</h2>
+          <div class="flex flex-wrap items-start gap-6">
+            <nav class="ip-panel p-0" data-i18n-label="navLabel" aria-label="Sections">
+              <ul class="ip-menu min-w-52">
+                <li><a class="ip-menu-item" href="#" aria-current="page"><span class="ip-icon ip-i-home" aria-hidden="true"></span><span data-i18n="navHome">Home</span></a></li>
+                <li><a class="ip-menu-item" href="#"><span class="ip-icon ip-i-star" aria-hidden="true"></span><span data-i18n="navRecipes">Recipes</span></a></li>
+                <li><a class="ip-menu-item" href="#"><span class="ip-icon ip-i-chat" aria-hidden="true"></span><span data-i18n="navNotebook">Notebook</span><span class="ip-menu-hint">3</span></a></li>
+                <li class="ip-menu-divider" role="presentation"></li>
+                <li><button class="ip-menu-item" type="button" disabled><span class="ip-icon ip-i-exit" aria-hidden="true"></span><span data-i18n="navSignOut">Sign out</span></button></li>
+              </ul>
+            </nav>
+            <details class="ip-dropdown" data-dropdown>
+              <summary class="ip-btn"><span data-i18n="sortBy">Sort by</span><span class="ip-icon ip-icon-sm ip-i-arrow-right rotate-90" aria-hidden="true"></span></summary>
+              <div class="ip-dropdown-panel">
+                <ul class="ip-menu">
+                  <li><button class="ip-menu-item" type="button" aria-current="true" data-i18n="sortNew">Newest</button></li>
+                  <li><button class="ip-menu-item" type="button" data-i18n="sortPrice">Price</button></li>
+                  <li><button class="ip-menu-item" type="button" data-i18n="sortRating">Rating</button></li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-4" aria-labelledby="pages-title">
+          <h2 class="ip-heading m-0" id="pages-title" data-i18n="pages">Pages and breadcrumb</h2>
+          <nav class="ip-breadcrumb" data-i18n-label="breadcrumbLabel" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="#" data-i18n="navHome">Home</a></li>
+              <li><a href="#" data-i18n="navRecipes">Recipes</a></li>
+              <li><span aria-current="page" data-i18n="crumbDish">Wonton noodles</span></li>
+            </ol>
+          </nav>
+          <nav class="ip-pagination" data-i18n-label="pagesLabel" aria-label="Pages" data-pagination>
+            <ul>
+              <li><button class="ip-page" type="button" data-page="prev" data-i18n-label="prevPage" aria-label="Previous page"><span class="ip-icon ip-i-arrow-right rotate-180" aria-hidden="true"></span></button></li>
+              <li><button class="ip-page" type="button" data-page="1" aria-current="page">1</button></li>
+              <li><button class="ip-page" type="button" data-page="2">2</button></li>
+              <li><button class="ip-page" type="button" data-page="3">3</button></li>
+              <li><button class="ip-page" type="button" data-page="4">4</button></li>
+              <li><button class="ip-page" type="button" data-page="next" data-i18n-label="nextPage" aria-label="Next page"><span class="ip-icon ip-i-arrow-right" aria-hidden="true"></span></button></li>
+            </ul>
+          </nav>
+        </section>
+
+        <section class="flex flex-col gap-4" aria-labelledby="table-title">
+          <h2 class="ip-heading m-0" id="table-title" data-i18n="table">Table</h2>
+          <div class="ip-table-wrap">
+            <table class="ip-table">
+              <caption data-i18n="tableCaption">Today's orders</caption>
+              <thead>
+                <tr><th scope="col" data-i18n="colPlace">Place</th><th scope="col" data-i18n="colDish">Dish</th><th scope="col" class="ip-table-num" data-i18n="colOrders">Orders</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><span class="ip-rank ip-rank-1">1</span></td><th scope="row" class="font-normal" data-i18n="crumbDish">Wonton noodles</th><td class="ip-table-num">128</td></tr>
+                <tr><td><span class="ip-rank ip-rank-2">2</span></td><th scope="row" class="font-normal" data-i18n="dishWaffle">Egg waffle</th><td class="ip-table-num">96</td></tr>
+                <tr aria-current="true"><td><span class="ip-rank ip-rank-3">3</span></td><th scope="row" class="font-normal"><span data-i18n="dishTea">Milk tea</span> <span class="ip-badge ip-badge-primary" data-i18n="yourPick">Your pick</span></th><td class="ip-table-num">71</td></tr>
+                <tr><td><span class="ip-rank">4</span></td><th scope="row" class="font-normal" data-i18n="dishToast">French toast</th><td class="ip-table-num">40</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-4" aria-labelledby="panel-title">
+          <h2 class="ip-heading m-0" id="panel-title" data-i18n="panelsAndOverlays">Panel, toast and drawer</h2>
+          <div class="ip-panel">
+            <h3 class="ip-panel-title" data-i18n="panelTitle">Today</h3>
+            <p class="m-0" data-i18n="panelText">Twelve orders, two waiting.</p>
+            <div class="ip-panel ip-panel-deep mt-3">
+              <p class="m-0 ip-hint" data-i18n="panelDeepText">A deeper panel, for a block inside another.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-4">
+            <button class="ip-btn" type="button" data-show-toast data-i18n="showToast">Show a toast</button>
+            <button class="ip-btn" type="button" data-open-drawer data-i18n="openDrawer">Open drawer</button>
+          </div>
+        </section>
+      </div>
+
+      <dialog class="ip-drawer" aria-labelledby="drawer-title" data-drawer>
+        <div class="ip-dialog-head">
+          <h2 class="ip-dialog-title" id="drawer-title" data-i18n="drawerTitle">Menu</h2>
+          <button class="ip-btn ip-btn-ghost ip-btn-icon ip-btn-sm" data-close-drawer data-i18n-label="close" aria-label="Close"><span class="ip-icon ip-icon-sm ip-i-close" aria-hidden="true"></span></button>
+        </div>
+        <ul class="ip-menu px-0">
+          <li><a class="ip-menu-item" href="#" aria-current="page"><span class="ip-icon ip-i-home" aria-hidden="true"></span><span data-i18n="navHome">Home</span></a></li>
+          <li><a class="ip-menu-item" href="#"><span class="ip-icon ip-i-star" aria-hidden="true"></span><span data-i18n="navRecipes">Recipes</span></a></li>
+          <li><a class="ip-menu-item" href="#"><span class="ip-icon ip-i-basket" aria-hidden="true"></span><span data-i18n="navBasket">Basket</span><span class="ip-menu-hint">2</span></a></li>
+          <li><a class="ip-menu-item" href="#"><span class="ip-icon ip-i-settings" aria-hidden="true"></span><span data-i18n="navSettings">Settings</span></a></li>
+        </ul>
+      </dialog>
+
+      <div class="ip-toast-stack" role="region" data-i18n-label="notifications" aria-label="Notifications" data-toasts></div>
 
       <section class="flex flex-col gap-4" aria-labelledby="icons-title">
         <h2 class="ip-heading m-0" id="icons-title" data-i18n="icons">Icons</h2>

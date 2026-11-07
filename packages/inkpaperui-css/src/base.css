@@ -1,6 +1,6 @@
 /* The page and its type: paper underneath, hand lettering for headings, plain sans for reading. */
 @layer components {
-  .ip-page {
+  .ip-paper {
     background: var(--color-ip-paper);
     color: var(--color-ip-ink);
     font-family: var(--font-ip-body);

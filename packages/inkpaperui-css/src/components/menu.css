@@ -1,0 +1,138 @@
+/* A list of buttons or links with a red pen arrow at the hovered, focused or current item.
+   Dropdown: <details class="ip-dropdown"><summary class="ip-btn">...</summary>
+   <div class="ip-dropdown-panel"><ul class="ip-menu">...</ul></div></details>.
+   This is a disclosure list, not role="menu"; add role="menu" only with full arrow-key handling. */
+@layer components {
+  .ip-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin: 0;
+    padding: 0.4rem;
+    list-style: none;
+  }
+
+  .ip-menu-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.45rem 0.75rem 0.45rem 2.1rem;
+    border: 0;
+    border-radius: var(--ip-shape-c);
+    background: transparent;
+    color: var(--color-ip-ink);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    letter-spacing: 0.04em;
+    line-height: 1.25;
+    text-align: start;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .ip-menu-item::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0.6rem;
+    width: 1rem;
+    height: 1rem;
+    background: var(--color-ip-accent);
+    mask: var(--ip-chevron) center / contain no-repeat;
+    opacity: 0;
+    translate: -3px 0;
+    transition:
+      opacity var(--ip-motion-fast),
+      translate var(--ip-motion-fast);
+  }
+
+  @media (hover: hover) {
+    .ip-menu-item:hover:not(:disabled, [aria-disabled="true"])::before {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  .ip-menu-item:focus-visible {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: -2px;
+  }
+
+  .ip-menu-item:focus-visible::before,
+  .ip-menu-item[aria-current]:not([aria-current="false"])::before,
+  .ip-menu-item[aria-checked="true"]::before {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .ip-menu-item[aria-current]:not([aria-current="false"]),
+  .ip-menu-item[aria-checked="true"] {
+    color: var(--color-ip-accent-ink);
+  }
+
+  .ip-menu-item:disabled,
+  .ip-menu-item[aria-disabled="true"] {
+    color: var(--color-ip-ink-soft);
+    text-decoration: line-through;
+    cursor: not-allowed;
+  }
+
+  .ip-menu-item > .ip-icon {
+    --ip-icon-size: 1.15rem;
+  }
+
+  .ip-menu-hint {
+    margin-inline-start: auto;
+    color: var(--color-ip-ink-soft);
+    font-family: var(--font-ip-body);
+    font-size: var(--ip-text-sm);
+    letter-spacing: 0;
+  }
+
+  .ip-menu-divider {
+    margin: 0.3rem 0.6rem;
+    border-top: var(--ip-line-thin) dashed var(--color-ip-ink-faint);
+  }
+
+  .ip-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .ip-dropdown > summary {
+    list-style: none;
+  }
+
+  .ip-dropdown > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .ip-dropdown-panel {
+    position: absolute;
+    z-index: var(--ip-z-dropdown);
+    inset-block-start: calc(100% + 0.4rem);
+    inset-inline-start: 0;
+    min-width: max(100%, 13rem);
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-b);
+    background: var(--color-ip-paper);
+    box-shadow: 4px 5px 0 -1px var(--color-ip-ink-faint);
+  }
+
+  .ip-dropdown[open] > .ip-dropdown-panel {
+    animation: ip-dropdown-in var(--ip-motion-fast) ease-out;
+  }
+
+  .ip-dropdown-end > .ip-dropdown-panel {
+    inset-inline: auto 0;
+  }
+
+  @keyframes ip-dropdown-in {
+    from {
+      opacity: 0;
+      translate: 0 -4px;
+    }
+  }
+}

@@ -17,6 +17,7 @@ API (`gx-btn` there is `ip-btn` here), so a game can switch kits by swapping its
 ```
 
 ```html
+<body class="ip-paper">
 <button class="ip-btn ip-btn-primary">Order</button>
 <span class="ip-icon ip-i-heart" aria-hidden="true"></span>
 ```
@@ -29,7 +30,7 @@ yourself, for example from `@fontsource/patrick-hand`, `@fontsource/lxgw-wenkai-
 
 | Package | What it is |
 | --- | --- |
-| `inkpaperui-css` | Tokens, type and components: button, card, tabs, switch, progress, input, dialog, checkbox and radio, badge, alert, tooltip, icon |
+| `inkpaperui-css` | Tokens, type and 20 components: button, card, tabs, switch, progress, input, dialog, checkbox and radio, badge, alert, tooltip, accordion, chip, menu and dropdown, pagination and breadcrumb, table, toast, drawer, panel, icon |
 | `inkpaperui-icons` | 18 line icons on a 24px grid, named like gamifiedui-icons; edit `icons.mjs`, then `npm run build` |
 
 ## Develop
