@@ -1,0 +1,141 @@
+/* Pick one (or several) by picture instead of from a dropdown:
+   <div class="ip-picker" role="group" aria-label="Dish for the judge">
+     <button class="ip-pick" type="button" aria-pressed="true" aria-label="Egg waffle, 80 points">
+       <span class="ip-pick-art"><span class="ip-icon ip-i-egg-waffle"></span></span>
+       <span class="ip-pick-label">80</span>
+       <span class="ip-pick-badge">2</span>
+     </button>
+   </div>
+   The tile shows only a picture and a short label, so put the full name in aria-label. A picked
+   tile gets a red line and a tick in its corner. Use disabled (not just dimming) for tiles that
+   cannot be picked, and say why in title. --ip-pick-size sets the tile width; ip-picker-lg
+   doubles the art for portraits. */
+@layer components {
+  .ip-picker {
+    --ip-pick-size: 5rem;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--ip-pick-size), 1fr));
+    gap: 0.6rem;
+  }
+
+  .ip-picker-lg {
+    --ip-pick-size: 7.5rem;
+  }
+
+  .ip-pick {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    min-width: 0;
+    padding: 0.6rem 0.4rem 0.45rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-a);
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+    cursor: pointer;
+    transition:
+      transform var(--ip-motion-fast),
+      background-color var(--ip-motion-fast);
+  }
+
+  .ip-pick:nth-child(3n + 2) {
+    border-radius: var(--ip-shape-b);
+  }
+
+  .ip-pick:nth-child(3n) {
+    border-radius: var(--ip-shape-c);
+  }
+
+  @media (hover: hover) {
+    .ip-pick:hover:not(:disabled) {
+      background: var(--color-ip-paper-deep);
+    }
+  }
+
+  .ip-pick:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  .ip-pick:focus-visible {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: 3px;
+  }
+
+  .ip-pick[aria-pressed="true"] {
+    border-color: var(--color-ip-accent);
+    box-shadow: inset 0 0 0 1px var(--color-ip-accent);
+    color: var(--color-ip-accent-ink);
+  }
+
+  .ip-pick[aria-pressed="true"]::after {
+    content: "";
+    position: absolute;
+    top: -0.55rem;
+    right: -0.45rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    background: var(--color-ip-accent-ink);
+    mask: var(--ip-tick) center / contain no-repeat;
+  }
+
+  .ip-pick:disabled {
+    border-style: dashed;
+    border-color: var(--color-ip-ink-soft);
+    color: var(--color-ip-ink-soft);
+    cursor: not-allowed;
+  }
+
+  .ip-pick-art {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    aspect-ratio: 1;
+    max-height: calc(var(--ip-pick-size) - 1.5rem);
+  }
+
+  .ip-pick-art > .ip-icon {
+    --ip-icon-size: min(2.5rem, 70%);
+  }
+
+  .ip-picker-lg .ip-pick-art > .ip-icon {
+    --ip-icon-size: min(5rem, 70%);
+  }
+
+  .ip-pick-art > :is(svg, img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ip-pick-label {
+    max-width: 100%;
+    overflow: hidden;
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-md);
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ip-pick-badge {
+    position: absolute;
+    top: 0.3rem;
+    left: 0.3rem;
+    display: grid;
+    place-items: center;
+    min-width: 1.3rem;
+    height: 1.3rem;
+    padding: 0 0.25rem;
+    border: var(--ip-line-thin) solid var(--color-ip-ink);
+    border-radius: 50% 46% 52% 48%;
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-sm);
+    line-height: 1;
+  }
+}

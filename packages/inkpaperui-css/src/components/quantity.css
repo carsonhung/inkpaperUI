@@ -1,0 +1,107 @@
+/* Quantity: <div class="ip-quantity" role="group" aria-label="Bowls">
+   <button class="ip-quantity-btn" type="button" data-step="-1" aria-label="Fewer"></button>
+   <input class="ip-quantity-value" type="number" inputmode="numeric" min="1" max="99" value="1"
+   aria-label="Quantity"><button class="ip-quantity-btn" type="button" data-step="1"
+   aria-label="More"></button></div>.
+   Empty buttons draw − / + from the sign of data-step; give one text (e.g. "+10") to label it.
+   Without JS the number field still types and steps; quantity() in inkpaperui-utils wires the
+   buttons, press-and-hold repeat, clamping and the data-bump pop. */
+@layer components {
+  .ip-quantity {
+    display: inline-flex;
+    align-items: stretch;
+    height: 2.75rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-a);
+    background: var(--color-ip-paper);
+  }
+
+  .ip-quantity:focus-within {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: 3px;
+  }
+
+  .ip-quantity-btn {
+    display: grid;
+    place-items: center;
+    min-width: 2.6rem;
+    padding: 0 0.5rem;
+    border: 0;
+    background: transparent;
+    color: var(--color-ip-ink);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    cursor: pointer;
+    touch-action: manipulation;
+    user-select: none;
+  }
+
+  .ip-quantity-btn:first-child {
+    border-inline-end: var(--ip-line-thin) solid var(--color-ip-ink);
+  }
+
+  .ip-quantity-btn:last-child {
+    border-inline-start: var(--ip-line-thin) solid var(--color-ip-ink);
+  }
+
+  .ip-quantity-btn:empty::before {
+    content: "+";
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .ip-quantity-btn:empty[data-step^="-"]::before {
+    content: "−";
+  }
+
+  @media (hover: hover) {
+    .ip-quantity-btn:hover:not([aria-disabled="true"], :disabled) {
+      background: var(--color-ip-paper-deep);
+    }
+  }
+
+  .ip-quantity-btn:active:not([aria-disabled="true"], :disabled),
+  .ip-quantity-btn[data-pressed] {
+    background: var(--color-ip-ink-faint);
+  }
+
+  .ip-quantity-btn:focus-visible {
+    outline: none;
+    background: var(--color-ip-paper-deep);
+    color: var(--color-ip-accent-ink);
+  }
+
+  .ip-quantity-btn[aria-disabled="true"],
+  .ip-quantity-btn:disabled {
+    color: var(--color-ip-ink-faint);
+    cursor: not-allowed;
+  }
+
+  .ip-quantity-value {
+    width: 3.25rem;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-ip-ink);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    appearance: textfield;
+  }
+
+  .ip-quantity-value::-webkit-inner-spin-button,
+  .ip-quantity-value::-webkit-outer-spin-button {
+    margin: 0;
+    appearance: none;
+  }
+
+  .ip-quantity-value:focus {
+    outline: none;
+  }
+
+  .ip-quantity[data-bump] .ip-quantity-value {
+    animation: ip-bump var(--ip-motion-base) ease-out;
+  }
+}

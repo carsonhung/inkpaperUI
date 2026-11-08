@@ -73,9 +73,10 @@ for page titles.
 
 A 24 by 24 grid, 2px stroke, round caps, no fills except the accent dot some icons carry (the
 active star, the selected heart). Same names as gamifiedui-icons where a match exists (`home`,
-`heart`, `star`, `search`, `pin`, `clock`, `money`, `basket`, `settings`, `close`, `arrow-right`,
-`chat`, `exit`), so a game's icon calls work in either kit. Each icon has a draw-on variant for
-hover.
+`heart`, `star`, `search`, `pin`, `clock`, `money`, `basket`, `gear`, `close`, `arrow-right`,
+`chat`, `exit` and the rest of gamifiedui-icons' set), so a game's icon calls work in either kit.
+Food icons (`bowl`, `coffee`, `milk-tea`, `egg-waffle`, `dim-sum`) stay simple enough to read at
+16px. Each icon has a draw-on variant for hover.
 
 ## States
 
@@ -97,8 +98,14 @@ the icons above. The second batch adds checkbox and radio (a red pen tick and do
 gamifiedUI's everyday parts: accordion (ruled like a notebook list), chip, menu and dropdown (a red
 pen arrow at the current item), pagination (the current page circled in red) and breadcrumb, table
 (ruled like a ledger, places 1 to 3 as a red, an ink and a dashed ring), toast, drawer and panel.
-Toasts are shown by a small script in the demo for now; a utilities package like gamifiedui-utils
-would be its home once a game needs it.
+
+The fourth batch brings the rest of gamifiedUI's set. Inputs: slider (a red line up to the thumb),
+quantity, rating (red hearts or stars over ink outlines), stepper (ticked, circled, locked),
+dialogue box (the speaker's name on a tab over the top line) and picker. Loading and numbers:
+spinner, skeleton (dashed outlines, no shimmer), stat, counter, timer (the scribble under the
+time shortens) and bar (hatched like a pen shading a box). Game parts: quest, reward (pen rays
+behind the prize), shop and currency, skill (a pie of hatching for the cooldown) and versus.
+Their scripts live in `inkpaperui-utils`, a copy of gamifiedui-utils with the `ip-` names.
 
 ## Open questions
 

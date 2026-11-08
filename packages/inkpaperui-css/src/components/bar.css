@@ -1,0 +1,61 @@
+/* Health, energy or experience bar: <div class="ip-bar" role="meter" aria-label="Freshness"
+   aria-valuemin="0" aria-valuemax="40" aria-valuenow="26" style="--ip-value: 0.65"></div>
+   (0 to 1). The fill is pen hatching rather than a solid block, so it reads as drawn; it is
+   clipped rather than scaled, which would squash the hatching. ip-bar-critical adds a pulse for
+   when the reader should act, and the number beside it should say so too. */
+@layer components {
+  .ip-bar {
+    --ip-bar-tone: var(--color-ip-accent);
+
+    position: relative;
+    display: block;
+    height: 1rem;
+    overflow: hidden;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: 5px 8px 6px 9px / 8px 5px 9px 6px;
+    background: var(--color-ip-paper);
+  }
+
+  .ip-bar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -55deg,
+      var(--ip-bar-tone) 0 2.5px,
+      transparent 2.5px 6px
+    );
+    clip-path: inset(0 calc((1 - var(--ip-value, 0)) * 100%) 0 0);
+    transition: clip-path var(--ip-motion-slow) ease-out;
+  }
+
+  .ip-bar-smooth::before {
+    background: var(--ip-bar-tone);
+  }
+
+  .ip-bar-hp {
+    --ip-bar-tone: var(--color-ip-accent);
+  }
+
+  .ip-bar-mp {
+    --ip-bar-tone: var(--color-ip-ink);
+  }
+
+  .ip-bar-xp {
+    --ip-bar-tone: var(--color-ip-success);
+  }
+
+  .ip-bar-critical {
+    border-color: var(--color-ip-accent);
+  }
+
+  .ip-bar-critical::before {
+    animation: ip-pulse 1s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ip-bar-critical::before {
+      animation: none;
+    }
+  }
+}

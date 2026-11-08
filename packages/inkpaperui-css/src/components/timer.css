@@ -1,0 +1,84 @@
+/* <div class="ip-timer" role="timer" aria-label="Kitchen closes in">
+   <span class="ip-timer-label">Closing</span><time class="ip-timer-value" datetime="PT1M30S">01:30</time></div>.
+   role="timer" is not announced each tick; announce milestones in a separate live region.
+   --ip-value (1 to 0, the share left) shortens the pen line under the readout; timer() in
+   inkpaperui-utils drives it. data-state="warning|critical|done" recolours it, critical pulses the
+   digits and done pops once, and the label should say the state too. */
+@layer components {
+  .ip-timer {
+    --ip-timer-tone: var(--color-ip-ink);
+
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.05rem;
+    padding: 0.4rem 0.9rem 0.65rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-a);
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+  }
+
+  .ip-timer::after {
+    content: "";
+    position: absolute;
+    left: 0.9rem;
+    right: 0.9rem;
+    bottom: 0.35rem;
+    height: 0.35rem;
+    background: var(--ip-timer-tone);
+    mask: var(--ip-scribble) left center / 100% 100% no-repeat;
+    clip-path: inset(0 calc((1 - var(--ip-value, 1)) * 100%) 0 0);
+    transition: clip-path 200ms linear;
+  }
+
+  .ip-timer-label {
+    color: var(--color-ip-ink-soft);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-md);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .ip-timer-value {
+    color: var(--ip-timer-tone);
+    font-family: var(--font-ip-hand);
+    font-size: 1.6rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+
+  .ip-timer-lg .ip-timer-value {
+    font-size: 2.6rem;
+  }
+
+  .ip-timer[data-state="warning"] {
+    --ip-timer-tone: var(--color-ip-warning);
+  }
+
+  .ip-timer[data-state="critical"],
+  .ip-timer[data-state="done"] {
+    --ip-timer-tone: var(--color-ip-danger);
+
+    border-color: var(--color-ip-accent);
+  }
+
+  .ip-timer[data-state="critical"] .ip-timer-value {
+    animation: ip-pulse 1s ease-in-out infinite;
+  }
+
+  .ip-timer[data-state="done"] .ip-timer-value {
+    animation: ip-bump var(--ip-motion-slow) ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ip-timer[data-state="critical"] .ip-timer-value {
+      animation: none;
+    }
+  }
+
+  [data-ip-motion="reduce"] .ip-timer[data-state="critical"] .ip-timer-value {
+    animation: none;
+  }
+}

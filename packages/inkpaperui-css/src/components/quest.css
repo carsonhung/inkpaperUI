@@ -1,0 +1,75 @@
+/* A to-do card for goals. <section class="ip-quest"><h3 class="ip-quest-title">...</h3>
+   <ul class="ip-quest-list"><li class="ip-objective" data-done><span class="ip-objective-text">...</span>
+   <span class="ip-objective-count">3/3</span><span class="sr-only">(done)</span></li></ul></section>
+   Each goal has a box drawn before it; done goals get a red tick over the box and a pen line
+   through the words, not a colour change alone. */
+@layer components {
+  .ip-quest {
+    padding: 0.9rem 1.1rem 1rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-c);
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+  }
+
+  .ip-quest-title {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .ip-quest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ip-objective {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: var(--ip-text-md);
+  }
+
+  .ip-objective::before {
+    content: "";
+    width: 1.05rem;
+    height: 1.05rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-c);
+  }
+
+  .ip-objective[data-done]::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 1.35rem;
+    height: 1.35rem;
+    background: var(--color-ip-accent-ink);
+    mask: var(--ip-tick) center / contain no-repeat;
+    translate: 0.05rem -70%;
+  }
+
+  .ip-objective[data-done] .ip-objective-text {
+    color: var(--color-ip-ink-soft);
+    text-decoration: line-through;
+    text-decoration-color: var(--color-ip-ink);
+    text-decoration-thickness: 1.5px;
+  }
+
+  .ip-objective-count {
+    color: var(--color-ip-ink-soft);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-md);
+    font-variant-numeric: tabular-nums;
+  }
+}

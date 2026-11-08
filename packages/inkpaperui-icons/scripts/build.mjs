@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ICONS } from '../icons.mjs';
@@ -38,6 +38,14 @@ for (const [path, contents] of Object.entries(outputs)) {
     mkdirSync(dirname(file), { recursive: true });
     writeFileSync(file, contents);
   }
+}
+
+/** A renamed or removed icon would otherwise leave its old SVG behind for anyone copying files. */
+const svgDir = join(root, 'svg');
+for (const file of readdirSync(svgDir)) {
+  if (outputs[`svg/${file}`] !== undefined) continue;
+  if (isCheck) stale.push(`svg/${file} (no such icon)`);
+  else rmSync(join(svgDir, file));
 }
 
 if (stale.length > 0) {

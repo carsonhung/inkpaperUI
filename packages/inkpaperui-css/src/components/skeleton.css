@@ -1,0 +1,59 @@
+/* Loading placeholders: pencil outlines of what is coming, dashed so they never pass for content.
+   Mark the loading region aria-busy="true" and keep one sr-only "Loading" message; the blocks
+   themselves are aria-hidden. */
+@layer components {
+  .ip-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .ip-skeleton-text,
+  .ip-skeleton-block,
+  .ip-skeleton-avatar {
+    display: block;
+    border: var(--ip-line-thin) dashed var(--color-ip-ink-soft);
+    background: var(--color-ip-paper-deep);
+    animation: ip-skeleton-pulse 1.6s ease-in-out infinite;
+  }
+
+  .ip-skeleton-text {
+    width: var(--ip-skeleton-width, 100%);
+    height: 0.9rem;
+    border-radius: 3px 5px 4px 6px;
+  }
+
+  .ip-skeleton-text:last-child:not(:only-child) {
+    --ip-skeleton-width: 60%;
+  }
+
+  .ip-skeleton-block {
+    width: 100%;
+    height: var(--ip-skeleton-height, 6rem);
+    border-radius: var(--ip-shape-b);
+  }
+
+  .ip-skeleton-avatar {
+    width: var(--ip-skeleton-size, 3rem);
+    height: var(--ip-skeleton-size, 3rem);
+    border-radius: 52% 48% 55% 45% / 48% 55% 45% 52%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ip-skeleton-text,
+    .ip-skeleton-block,
+    .ip-skeleton-avatar {
+      animation: none;
+    }
+  }
+
+  [data-ip-motion="reduce"] :is(.ip-skeleton-text, .ip-skeleton-block, .ip-skeleton-avatar) {
+    animation: none;
+  }
+
+  @keyframes ip-skeleton-pulse {
+    50% {
+      opacity: 0.45;
+    }
+  }
+}

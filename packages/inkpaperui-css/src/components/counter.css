@@ -1,0 +1,42 @@
+/* Money or score readout: <div class="ip-counter" aria-label="Money">
+   <span class="ip-icon ip-i-coin ip-counter-icon" aria-hidden="true"></span>
+   <span class="ip-counter-value">120</span></div>. Roll the number from your script
+   (rollNumber() in inkpaperui-utils) and toggle data-bump to pop it once it lands. */
+@layer components {
+  .ip-counter {
+    --ip-counter-tone: var(--color-ip-warning);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.85rem 0.35rem 0.6rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-c);
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+  }
+
+  .ip-counter-icon {
+    color: var(--ip-counter-tone);
+  }
+
+  .ip-counter-value {
+    min-width: 2ch;
+    font-family: var(--font-ip-hand);
+    font-size: 1.4rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .ip-counter[data-bump] .ip-counter-value {
+    animation: ip-bump var(--ip-motion-base) ease-out;
+  }
+
+  .ip-counter-hp {
+    --ip-counter-tone: var(--color-ip-accent-ink);
+  }
+
+  .ip-counter-xp {
+    --ip-counter-tone: var(--color-ip-success);
+  }
+}

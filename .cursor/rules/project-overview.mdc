@@ -14,6 +14,8 @@ A line-art UI kit for Tailwind CSS v4: ink outlines on warm paper, one red accen
   component in `src/components`, each imported from `src/index.css`.
 - `packages/inkpaperui-icons`: icons as stroke paths on a 24px grid in `icons.mjs`; `npm run build`
   writes `src/index.css`, `svg/` and `icons.json`. Never edit the generated files.
+- `packages/inkpaperui-utils`: typed helpers mirroring gamifiedui-utils, built by `tsc` to `dist`
+  (gitignored); the demo imports it, so the root build runs icons, utils, then the demo.
 - `demo`: one page on port 5395 (5391 to 5394 belong to 掃街, Taste Quest and the gamifiedUI demo).
 
 ## Rules

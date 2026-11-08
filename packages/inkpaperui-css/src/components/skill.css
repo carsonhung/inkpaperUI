@@ -1,0 +1,92 @@
+/* An ability button with a cooldown sweep: <button class="ip-skill" aria-label="Stir-fry, key 1">
+   <span class="ip-icon ip-i-fire"></span><span class="ip-skill-key">1</span>
+   <span class="ip-skill-timer"></span></button>. Set --ip-cooldown from 1 (just used) to 0 (ready)
+   and aria-disabled="true" while cooling, with the seconds left in .ip-skill-timer; cooldown() in
+   inkpaperui-utils does all three. data-ready rings it in red once when it comes back. */
+@layer components {
+  .ip-skill {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0;
+    overflow: hidden;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-a);
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+    cursor: pointer;
+    transition: transform var(--ip-motion-fast);
+  }
+
+  .ip-skill > .ip-icon {
+    --ip-icon-size: 1.75rem;
+  }
+
+  .ip-skill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: conic-gradient(var(--color-ip-veil) calc(var(--ip-cooldown, 0) * 1turn), transparent 0);
+    pointer-events: none;
+  }
+
+  @media (hover: hover) {
+    .ip-skill:hover:not([aria-disabled="true"], :disabled) {
+      box-shadow: inset 0 0 0 0.75px var(--color-ip-ink), 0 0 0 0.75px var(--color-ip-ink);
+    }
+  }
+
+  .ip-skill:active:not([aria-disabled="true"], :disabled) {
+    transform: translateY(1px);
+  }
+
+  .ip-skill:focus-visible {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: 3px;
+  }
+
+  .ip-skill[aria-disabled="true"],
+  .ip-skill:disabled {
+    border-style: dashed;
+    color: var(--color-ip-ink-soft);
+    cursor: not-allowed;
+  }
+
+  .ip-skill-key {
+    position: absolute;
+    top: 0.1rem;
+    left: 0.3rem;
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-sm);
+    line-height: 1.2;
+  }
+
+  .ip-skill-timer {
+    position: absolute;
+    z-index: 1;
+    color: var(--color-ip-ink);
+    font-family: var(--font-ip-hand);
+    font-size: 1.5rem;
+    font-variant-numeric: tabular-nums;
+    text-shadow:
+      0 0 3px var(--color-ip-paper),
+      0 0 3px var(--color-ip-paper);
+  }
+
+  .ip-skill-timer:empty {
+    display: none;
+  }
+
+  .ip-skill[data-ready] {
+    animation: ip-skill-ready var(--ip-motion-slow) ease-out;
+  }
+
+  @keyframes ip-skill-ready {
+    40% {
+      border-color: var(--color-ip-accent);
+      box-shadow: 0 0 0 4px var(--color-ip-paper), 0 0 0 6px var(--color-ip-accent);
+    }
+  }
+}

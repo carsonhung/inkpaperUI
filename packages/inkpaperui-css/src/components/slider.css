@@ -1,0 +1,104 @@
+/* <input type="range" class="ip-slider">: a pen line with the filled part in red and a paper knob
+   ringed in ink. WebKit has no progress pseudo-element, so set style="--ip-value: 0.6" (0 to 1)
+   from an input listener (sliderFill() in inkpaperui-utils); Firefox fills natively. */
+@layer components {
+  .ip-slider {
+    --ip-slider-fill: var(--color-ip-accent);
+    --ip-slider-track: 4px;
+    --ip-slider-knob: 1.35rem;
+
+    width: 100%;
+    height: 2.75rem;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    appearance: none;
+  }
+
+  .ip-slider::-webkit-slider-runnable-track {
+    height: var(--ip-slider-track);
+    border-radius: 3px 2px 3px 2px;
+    background: linear-gradient(
+      to right,
+      var(--ip-slider-fill) calc(var(--ip-value, 0) * 100%),
+      var(--color-ip-ink) calc(var(--ip-value, 0) * 100%)
+    );
+  }
+
+  .ip-slider::-moz-range-track {
+    height: calc(var(--ip-slider-track) / 2);
+    border-radius: 2px;
+    background: var(--color-ip-ink);
+  }
+
+  .ip-slider::-moz-range-progress {
+    height: var(--ip-slider-track);
+    border-radius: 3px 2px 3px 2px;
+    background: var(--ip-slider-fill);
+  }
+
+  .ip-slider::-webkit-slider-thumb {
+    width: var(--ip-slider-knob);
+    height: var(--ip-slider-knob);
+    margin-top: calc((var(--ip-slider-track) - var(--ip-slider-knob)) / 2);
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: 50% 46% 52% 48%;
+    background: var(--color-ip-paper);
+    transition: transform var(--ip-motion-fast);
+    appearance: none;
+  }
+
+  .ip-slider::-moz-range-thumb {
+    box-sizing: border-box;
+    width: var(--ip-slider-knob);
+    height: var(--ip-slider-knob);
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: 50% 46% 52% 48%;
+    background: var(--color-ip-paper);
+  }
+
+  .ip-slider:active::-webkit-slider-thumb {
+    transform: scale(1.12);
+  }
+
+  .ip-slider:focus-visible {
+    outline: none;
+  }
+
+  .ip-slider:focus-visible::-webkit-slider-thumb {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: 2px;
+  }
+
+  .ip-slider:focus-visible::-moz-range-thumb {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: 2px;
+  }
+
+  .ip-slider:disabled {
+    --ip-slider-fill: var(--color-ip-ink-soft);
+
+    cursor: not-allowed;
+  }
+
+  .ip-slider:disabled::-webkit-slider-thumb {
+    border-style: dashed;
+  }
+
+  .ip-slider:disabled::-moz-range-thumb {
+    border-style: dashed;
+  }
+
+  /* gamifiedUI's stat colours, mapped onto the palette so a game's markup still works here. */
+  .ip-slider-hp {
+    --ip-slider-fill: var(--color-ip-accent);
+  }
+
+  .ip-slider-mp {
+    --ip-slider-fill: var(--color-ip-ink-soft);
+  }
+
+  .ip-slider-xp {
+    --ip-slider-fill: var(--color-ip-success);
+  }
+}

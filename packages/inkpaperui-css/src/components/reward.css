@@ -1,0 +1,77 @@
+/* Prize or level-up moment: <dialog class="ip-dialog ip-reward"> holding .ip-reward-title, an
+   .ip-reward-item (the picture, which drops in with pen rays turning behind it) and
+   .ip-reward-name. Always name the prize in text too; the picture is not enough. */
+@layer components {
+  .ip-reward {
+    text-align: center;
+  }
+
+  .ip-reward-title {
+    margin: 0;
+    color: var(--color-ip-accent-ink);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-display);
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .ip-reward-item {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 6.5rem;
+    height: 6.5rem;
+    margin: 1.4rem auto 1rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: 52% 48% 55% 45% / 48% 55% 45% 52%;
+    background: var(--color-ip-paper);
+    animation: ip-reward-drop var(--ip-motion-slow) cubic-bezier(0.3, 1.5, 0.6, 1) both;
+  }
+
+  .ip-reward-item::before {
+    content: "";
+    position: absolute;
+    inset: -2.4rem;
+    z-index: -1;
+    background: repeating-conic-gradient(var(--color-ip-accent) 0 3deg, transparent 3deg 22.5deg);
+    mask: radial-gradient(closest-side, transparent 58%, black 62%, black 80%, transparent 100%);
+    animation: ip-spin 18s linear infinite;
+  }
+
+  .ip-reward-item > .ip-icon {
+    --ip-icon-size: 3.25rem;
+  }
+
+  .ip-reward-item > :is(svg, img) {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+  }
+
+  .ip-reward-name {
+    margin: 0;
+    font-family: var(--font-ip-hand);
+    font-size: 1.35rem;
+    letter-spacing: 0.04em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ip-reward-item,
+    .ip-reward-item::before {
+      animation: none;
+    }
+  }
+
+  [data-ip-motion="reduce"] :is(.ip-reward-item, .ip-reward-item::before) {
+    animation: none;
+  }
+
+  @keyframes ip-reward-drop {
+    from {
+      opacity: 0;
+      translate: 0 -1.5rem;
+      rotate: -8deg;
+    }
+  }
+}

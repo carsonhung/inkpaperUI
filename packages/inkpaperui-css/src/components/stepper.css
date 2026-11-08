@@ -1,0 +1,110 @@
+/* A path of steps. <ol class="ip-stepper"><li class="ip-step" data-state="cleared|current|locked">
+   <a class="ip-step-node" aria-current="step" aria-label="Step 2, current">2</a>
+   <span class="ip-step-label">Fill</span></li></ol>
+   State shows in the node itself as well as its colour: a red tick when cleared, a red ring round
+   the number when current, a dashed ring and a padlock when locked. The line between two steps
+   is solid once the first is cleared and dashed ahead of it. */
+@layer components {
+  .ip-stepper {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ip-step {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 0;
+  }
+
+  .ip-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: calc(1.375rem - 1px);
+    left: calc(50% + 1.6rem);
+    right: calc(-50% + 1.6rem);
+    border-top: var(--ip-line) dashed var(--color-ip-ink-soft);
+  }
+
+  .ip-step[data-state="cleared"]:not(:last-child)::after {
+    border-top-style: solid;
+    border-top-color: var(--color-ip-ink);
+  }
+
+  .ip-step-node {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: 52% 48% 55% 45% / 48% 55% 45% 52%;
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    text-decoration: none;
+  }
+
+  a.ip-step-node,
+  button.ip-step-node {
+    cursor: pointer;
+  }
+
+  .ip-step-node:focus-visible {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: 3px;
+  }
+
+  .ip-step[data-state="cleared"] .ip-step-node {
+    color: transparent;
+  }
+
+  .ip-step[data-state="cleared"] .ip-step-node::before {
+    content: "";
+    position: absolute;
+    inset: 0.45rem 0.35rem 0.55rem 0.55rem;
+    background: var(--color-ip-accent-ink);
+    mask: var(--ip-tick) center / contain no-repeat;
+  }
+
+  .ip-step[data-state="current"] .ip-step-node {
+    border-color: var(--color-ip-accent);
+    box-shadow: 0 0 0 3px var(--color-ip-paper), 0 0 0 4.5px var(--color-ip-accent);
+    color: var(--color-ip-accent-ink);
+  }
+
+  .ip-step[data-state="locked"] .ip-step-node {
+    border-style: dashed;
+    border-color: var(--color-ip-ink-soft);
+    color: transparent;
+    cursor: not-allowed;
+  }
+
+  .ip-step[data-state="locked"] .ip-step-node::before {
+    content: "";
+    position: absolute;
+    inset: 0.65rem;
+    background: var(--color-ip-ink-soft);
+    mask: var(--ip-lock) center / contain no-repeat;
+  }
+
+  .ip-step-label {
+    max-width: 100%;
+    overflow: hidden;
+    color: var(--color-ip-ink-soft);
+    font-size: var(--ip-text-sm);
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ip-step[data-state="current"] .ip-step-label {
+    color: var(--color-ip-accent-ink);
+  }
+}

@@ -13,9 +13,9 @@
     "demo"
   ],
   "scripts": {
-    "build": "npm run build --workspace=inkpaperui-icons && npm run build --workspace=inkpaperui-demo",
+    "build": "npm run build --workspace=inkpaperui-icons && npm run build --workspace=inkpaperui-utils && npm run build --workspace=inkpaperui-demo",
     "test": "npm run check --workspace=inkpaperui-icons && npm run check --workspace=inkpaperui-css",
-    "demo": "npm run dev --workspace=inkpaperui-demo"
+    "demo": "npm run build --workspace=inkpaperui-utils && npm run dev --workspace=inkpaperui-demo"
   },
   "devDependencies": {
     "tailwindcss": "^4.1.0"

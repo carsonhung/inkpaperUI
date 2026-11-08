@@ -1,0 +1,51 @@
+/* Money and the shop. Amount: <span class="ip-currency"><span class="ip-icon ip-i-coin"></span>120</span>.
+   Shop item: an <article class="ip-card ip-shop-item" data-state="owned|locked"> holding an
+   .ip-shop-price and a buy button. Owned items are ringed in green, locked ones drawn in dashed
+   pencil; always print the state too, since the line alone is not enough. */
+@layer components {
+  .ip-currency {
+    --ip-currency-tone: var(--color-ip-warning);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .ip-currency > .ip-icon {
+    --ip-icon-size: 1.15em;
+
+    color: var(--ip-currency-tone);
+  }
+
+  .ip-currency-gem {
+    --ip-currency-tone: var(--color-ip-accent-ink);
+  }
+
+  .ip-shop-price {
+    font-size: 1.3rem;
+  }
+
+  .ip-shop-item[data-state="owned"] {
+    border-color: var(--color-ip-success);
+    box-shadow: inset 0 0 0 1px var(--color-ip-success);
+  }
+
+  .ip-shop-item[data-state="owned"] .ip-shop-price {
+    color: var(--color-ip-ink-soft);
+    text-decoration: line-through;
+  }
+
+  .ip-shop-item[data-state="locked"] {
+    border-style: dashed;
+    border-color: var(--color-ip-ink-soft);
+    color: var(--color-ip-ink-soft);
+  }
+
+  .ip-shop-item[data-state="locked"] :is(.ip-card-media, img, svg) {
+    opacity: 0.55;
+  }
+}

@@ -1,4 +1,5 @@
 import icons from 'inkpaperui-icons/icons.json';
+import { cooldown, dropdowns, isCoolingDown, lightDismiss, quantity, rollNumber, sliderFill, tabs, timer, toast, type ToastTone } from 'inkpaperui-utils';
 
 type Locale = 'en' | 'zh-Hant' | 'zh-Hans';
 
@@ -121,6 +122,90 @@ const TEXT: Record<Locale, Record<string, string>> = {
     dismiss: 'Dismiss',
     toastInfoTitle: 'Tip',
     toastInfoText: 'Tap a chip to filter the menu.',
+    groupInputs: 'More inputs',
+    sliderAndQuantity: 'Slider and quantity',
+    spiceLevel: 'Spice level',
+    sweetness: 'Sweetness (fixed today)',
+    bowls: 'Bowls',
+    fewer: 'Fewer',
+    ratingAndSteps: 'Rating and steps',
+    ratingHearts: '3.5 of 5 hearts',
+    ratingStars: '4 of 5 stars',
+    stepChoose: 'Choose',
+    stepChooseDone: 'Step 1, choose, done',
+    stepPay: 'Pay',
+    stepPayDone: 'Step 2, pay, done',
+    stepCook: 'Cook',
+    stepCookNow: 'Step 3, cook, current',
+    stepCollect: 'Collect',
+    stepCollectLocked: 'Step 4, collect, locked',
+    picker: 'Picker',
+    pickerLabel: 'Snack for the judge',
+    pickWaffle: 'Egg waffle, 80 points',
+    pickTea: 'Milk tea, 65 points',
+    pickDimSum: 'Dim sum, 72 points',
+    pickBowlOut: 'Noodles, sold out',
+    textbox: 'Dialogue box',
+    speaker: 'Stall owner',
+    speech: 'Fresh egg waffles! Crisp outside, soft inside. How many would you like?',
+    choiceTwo: 'Two, please',
+    choiceLook: 'Just looking',
+    readerControls: 'Reader controls',
+    lineBack: 'Back',
+    autoPlay: 'Auto',
+    textSettings: 'Text settings',
+    groupNumbers: 'Loading and numbers',
+    loading: 'Spinner and skeleton',
+    loadingText: 'Loading…',
+    stats: 'Stats and counter',
+    statFresh: 'Freshness 32 of 40',
+    statMoney: 'Money 120',
+    statStars: 'Rating 4.5',
+    statWait: 'Wait 10 minutes',
+    statHot: 'Heat 3',
+    money: 'Money',
+    earn: 'Earn 25',
+    timerTitle: 'Timer',
+    timerLabel: 'Stall closes in',
+    timerShort: 'Closing',
+    startPause: 'Start / pause',
+    reset: 'Reset',
+    bars: 'Bars',
+    barFresh: 'Freshness',
+    barSkill: 'Skill',
+    barGas: 'Gas',
+    barGasLow: '12% low',
+    groupGame: 'Game parts',
+    questAndReward: 'Quest and reward',
+    questName: 'Today\'s errands',
+    questFlour: 'Buy flour',
+    questWaffles: 'Make egg waffles',
+    questServe: 'Serve a customer',
+    done: '(done)',
+    openReward: 'Open reward',
+    skillsAndVersus: 'Skills and versus',
+    skillFry: 'Stir-fry, key 1',
+    skillQuick: 'Quick hands, key 2',
+    skillGarnish: 'Garnish, key 3',
+    versusLabel: 'You 253, rival 197',
+    you: 'You',
+    rival: 'Rival',
+    shop: 'Shop',
+    itemWok: 'Iron wok',
+    itemWokText: 'Holds heat for a proper stir-fry.',
+    price120: '120 coins',
+    buy: 'Buy',
+    itemSteamer: 'Bamboo steamer',
+    itemSteamerText: 'Three tiers for dim sum.',
+    price80: '80 coins',
+    owned: 'Owned',
+    itemLadle: 'Golden ladle',
+    itemLadleText: 'For the cook-off final.',
+    price5: '5 gems',
+    lockedLevel: 'Level 5',
+    rewardTitle: 'New recipe!',
+    rewardName: 'Egg waffle',
+    nice: 'Nice',
   },
   'zh-Hant': {
     tagline: 'Tailwind CSS v4 線條風介面：暖紙上嘅墨線。',
@@ -240,6 +325,90 @@ const TEXT: Record<Locale, Record<string, string>> = {
     dismiss: '關閉',
     toastInfoTitle: '小貼士',
     toastInfoText: '撳標籤可以篩選菜式。',
+    groupInputs: '更多輸入',
+    sliderAndQuantity: '滑桿同數量',
+    spiceLevel: '辣度',
+    sweetness: '甜度（今日固定）',
+    bowls: '碗數',
+    fewer: '少啲',
+    ratingAndSteps: '評分同步驟',
+    ratingHearts: '五個心得三個半',
+    ratingStars: '五粒星得四粒',
+    stepChoose: '揀',
+    stepChooseDone: '第一步，揀，完成',
+    stepPay: '俾錢',
+    stepPayDone: '第二步，俾錢，完成',
+    stepCook: '煮',
+    stepCookNow: '第三步，煮，而家',
+    stepCollect: '攞',
+    stepCollectLocked: '第四步，攞，未開',
+    picker: '揀選',
+    pickerLabel: '俾評判嘅小食',
+    pickWaffle: '雞蛋仔，80 分',
+    pickTea: '奶茶，65 分',
+    pickDimSum: '點心，72 分',
+    pickBowlOut: '麵，賣晒',
+    textbox: '對話框',
+    speaker: '檔主',
+    speech: '新鮮雞蛋仔！外脆內軟，要幾多個？',
+    choiceTwo: '兩個，唔該',
+    choiceLook: '睇吓先',
+    readerControls: '閱讀控制',
+    lineBack: '返轉頭',
+    autoPlay: '自動',
+    textSettings: '文字設定',
+    groupNumbers: '載入同數字',
+    loading: '轉圈同骨架',
+    loadingText: '載入緊…',
+    stats: '數值同計數',
+    statFresh: '新鮮度 32／40',
+    statMoney: '錢 120',
+    statStars: '評分 4.5',
+    statWait: '等 10 分鐘',
+    statHot: '火候 3',
+    money: '錢',
+    earn: '賺 25',
+    timerTitle: '計時器',
+    timerLabel: '檔口仲有幾耐收',
+    timerShort: '收檔',
+    startPause: '開始／暫停',
+    reset: '重設',
+    bars: '進度條',
+    barFresh: '新鮮度',
+    barSkill: '手勢',
+    barGas: '煤氣',
+    barGasLow: '12% 就快冇',
+    groupGame: '遊戲部件',
+    questAndReward: '任務同獎勵',
+    questName: '今日要做',
+    questFlour: '買麵粉',
+    questWaffles: '整雞蛋仔',
+    questServe: '招呼一位客',
+    done: '（完成）',
+    openReward: '打開獎勵',
+    skillsAndVersus: '技能同對決',
+    skillFry: '爆炒，鍵 1',
+    skillQuick: '快手，鍵 2',
+    skillGarnish: '擺盤，鍵 3',
+    versusLabel: '你 253，對手 197',
+    you: '你',
+    rival: '對手',
+    shop: '商店',
+    itemWok: '鐵鑊',
+    itemWokText: '夠熱，炒得出鑊氣。',
+    price120: '120 個金幣',
+    buy: '買',
+    itemSteamer: '竹蒸籠',
+    itemSteamerText: '三層，蒸點心啱用。',
+    price80: '80 個金幣',
+    owned: '已擁有',
+    itemLadle: '金勺',
+    itemLadleText: '留返廚藝大賽決賽用。',
+    price5: '5 粒寶石',
+    lockedLevel: '第 5 級',
+    rewardTitle: '新食譜！',
+    rewardName: '雞蛋仔',
+    nice: '好嘢',
   },
   'zh-Hans': {
     tagline: 'Tailwind CSS v4 线条风界面：暖纸上的墨线。',
@@ -359,11 +528,96 @@ const TEXT: Record<Locale, Record<string, string>> = {
     dismiss: '关闭',
     toastInfoTitle: '小提示',
     toastInfoText: '点标签可以筛选菜品。',
+    groupInputs: '更多输入',
+    sliderAndQuantity: '滑块和数量',
+    spiceLevel: '辣度',
+    sweetness: '甜度（今天固定）',
+    bowls: '碗数',
+    fewer: '少一点',
+    ratingAndSteps: '评分和步骤',
+    ratingHearts: '五颗心得三颗半',
+    ratingStars: '五颗星得四颗',
+    stepChoose: '选择',
+    stepChooseDone: '第一步，选择，已完成',
+    stepPay: '付款',
+    stepPayDone: '第二步，付款，已完成',
+    stepCook: '烹饪',
+    stepCookNow: '第三步，烹饪，进行中',
+    stepCollect: '取餐',
+    stepCollectLocked: '第四步，取餐，未解锁',
+    picker: '选择器',
+    pickerLabel: '给评委的小吃',
+    pickWaffle: '鸡蛋仔，80 分',
+    pickTea: '奶茶，65 分',
+    pickDimSum: '点心，72 分',
+    pickBowlOut: '面，已售完',
+    textbox: '对话框',
+    speaker: '摊主',
+    speech: '新鲜鸡蛋仔！外脆里软，要几个？',
+    choiceTwo: '两个，谢谢',
+    choiceLook: '先看看',
+    readerControls: '阅读控制',
+    lineBack: '返回',
+    autoPlay: '自动',
+    textSettings: '文字设置',
+    groupNumbers: '加载和数字',
+    loading: '转圈和骨架',
+    loadingText: '加载中…',
+    stats: '数值和计数',
+    statFresh: '新鲜度 32／40',
+    statMoney: '钱 120',
+    statStars: '评分 4.5',
+    statWait: '等 10 分钟',
+    statHot: '火候 3',
+    money: '钱',
+    earn: '赚 25',
+    timerTitle: '计时器',
+    timerLabel: '摊位还有多久收',
+    timerShort: '收摊',
+    startPause: '开始／暂停',
+    reset: '重置',
+    bars: '进度条',
+    barFresh: '新鲜度',
+    barSkill: '手艺',
+    barGas: '燃气',
+    barGasLow: '12% 快没了',
+    groupGame: '游戏部件',
+    questAndReward: '任务和奖励',
+    questName: '今天要做',
+    questFlour: '买面粉',
+    questWaffles: '做鸡蛋仔',
+    questServe: '接待一位客人',
+    done: '（已完成）',
+    openReward: '打开奖励',
+    skillsAndVersus: '技能和对决',
+    skillFry: '爆炒，按键 1',
+    skillQuick: '快手，按键 2',
+    skillGarnish: '摆盘，按键 3',
+    versusLabel: '你 253，对手 197',
+    you: '你',
+    rival: '对手',
+    shop: '商店',
+    itemWok: '铁锅',
+    itemWokText: '够热，炒得出锅气。',
+    price120: '120 枚金币',
+    buy: '购买',
+    itemSteamer: '竹蒸笼',
+    itemSteamerText: '三层，适合蒸点心。',
+    price80: '80 枚金币',
+    owned: '已拥有',
+    itemLadle: '金勺',
+    itemLadleText: '留给厨艺大赛决赛。',
+    price5: '5 颗宝石',
+    lockedLevel: '第 5 级',
+    rewardTitle: '新食谱！',
+    rewardName: '鸡蛋仔',
+    nice: '太好了',
   },
 };
 
 const LOCALE_KEY = 'inkpaperui-demo-locale';
-const isLocale = (value: unknown): value is Locale => value === 'en' || value === 'zh-Hant' || value === 'zh-Hans';
+const LOCALES: Locale[] = ['en', 'zh-Hant', 'zh-Hans'];
+const isLocale = (value: unknown): value is Locale => LOCALES.includes(value as Locale);
 
 function setLocale(locale: Locale): void {
   const text = TEXT[locale];
@@ -375,86 +629,47 @@ function setLocale(locale: Locale): void {
   localStorage.setItem(LOCALE_KEY, locale);
 }
 
-/** Roving focus as in the WAI tabs pattern: arrows move between tabs, only the open one is tabbable. */
-function wireTabs(list: HTMLElement, onPick: (tab: HTMLElement) => void): void {
-  const tabs = [...list.querySelectorAll<HTMLElement>('[role="tab"]')];
-  const pick = (tab: HTMLElement) => {
-    for (const other of tabs) {
-      const isOpen = other === tab;
-      other.setAttribute('aria-selected', String(isOpen));
-      other.tabIndex = isOpen ? 0 : -1;
-    }
-    onPick(tab);
-  };
-  for (const tab of tabs) {
-    tab.tabIndex = tab.getAttribute('aria-selected') === 'true' ? 0 : -1;
-    tab.addEventListener('click', () => pick(tab));
-    tab.addEventListener('keydown', (event) => {
-      const step = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
-      if (!step) return;
-      const next = tabs[(tabs.indexOf(tab) + step + tabs.length) % tabs.length]!;
-      next.focus();
-      pick(next);
-    });
-  }
-}
+const say = (key: string): string => TEXT[isLocale(document.documentElement.lang) ? document.documentElement.lang : 'en'][key] ?? key;
 
-const langTabs = document.querySelector<HTMLElement>('[data-lang-tabs]')!;
-wireTabs(langTabs, (tab) => {
-  if (isLocale(tab.dataset.lang)) setLocale(tab.dataset.lang);
+const langTabs = tabs(document.querySelector<HTMLElement>('[data-lang-tabs]')!, (tab) => {
+  if (isLocale(tab.dataset.lang) && tab.dataset.lang !== document.documentElement.lang) setLocale(tab.dataset.lang);
 });
-
-wireTabs(document.querySelector<HTMLElement>('[data-tabs]')!, (tab) => {
-  for (const panel of document.querySelectorAll<HTMLElement>('[role="tabpanel"]')) panel.hidden = panel.id !== tab.getAttribute('aria-controls');
-});
+tabs(document.querySelector<HTMLElement>('[data-tabs]')!);
 
 const progress = document.querySelector<HTMLElement>('[data-progress]')!;
 const progressValue = document.querySelector<HTMLElement>('[data-progress-value]')!;
-for (const button of document.querySelectorAll<HTMLButtonElement>('[data-step]')) {
+for (const button of document.querySelectorAll<HTMLButtonElement>('[data-progress-step]')) {
   button.addEventListener('click', () => {
-    const value = Math.min(100, Math.max(0, Number(progress.getAttribute('aria-valuenow')) + Number(button.dataset.step)));
+    const value = Math.min(100, Math.max(0, Number(progress.getAttribute('aria-valuenow')) + Number(button.dataset.progressStep)));
     progress.setAttribute('aria-valuenow', String(value));
     progress.style.setProperty('--ip-value', `${value}%`);
     progressValue.textContent = `${value}%`;
   });
 }
 
-/** A click on the backdrop targets the dialog itself, but so does one on its padding; only the box tells them apart. */
-function isOutside(box: HTMLElement, event: MouseEvent): boolean {
-  const rect = box.getBoundingClientRect();
-  return event.target === box && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom);
+/** Opens a modal dialog from its button and closes it from its close buttons or the backdrop. */
+function wireDialog(name: string): HTMLDialogElement {
+  const dialog = document.querySelector<HTMLDialogElement>(`[data-dialog="${name}"]`)!;
+  for (const button of document.querySelectorAll(`[data-open="${name}"]`)) button.addEventListener('click', () => dialog.showModal());
+  for (const button of dialog.querySelectorAll('[data-close]')) button.addEventListener('click', () => dialog.close());
+  lightDismiss(dialog);
+  return dialog;
 }
-
-const dialog = document.querySelector<HTMLDialogElement>('[data-dialog]')!;
-document.querySelector('[data-open-dialog]')!.addEventListener('click', () => dialog.showModal());
-for (const button of document.querySelectorAll('[data-close-dialog]')) button.addEventListener('click', () => dialog.close());
-dialog.addEventListener('click', (event) => {
-  if (isOutside(dialog, event)) dialog.close();
-});
-
-const say = (key: string): string => TEXT[isLocale(document.documentElement.lang) ? document.documentElement.lang : 'en'][key] ?? key;
+wireDialog('saved');
+wireDialog('drawer');
+wireDialog('reward');
 
 for (const chip of document.querySelectorAll<HTMLButtonElement>('[data-chips] > button')) {
   chip.addEventListener('click', () => chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true')));
 }
 
-const dropdown = document.querySelector<HTMLDetailsElement>('[data-dropdown]')!;
-for (const item of dropdown.querySelectorAll<HTMLButtonElement>('.ip-menu-item')) {
+dropdowns();
+for (const item of document.querySelectorAll<HTMLButtonElement>('[data-dropdown] .ip-menu-item')) {
   item.addEventListener('click', () => {
-    for (const other of dropdown.querySelectorAll('.ip-menu-item')) other.removeAttribute('aria-current');
+    for (const other of item.closest('.ip-menu')!.querySelectorAll('.ip-menu-item')) other.removeAttribute('aria-current');
     item.setAttribute('aria-current', 'true');
-    dropdown.open = false;
-    dropdown.querySelector('summary')!.focus();
   });
 }
-document.addEventListener('click', (event) => {
-  if (dropdown.open && !dropdown.contains(event.target as Node)) dropdown.open = false;
-});
-dropdown.addEventListener('keydown', (event) => {
-  if (event.key !== 'Escape' || !dropdown.open) return;
-  dropdown.open = false;
-  dropdown.querySelector('summary')!.focus();
-});
 
 const pageButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-pagination] [data-page]')];
 const lastPage = pageButtons.filter((button) => /^\d+$/.test(button.dataset.page!)).length;
@@ -482,67 +697,56 @@ for (const button of pageButtons) {
 }
 showPage(1);
 
-type Tone = 'info' | 'success' | 'warning' | 'danger';
-const TOASTS: { tone: Tone; icon: string; title: string; body: string }[] = [
-  { tone: 'success', icon: 'check', title: 'alertDoneTitle', body: 'alertDoneText' },
-  { tone: 'info', icon: 'info', title: 'toastInfoTitle', body: 'toastInfoText' },
-  { tone: 'warning', icon: 'warning', title: 'alertWarnTitle', body: 'alertWarnText' },
-  { tone: 'danger', icon: 'close', title: 'alertErrorTitle', body: 'alertErrorText' },
+const TOASTS: { tone: ToastTone; title: string; body: string }[] = [
+  { tone: 'success', title: 'alertDoneTitle', body: 'alertDoneText' },
+  { tone: 'info', title: 'toastInfoTitle', body: 'toastInfoText' },
+  { tone: 'warning', title: 'alertWarnTitle', body: 'alertWarnText' },
+  { tone: 'danger', title: 'alertErrorTitle', body: 'alertErrorText' },
 ];
-const toastStack = document.querySelector<HTMLElement>('[data-toasts]')!;
-const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let toastCount = 0;
-
-/** Errors use role="alert", everything else role="status"; the timer pauses while hovered or focused. */
-function showToast(): void {
+document.querySelector('[data-show-toast]')!.addEventListener('click', () => {
   const next = TOASTS[toastCount++ % TOASTS.length]!;
-  const toast = document.createElement('div');
-  toast.className = `ip-toast ip-toast-${next.tone}`;
-  toast.setAttribute('role', next.tone === 'danger' ? 'alert' : 'status');
-  const icon = document.createElement('span');
-  icon.className = `ip-icon ip-i-${next.icon} ip-toast-icon`;
-  icon.setAttribute('aria-hidden', 'true');
-  const title = document.createElement('p');
-  title.className = 'ip-toast-title';
-  title.textContent = say(next.title);
-  const body = document.createElement('p');
-  body.className = 'ip-toast-body';
-  body.textContent = say(next.body);
-  const close = document.createElement('button');
-  close.type = 'button';
-  close.className = 'ip-toast-close';
-  close.setAttribute('aria-label', say('dismiss'));
-  close.innerHTML = '<span class="ip-icon ip-icon-sm ip-i-close" aria-hidden="true"></span>';
-  toast.append(icon, title, body, close);
-
-  let timer: number | undefined;
-  const dismiss = (): void => {
-    window.clearTimeout(timer);
-    if (toast.dataset.leaving !== undefined) return;
-    if (isReducedMotion.matches) return toast.remove();
-    toast.dataset.leaving = '';
-    toast.addEventListener('animationend', () => toast.remove());
-  };
-  const schedule = (): void => {
-    timer = window.setTimeout(dismiss, 4500);
-  };
-  close.addEventListener('click', dismiss);
-  toast.addEventListener('pointerenter', () => window.clearTimeout(timer));
-  toast.addEventListener('pointerleave', schedule);
-  toast.addEventListener('focusin', () => window.clearTimeout(timer));
-  toast.addEventListener('focusout', schedule);
-  toastStack.append(toast);
-  while (toastStack.children.length > 3) toastStack.firstElementChild?.remove();
-  schedule();
-}
-document.querySelector('[data-show-toast]')!.addEventListener('click', showToast);
-
-const drawer = document.querySelector<HTMLDialogElement>('[data-drawer]')!;
-document.querySelector('[data-open-drawer]')!.addEventListener('click', () => drawer.showModal());
-document.querySelector('[data-close-drawer]')!.addEventListener('click', () => drawer.close());
-drawer.addEventListener('click', (event) => {
-  if (isOutside(drawer, event)) drawer.close();
+  toast({ tone: next.tone, title: say(next.title), body: say(next.body), dismissLabel: say('dismiss') });
 });
+
+sliderFill();
+const spice = document.querySelector<HTMLInputElement>('[data-spice]')!;
+const spiceValue = document.querySelector<HTMLElement>('[data-spice-value]')!;
+const showSpice = (): void => {
+  spiceValue.textContent = spice.value;
+};
+spice.addEventListener('input', showSpice);
+showSpice();
+
+quantity(document.querySelector<HTMLElement>('[data-quantity]')!);
+
+for (const pick of document.querySelectorAll<HTMLButtonElement>('[data-picker] > .ip-pick')) {
+  pick.addEventListener('click', () => {
+    for (const other of pick.parentElement!.querySelectorAll('.ip-pick')) other.setAttribute('aria-pressed', String(other === pick));
+  });
+}
+
+for (const toggle of document.querySelectorAll<HTMLButtonElement>('[data-toggle]')) {
+  toggle.addEventListener('click', () => toggle.setAttribute('aria-pressed', String(toggle.getAttribute('aria-pressed') !== 'true')));
+}
+
+const money = document.querySelector<HTMLElement>('[data-money]')!;
+let moneyTotal = 120;
+document.querySelector('[data-earn]')!.addEventListener('click', () => {
+  moneyTotal += 25;
+  void rollNumber(money, moneyTotal);
+});
+
+const closing = timer(document.querySelector<HTMLElement>('[data-timer]')!, 20, { warnAt: 10, criticalAt: 5 });
+document.querySelector('[data-timer-start]')!.addEventListener('click', () => (closing.running ? closing.pause() : closing.start()));
+document.querySelector('[data-timer-reset]')!.addEventListener('click', () => closing.reset());
+
+for (const skill of document.querySelectorAll<HTMLButtonElement>('.ip-skill')) {
+  skill.addEventListener('click', () => {
+    if (!isCoolingDown(skill)) cooldown(skill, Number(skill.dataset.cooldown ?? 3));
+  });
+}
+
 for (const link of document.querySelectorAll('a[href="#"]')) link.addEventListener('click', (event) => event.preventDefault());
 
 const iconList = document.querySelector<HTMLElement>('[data-icons]')!;
@@ -562,4 +766,6 @@ iconList.replaceChildren(
 );
 
 const saved = localStorage.getItem(LOCALE_KEY);
-setLocale(isLocale(saved) ? saved : navigator.language.startsWith('zh') ? (/^zh-(CN|SG|Hans)/i.test(navigator.language) ? 'zh-Hans' : 'zh-Hant') : 'en');
+const startLocale: Locale = isLocale(saved) ? saved : navigator.language.startsWith('zh') ? (/^zh-(CN|SG|Hans)/i.test(navigator.language) ? 'zh-Hans' : 'zh-Hant') : 'en';
+setLocale(startLocale);
+langTabs.select(LOCALES.indexOf(startLocale), false);

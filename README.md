@@ -30,8 +30,9 @@ yourself, for example from `@fontsource/patrick-hand`, `@fontsource/lxgw-wenkai-
 
 | Package | What it is |
 | --- | --- |
-| `inkpaperui-css` | Tokens, type and 20 components: button, card, tabs, switch, progress, input, dialog, checkbox and radio, badge, alert, tooltip, accordion, chip, menu and dropdown, pagination and breadcrumb, table, toast, drawer, panel, icon |
-| `inkpaperui-icons` | 18 line icons on a 24px grid, named like gamifiedui-icons; edit `icons.mjs`, then `npm run build` |
+| `inkpaperui-css` | Tokens, type and 37 components. Everyday: button, card, tabs, switch, progress, input, dialog, checkbox and radio, badge, alert, tooltip, accordion, chip, menu and dropdown, pagination and breadcrumb, table, toast, drawer, panel, icon. Inputs: slider, quantity, rating, stepper, dialogue box, picker. Loading and numbers: spinner, skeleton, stat, counter, timer, bar. Game: quest, reward, shop and currency, skill, versus |
+| `inkpaperui-icons` | 69 line icons on a 24px grid, named like gamifiedui-icons; edit `icons.mjs`, then `npm run build` |
+| `inkpaperui-utils` | Small typed helpers, mirroring gamifiedui-utils: `toast`, `tabs`, `dropdowns`, `lightDismiss`, `sliderFill`, `quantity`, `rollNumber`, `cooldown`, `timer`, `formatDuration`, `prefersReducedMotion` |
 
 ## Develop
 

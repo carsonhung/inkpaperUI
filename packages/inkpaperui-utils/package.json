@@ -1,0 +1,32 @@
+{
+  "name": "inkpaperui-utils",
+  "version": "0.1.0",
+  "description": "Optional, dependency-free JS helpers for inkpaperUI: toasts, tabs, dropdowns, light-dismiss dialogs, slider fill, quantity steppers, number rolls, cooldowns and timers.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carsonhung/inkpaperUI.git",
+    "directory": "packages/inkpaperui-utils"
+  },
+  "author": "Carson Hung (https://github.com/carsonhung)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3"
+  }
+}

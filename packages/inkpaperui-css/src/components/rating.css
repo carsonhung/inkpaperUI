@@ -1,0 +1,49 @@
+/* Hearts or stars. <span class="ip-rating" role="img" aria-label="3.5 of 5 hearts"
+   style="--ip-value: 3.5; --ip-rating-max: 5"></span>. Inked outlines with the earned part filled
+   in red; half values fill part of a heart. ip-rating-stars swaps hearts for stars. */
+@layer components {
+  .ip-rating {
+    --ip-rating-size: 1.4rem;
+    --ip-rating-line: var(--ip-heart-line);
+    --ip-rating-fill: var(--ip-heart-fill);
+
+    position: relative;
+    display: inline-block;
+    width: calc(var(--ip-rating-size) * var(--ip-rating-max, 5));
+    height: var(--ip-rating-size);
+    vertical-align: middle;
+  }
+
+  .ip-rating::before,
+  .ip-rating::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    mask-size: var(--ip-rating-size) var(--ip-rating-size);
+    mask-repeat: repeat-x;
+  }
+
+  .ip-rating::before {
+    background: var(--color-ip-ink);
+    mask-image: var(--ip-rating-line);
+  }
+
+  .ip-rating::after {
+    width: calc(var(--ip-rating-size) * var(--ip-value, 0));
+    background: var(--color-ip-accent);
+    mask-image: var(--ip-rating-fill);
+  }
+
+  .ip-rating-stars {
+    --ip-rating-line: var(--ip-star-line);
+    --ip-rating-fill: var(--ip-star-fill);
+  }
+
+  .ip-rating-sm {
+    --ip-rating-size: 1rem;
+  }
+
+  .ip-rating-lg {
+    --ip-rating-size: 2rem;
+  }
+}

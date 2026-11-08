@@ -1,0 +1,65 @@
+/* Icon-and-number stat, for when a sentence would say less than the number:
+   <span class="ip-stat ip-stat-good" title="Freshness 32 of 40" aria-label="Freshness 32 of 40">
+     <span class="ip-icon ip-i-heart" aria-hidden="true"></span>32</span>.
+   The icon is decoration, so the words belong in aria-label (and title for pointer users).
+   Tones colour the icon only, so the number keeps full contrast. ip-stat-chip rings one on its
+   own; ip-stats lays several out in a wrapping row. The hp, mp, xp and gold tones are
+   gamifiedUI's names mapped onto this palette, so a game's markup works in either kit. */
+@layer components {
+  .ip-stat {
+    --ip-stat-tone: var(--color-ip-ink);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--color-ip-ink);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .ip-stat > .ip-icon {
+    --ip-icon-size: 1.15em;
+
+    color: var(--ip-stat-tone);
+  }
+
+  .ip-stat-good,
+  .ip-stat-xp {
+    --ip-stat-tone: var(--color-ip-success);
+  }
+
+  .ip-stat-bad,
+  .ip-stat-hp {
+    --ip-stat-tone: var(--color-ip-accent-ink);
+  }
+
+  .ip-stat-gold {
+    --ip-stat-tone: var(--color-ip-warning);
+  }
+
+  .ip-stat-mp,
+  .ip-stat-muted {
+    --ip-stat-tone: var(--color-ip-ink-soft);
+  }
+
+  .ip-stat-muted {
+    color: var(--color-ip-ink-soft);
+  }
+
+  .ip-stat-chip {
+    padding: 0.15rem 0.65rem 0.2rem 0.5rem;
+    border: var(--ip-line-thin) solid var(--color-ip-ink);
+    border-radius: 999px 900px 999px 950px;
+    background: var(--color-ip-paper);
+  }
+
+  .ip-stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 1rem;
+  }
+}

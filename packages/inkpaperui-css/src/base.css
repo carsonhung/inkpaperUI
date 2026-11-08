@@ -56,6 +56,27 @@
     mask: var(--ip-scribble) center / 100% 100% no-repeat;
   }
 
+  /* Shared motion: a number that just changed pops in red (quantity, counter, timer), a part that
+     wants attention breathes (critical bar and timer), and things that go round (spinner, reward rays). */
+  @keyframes ip-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+
+  @keyframes ip-bump {
+    40% {
+      transform: scale(1.18);
+      color: var(--color-ip-accent-ink);
+    }
+  }
+
+  @keyframes ip-pulse {
+    50% {
+      opacity: 0.45;
+    }
+  }
+
   .ip-divider {
     border: 0;
     border-top: var(--ip-line-thin) solid var(--color-ip-ink);

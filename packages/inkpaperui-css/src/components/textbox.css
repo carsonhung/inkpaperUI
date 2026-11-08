@@ -1,0 +1,133 @@
+/* Story dialogue box, like a speech panel in a comic: the speaker's name on a tab over the top
+   line. Typewriter text goes in an aria-hidden .ip-textbox-text; put the full line in a visually
+   hidden aria-live="polite" element next to it so screen readers get it once.
+   .ip-textbox-quick pins small icon buttons inside the box (Back, Log, Skip, Auto, Settings);
+   every button needs an aria-label, and toggles use aria-pressed. */
+@layer components {
+  .ip-textbox {
+    position: relative;
+    display: block;
+    margin-top: 1rem;
+    padding: 1.25rem 1.25rem 1.5rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-b);
+    background: var(--color-ip-paper);
+    color: var(--color-ip-ink);
+    font-size: 1.125rem;
+    line-height: 1.55;
+  }
+
+  .ip-textbox-speaker {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    margin: 0;
+    padding: 0.05rem 0.7rem 0.15rem;
+    border: var(--ip-line) solid var(--color-ip-ink);
+    border-radius: var(--ip-shape-c);
+    background: var(--color-ip-paper);
+    color: var(--color-ip-accent-ink);
+    font-family: var(--font-ip-hand);
+    font-size: var(--ip-text-lg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    translate: 0 -55%;
+  }
+
+  .ip-textbox-speaker:empty {
+    display: none;
+  }
+
+  .ip-textbox-text {
+    min-height: 3.1em;
+    margin: 0;
+  }
+
+  .ip-textbox-next {
+    position: absolute;
+    right: 1rem;
+    bottom: 0.55rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    background: var(--color-ip-accent);
+    mask: var(--ip-chevron) center / contain no-repeat;
+    rotate: 90deg;
+    animation: ip-nudge 1.2s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ip-textbox-next {
+      animation: none;
+    }
+  }
+
+  [data-ip-motion="reduce"] .ip-textbox-next {
+    animation: none;
+  }
+
+  .ip-textbox-choices {
+    display: grid;
+    gap: 0.6rem;
+    margin-top: 0.85rem;
+  }
+
+  @media (min-width: 640px) {
+    .ip-textbox-choices {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .ip-textbox:has(.ip-textbox-quick) {
+    padding-bottom: 2.9rem;
+  }
+
+  .ip-textbox-quick {
+    position: absolute;
+    right: 0.4rem;
+    bottom: 0.3rem;
+    display: flex;
+    gap: 0.1rem;
+  }
+
+  .ip-textbox:has(.ip-textbox-quick) .ip-textbox-next {
+    right: auto;
+    left: 1.1rem;
+    bottom: 0.9rem;
+  }
+
+  .ip-textbox-quick-btn {
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0;
+    border: 0;
+    border-radius: var(--ip-shape-c);
+    background: transparent;
+    color: var(--color-ip-ink-soft);
+    cursor: pointer;
+  }
+
+  @media (hover: hover) {
+    .ip-textbox-quick-btn:hover {
+      background: var(--color-ip-paper-deep);
+      color: var(--color-ip-ink);
+    }
+  }
+
+  .ip-textbox-quick-btn:focus-visible {
+    outline: var(--ip-line-bold) solid var(--color-ip-accent);
+    outline-offset: -2px;
+  }
+
+  .ip-textbox-quick-btn[aria-pressed="true"] {
+    color: var(--color-ip-accent-ink);
+    box-shadow: inset 0 -2px 0 var(--color-ip-accent);
+  }
+
+  @keyframes ip-nudge {
+    50% {
+      translate: 0 3px;
+    }
+  }
+}

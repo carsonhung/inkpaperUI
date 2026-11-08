@@ -1,0 +1,36 @@
+/* A pen circle going round with a gap in it. Wrap in role="status" with visible or sr-only text
+   ("Loading"). With reduced motion it turns slowly instead of stopping, since a still ring would
+   no longer say that something is happening. */
+@layer components {
+  .ip-spinner {
+    --ip-spinner-size: 1.75rem;
+
+    display: inline-block;
+    flex: none;
+    box-sizing: border-box;
+    width: var(--ip-spinner-size);
+    height: var(--ip-spinner-size);
+    border: var(--ip-line-bold) solid var(--color-ip-ink);
+    border-top-color: var(--color-ip-accent);
+    border-right-color: transparent;
+    border-radius: 52% 48% 55% 45% / 48% 55% 45% 52%;
+    vertical-align: middle;
+    animation: ip-spin 0.9s linear infinite;
+  }
+
+  .ip-spinner-lg {
+    --ip-spinner-size: 3rem;
+
+    border-width: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ip-spinner {
+      animation-duration: 3s;
+    }
+  }
+
+  [data-ip-motion="reduce"] .ip-spinner {
+    animation-duration: 3s;
+  }
+}
