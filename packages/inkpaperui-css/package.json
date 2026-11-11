@@ -18,7 +18,16 @@
     "./*.css": "./src/*.css"
   },
   "files": [
-    "src"
+    "src",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "keywords": [
+    "tailwindcss",
+    "tailwind-v4",
+    "ui",
+    "line-art",
+    "ink"
   ],
   "scripts": {
     "check": "node scripts/check.mjs"

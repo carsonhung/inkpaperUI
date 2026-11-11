@@ -22,7 +22,15 @@
   "files": [
     "src",
     "svg",
-    "icons.json"
+    "icons.json",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "keywords": [
+    "icons",
+    "line-art",
+    "tailwindcss",
+    "svg"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",

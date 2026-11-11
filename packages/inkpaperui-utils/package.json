@@ -21,7 +21,15 @@
   },
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "keywords": [
+    "ui",
+    "toast",
+    "tailwindcss",
+    "line-art"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json"
