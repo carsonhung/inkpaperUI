@@ -14,7 +14,7 @@
     overflow: hidden;
     border: var(--ip-line) solid var(--color-ip-ink);
     border-radius: var(--ip-shape-a);
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     color: var(--color-ip-ink);
     cursor: pointer;
     transition: transform var(--ip-motion-fast);

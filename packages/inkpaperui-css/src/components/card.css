@@ -9,7 +9,7 @@
     padding: 1.25rem 1.5rem;
     border: var(--ip-line) solid var(--color-ip-ink);
     border-radius: var(--ip-shape-b);
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     color: var(--color-ip-ink);
   }
 

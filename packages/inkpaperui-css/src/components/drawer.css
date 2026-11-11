@@ -16,7 +16,7 @@
     border: 0;
     border-inline-start: var(--ip-line) solid var(--color-ip-ink);
     overflow-y: auto;
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     color: var(--color-ip-ink);
     font-family: var(--font-ip-body);
   }

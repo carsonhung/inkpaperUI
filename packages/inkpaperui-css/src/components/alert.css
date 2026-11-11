@@ -14,7 +14,7 @@
     border: var(--ip-line) solid var(--color-ip-ink);
     border-inline-start: calc(var(--ip-line) * 3) solid var(--ip-alert-tone);
     border-radius: var(--ip-shape-b);
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     color: var(--color-ip-ink);
     font-size: var(--ip-text-md);
   }

@@ -11,7 +11,7 @@
     padding: 1.25rem 1.25rem 1.5rem;
     border: var(--ip-line) solid var(--color-ip-ink);
     border-radius: var(--ip-shape-b);
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     color: var(--color-ip-ink);
     font-size: 1.125rem;
     line-height: 1.55;
@@ -25,7 +25,7 @@
     padding: 0.05rem 0.7rem 0.15rem;
     border: var(--ip-line) solid var(--color-ip-ink);
     border-radius: var(--ip-shape-c);
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     color: var(--color-ip-accent-ink);
     font-family: var(--font-ip-hand);
     font-size: var(--ip-text-lg);
@@ -110,7 +110,7 @@
 
   @media (hover: hover) {
     .ip-textbox-quick-btn:hover {
-      background: var(--color-ip-paper-deep);
+      background: var(--ip-bg-paper-deep);
       color: var(--color-ip-ink);
     }
   }

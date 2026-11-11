@@ -9,19 +9,419 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
-  <body class="ip-paper min-h-screen">
+  <body class="ip-paper min-h-screen" data-ip-surface="paper" data-ip-ink="lamp">
     <main class="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-10">
       <header class="flex flex-wrap items-end justify-between gap-6">
         <div class="flex flex-col gap-2">
           <h1 class="ip-display ip-scribble m-0"><span class="text-ip-accent">*</span> inkpaperUI</h1>
           <p class="ip-hint m-0" data-i18n="tagline">Line-art UI for Tailwind CSS v4: ink on warm paper.</p>
         </div>
-        <div class="ip-tabs" role="tablist" aria-label="Language" data-lang-tabs>
-          <button class="ip-tab" role="tab" aria-selected="true" data-lang="en" lang="en">English</button>
-          <button class="ip-tab" role="tab" aria-selected="false" data-lang="zh-Hant" lang="zh-Hant">繁中</button>
-          <button class="ip-tab" role="tab" aria-selected="false" data-lang="zh-Hans" lang="zh-Hans">简中</button>
+        <div class="flex flex-col items-stretch gap-3 sm:items-end">
+          <div class="ip-tabs" role="tablist" aria-label="Language" data-lang-tabs>
+            <button class="ip-tab" role="tab" aria-selected="true" data-lang="en" lang="en">English</button>
+            <button class="ip-tab" role="tab" aria-selected="false" data-lang="zh-Hant" lang="zh-Hant">繁中</button>
+            <button class="ip-tab" role="tab" aria-selected="false" data-lang="zh-Hans" lang="zh-Hans">简中</button>
+          </div>
+          <div class="ip-surface-groups" data-i18n-label="surfaceLabel" aria-label="Surface" data-surfaces>
+            <div class="ip-surface-group">
+              <p class="ip-surface-group-label" data-i18n="groupPaper">Paper</p>
+              <div class="ip-surfaces" role="group" data-i18n-label="groupPaper" aria-label="Paper">
+                <button type="button" class="ip-surface" data-ip-surface="paper" aria-pressed="true">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfacePaper">Notebook</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="xuan" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceXuan">Xuan</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="grid" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceGrid">Grid</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="jiugong" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceJiugong">Nine</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="vellum" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceVellum">Vellum</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="kraft" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceKraft">Kraft</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="ruled" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceRuled">Ruled</span>
+                </button>
+              </div>
+            </div>
+            <div class="ip-surface-group">
+              <p class="ip-surface-group-label" data-i18n="groupWood">Wood</p>
+              <div class="ip-surfaces" role="group" data-i18n-label="groupWood" aria-label="Wood">
+                <button type="button" class="ip-surface" data-ip-surface="wood" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceWood">Oak</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="pinewood" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfacePinewood">Pine</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="teak" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceTeak">Teak</span>
+                </button>
+              </div>
+            </div>
+            <div class="ip-surface-group">
+              <p class="ip-surface-group-label" data-i18n="groupBamboo">Bamboo</p>
+              <div class="ip-surfaces" role="group" data-i18n-label="groupBamboo" aria-label="Bamboo">
+                <button type="button" class="ip-surface" data-ip-surface="bamboo" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceBamboo">Slats</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="mat" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceMat">Mat</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="weave" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceWeave">Weave</span>
+                </button>
+              </div>
+            </div>
+            <div class="ip-surface-group">
+              <p class="ip-surface-group-label" data-i18n="groupPlastic">Plastic</p>
+              <div class="ip-surfaces" role="group" data-i18n-label="groupPlastic" aria-label="Plastic">
+                <button type="button" class="ip-surface" data-ip-surface="gloss" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceGloss">Gloss</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="matte" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceMatte">Matte</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="rib" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceRib">Rib</span>
+                </button>
+              </div>
+            </div>
+            <div class="ip-surface-group">
+              <p class="ip-surface-group-label" data-i18n="groupMetal">Metal</p>
+              <div class="ip-surfaces" role="group" data-i18n-label="groupMetal" aria-label="Metal">
+                <button type="button" class="ip-surface" data-ip-surface="steel" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceSteel">Steel</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="brushed" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceBrushed">Brushed</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="silver" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceSilver">Silver</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="brass" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceBrass">Brass</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="bronze" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceBronze">Bronze</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="gilt" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceGilt">Gilt</span>
+                </button>
+              </div>
+            </div>
+            <div class="ip-surface-group">
+              <p class="ip-surface-group-label" data-i18n="groupCloth">Cloth</p>
+              <div class="ip-surfaces" role="group" data-i18n-label="groupCloth" aria-label="Cloth">
+                <button type="button" class="ip-surface" data-ip-surface="linen" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceLinen">Linen</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="silk" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceSilk">Silk</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="canvas" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceCanvas">Canvas</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="denim" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceDenim">Denim</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="felt" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceFelt">Felt</span>
+                </button>
+              </div>
+            </div>
+            <div>
+              <p class="ip-surface-group-label" data-i18n="groupElement">Elements</p>
+              <div class="ip-surfaces" role="group" data-i18n-label="groupElement" aria-label="Elements">
+                <button type="button" class="ip-surface" data-ip-surface="glass" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceGlass">Glass</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="fire" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceFire">Fire</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="water" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceWater">Water</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="wind" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceWind">Wind</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="earth" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceEarth">Earth</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="bricks" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceBricks">Bricks</span>
+                </button>
+              </div>
+            </div>
+            <div>
+              <p class="ip-surface-group-label" data-i18n="groupStone">Stone</p>
+              <div class="ip-surfaces" role="group" data-i18n-label="groupStone" aria-label="Stone">
+                <button type="button" class="ip-surface" data-ip-surface="marble" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceMarble">Marble</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="stone" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceStone">Stone</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="ceramic" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceCeramic">Ceramic</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="terracotta" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceTerracotta">Terracotta</span>
+                </button>
+              </div>
+            </div>
+            <div>
+              <p class="ip-surface-group-label" data-i18n="groupNature">Nature</p>
+              <div class="ip-surfaces" role="group" data-i18n-label="groupNature" aria-label="Nature">
+                <button type="button" class="ip-surface" data-ip-surface="cork" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceCork">Cork</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="sand" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceSand">Sand</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="ice" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceIce">Ice</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="snow" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceSnow">Snow</span>
+                </button>
+              </div>
+            </div>
+            <div>
+              <p class="ip-surface-group-label" data-i18n="groupMaterial">Materials</p>
+              <div class="ip-surfaces" role="group" data-i18n-label="groupMaterial" aria-label="Materials">
+                <button type="button" class="ip-surface" data-ip-surface="leather" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceLeather">Leather</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="concrete" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceConcrete">Concrete</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="plaster" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfacePlaster">Plaster</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="rust" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceRust">Rust</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="wicker" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceWicker">Wicker</span>
+                </button>
+                <button type="button" class="ip-surface" data-ip-surface="cardboard" aria-pressed="false">
+                  <span class="ip-surface-swatch" aria-hidden="true"></span>
+                  <span class="ip-surface-label" data-i18n="surfaceCardboard">Cardboard</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="ip-inks" role="group" data-i18n-label="inkLabel" aria-label="Ink" data-inks>
+            <button type="button" class="ip-ink" data-ip-ink="lamp" aria-pressed="true">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkLamp">Black</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="pine" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkPine">Pine</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="brush" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkBrush">Brush</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="oil" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkOil">Oil</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="walnut" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkWalnut">Walnut</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="green" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkGreen">Green</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="gold" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkGold">Gold</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="silver" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkSilver">Silver</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="bronze" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkBronze">Bronze</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="pastel" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkPastel">Pastel</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="crayon" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkCrayon">Crayon</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="chalk" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkChalk">Chalk</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="pencil" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkPencil">Pencil</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="sketch" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkSketch">Sketch</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="glass" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkGlass">Glass</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="fire" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkFire">Fire</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="water" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkWater">Water</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="wind" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkWind">Wind</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="earth" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkEarth">Earth</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="bricks" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkBricks">Bricks</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="ruled" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkRuled">Ruled</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="marble" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkMarble">Marble</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="stone" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkStone">Stone</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="ceramic" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkCeramic">Ceramic</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="terracotta" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkTerracotta">Terracotta</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="cork" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkCork">Cork</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="sand" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkSand">Sand</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="ice" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkIce">Ice</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="denim" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkDenim">Denim</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="felt" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkFelt">Felt</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="leather" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkLeather">Leather</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="concrete" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkConcrete">Concrete</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="plaster" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkPlaster">Plaster</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="rust" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkRust">Rust</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="wicker" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkWicker">Wicker</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="cardboard" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkCardboard">Cardboard</span>
+            </button>
+            <button type="button" class="ip-ink" data-ip-ink="snow" aria-pressed="false">
+              <span class="ip-ink-mark" aria-hidden="true"></span>
+              <span data-i18n="inkSnow">Snow</span>
+            </button>
+          </div>
         </div>
       </header>
+
+      <section class="flex flex-col gap-4" aria-labelledby="faichun-title">
+        <h2 class="ip-heading m-0" id="faichun-title" data-i18n="faichun">Spring couplets</h2>
+        <div class="ip-faichuns">
+          <p class="ip-faichun" lang="zh-Hant" data-i18n="faichunLeft">恭喜發財</p>
+          <p class="ip-faichun" lang="zh-Hant" data-i18n="faichunRight">新年快樂</p>
+        </div>
+      </section>
 
       <div class="grid gap-10 md:grid-cols-2">
         <section class="flex flex-col gap-4" aria-labelledby="buttons-title">
@@ -154,6 +554,15 @@
             <span class="ip-badge ip-badge-warning" data-i18n="badgeLow">Low stock</span>
             <span class="ip-badge ip-badge-solid">3</span>
           </div>
+          <div class="flex flex-wrap gap-3">
+            <span class="ip-badge ip-badge-marker" data-ip-marker="yellow" data-i18n="markerNoodles">Noodles</span>
+            <span class="ip-badge ip-badge-marker" data-ip-marker="green" data-i18n="markerDimSum">Dim sum</span>
+            <span class="ip-badge ip-badge-marker" data-ip-marker="blue" data-i18n="markerDrinks">Drinks</span>
+            <span class="ip-badge ip-badge-marker" data-ip-marker="pink" data-i18n="markerSweets">Sweets</span>
+            <span class="ip-badge ip-badge-marker" data-ip-marker="orange" data-i18n="markerSnacks">Snacks</span>
+            <span class="ip-badge ip-badge-marker" data-ip-marker="violet" data-i18n="markerRice">Rice</span>
+          </div>
+          <p class="m-0"><span data-i18n="markerLineStart">Today’s special: </span><span class="ip-marker" data-ip-marker="yellow" data-i18n="markerLineDish">curry fish balls</span></p>
           <div class="ip-alert ip-alert-success" role="status">
             <span class="ip-icon ip-i-check ip-alert-icon" aria-hidden="true"></span>
             <div class="ip-alert-body"><p class="ip-alert-title" data-i18n="alertDoneTitle">Order sent</p><p data-i18n="alertDoneText">The kitchen has it. About ten minutes.</p></div>
@@ -519,10 +928,10 @@
       <section class="flex flex-col gap-4" aria-labelledby="colours-title">
         <h2 class="ip-heading m-0" id="colours-title" data-i18n="colours">Colours</h2>
         <ul class="m-0 grid list-none grid-cols-2 gap-4 p-0 sm:grid-cols-4">
-          <li class="flex flex-col gap-1"><span class="h-14 rounded border-2 border-ip-ink bg-ip-accent"></span><span class="ip-hand text-sm">Accent #E6392B</span></li>
-          <li class="flex flex-col gap-1"><span class="h-14 rounded border-2 border-ip-ink bg-ip-accent-ink"></span><span class="ip-hand text-sm">Accent ink #C42A1E</span></li>
-          <li class="flex flex-col gap-1"><span class="h-14 rounded border-2 border-ip-ink bg-ip-paper"></span><span class="ip-hand text-sm">Paper #F2F0EC</span></li>
-          <li class="flex flex-col gap-1"><span class="h-14 rounded border-2 border-ip-ink bg-ip-ink"></span><span class="ip-hand text-sm">Ink #111111</span></li>
+          <li class="flex flex-col gap-1"><span class="h-14 rounded border-2 border-ip-ink bg-ip-accent"></span><span class="ip-hand text-sm" data-swatch="--color-ip-accent" data-swatch-name="Accent">Accent #E6392B</span></li>
+          <li class="flex flex-col gap-1"><span class="h-14 rounded border-2 border-ip-ink bg-ip-accent-ink"></span><span class="ip-hand text-sm" data-swatch="--color-ip-accent-ink" data-swatch-name="Accent ink">Accent ink #C42A1E</span></li>
+          <li class="flex flex-col gap-1"><span class="h-14 rounded border-2 border-ip-ink bg-ip-paper"></span><span class="ip-hand text-sm" data-swatch="--color-ip-paper" data-swatch-name="Paper">Paper #F2F0EC</span></li>
+          <li class="flex flex-col gap-1"><span class="h-14 rounded border-2 border-ip-ink bg-ip-ink"></span><span class="ip-hand text-sm" data-swatch="--color-ip-ink" data-swatch-name="Ink">Ink #111111</span></li>
         </ul>
       </section>
     </main>

@@ -46,4 +46,9 @@
   .ip-badge-ghost {
     border-color: transparent;
   }
+
+  /* A tag filed under a kind: ink outline and words on a highlighter fill (see marker.css). */
+  .ip-badge-marker {
+    background: var(--ip-marker, var(--color-ip-marker-yellow));
+  }
 }

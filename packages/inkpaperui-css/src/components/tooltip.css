@@ -18,7 +18,7 @@
     padding: 0.35rem 0.6rem;
     border: var(--ip-line-thin) solid var(--color-ip-ink);
     border-radius: var(--ip-shape-a);
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     color: var(--color-ip-ink);
     font-size: var(--ip-text-sm);
     line-height: 1.4;
@@ -39,7 +39,7 @@
     height: 0.55rem;
     border-right: var(--ip-line-thin) solid var(--color-ip-ink);
     border-bottom: var(--ip-line-thin) solid var(--color-ip-ink);
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     transform: translate(-50%, -50%) rotate(45deg);
   }
 

@@ -1,0 +1,48 @@
+/* Highlighter marks: a soft swipe of colour behind ink words, for telling kinds of things apart
+   (topics, step types, courses) when a list gets long. Pick the colour with data-ip-marker on the
+   element or a parent. The words still say the kind; the colour only speeds up scanning. */
+@layer components {
+  [data-ip-marker='yellow'] {
+    --ip-marker: var(--color-ip-marker-yellow);
+  }
+
+  [data-ip-marker='green'] {
+    --ip-marker: var(--color-ip-marker-green);
+  }
+
+  [data-ip-marker='blue'] {
+    --ip-marker: var(--color-ip-marker-blue);
+  }
+
+  [data-ip-marker='pink'] {
+    --ip-marker: var(--color-ip-marker-pink);
+  }
+
+  [data-ip-marker='orange'] {
+    --ip-marker: var(--color-ip-marker-orange);
+  }
+
+  [data-ip-marker='violet'] {
+    --ip-marker: var(--color-ip-marker-violet);
+  }
+
+  /* Inline highlight: the swipe sits on the lower two thirds and its ends are uneven, as a felt
+     tip leaves them, so it reads as a mark on the page rather than a box around the word. */
+  .ip-marker {
+    padding-inline: 0.2em;
+    border-radius: var(--ip-shape-c);
+    background: linear-gradient(
+      176deg,
+      transparent 0 28%,
+      var(--ip-marker, var(--color-ip-marker-yellow)) 28% 92%,
+      transparent 92%
+    );
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* A card or row filed under a kind: the marker runs down the start edge. */
+  .ip-marker-edge {
+    border-inline-start: 0.5rem solid var(--ip-marker, var(--color-ip-marker-yellow));
+  }
+}

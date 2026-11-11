@@ -53,7 +53,7 @@
     padding: 0.15rem 0.65rem 0.2rem 0.5rem;
     border: var(--ip-line-thin) solid var(--color-ip-ink);
     border-radius: 999px 900px 999px 950px;
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
   }
 
   .ip-stats {

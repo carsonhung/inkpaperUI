@@ -11,7 +11,7 @@ lines that look drawn by hand.
 1. **The line is the component.** Shapes are made by one ink outline, not by shadows, gradients or
    depth. If a part needs a fill to be understood, it is the wrong shape.
 2. **One accent.** Vermilion marks the one thing to do or the one thing that is on. Everything else
-   is ink, greys and paper.
+   is ink, greys and paper, plus soft highlighter markers that only sort things into kinds.
 3. **Hand-drawn, not messy.** Lines wobble a little and corners are slightly uneven, but spacing,
    alignment and sizes are strict. The wobble is the same every load, never random.
 4. **Quiet motion.** Things are drawn on (a stroke tracing in) rather than bouncing or glowing, and
@@ -27,7 +27,7 @@ Contrast is measured against paper.
 
 | Token | Hex | Use | Contrast |
 | --- | --- | --- | --- |
-| `ip-paper` | `#F2F0EC` | Page and card background | – |
+| `ip-paper` | `#F2F0EC` | Page and card background (wood and bamboo retint this under `data-ip-surface`) | – |
 | `ip-ink` | `#111111` | Lines, body text, icons | 16.6:1 |
 | `ip-ink-soft` | `#5E5A55` | Secondary text, captions | 6.0:1 |
 | `ip-ink-faint` | `#D9D6D1` | Tracks, dividers, disabled fills; never text | – |
@@ -37,8 +37,26 @@ Contrast is measured against paper.
 | `ip-warning` | `#87590C` | Warning text and marks | 5.3:1 |
 | `ip-danger` | `#C42A1E` | Same as accent ink, always with an icon and words | 5.0:1 |
 
+**Markers.** An all-ink page is calm but slow to scan once it lists many kinds of thing (topics,
+step types, courses). Six highlighter tints, `ip-marker-yellow`, `-green`, `-blue`, `-pink`,
+`-orange` and `-violet`, are swiped behind ink words to tell kinds apart: `data-ip-marker` picks the
+tint, then `.ip-badge-marker` fills a tag, `.ip-marker` highlights words inline and `.ip-marker-edge`
+runs it down a card's start edge. Ink text on every tint is 12:1 or more. Markers never mark an
+action, a selection or a state, and the words still name the kind.
+
 Danger shares the accent's red on purpose: there is only one red. A danger message is told apart by
 its cross icon and its words, never by colour alone.
+
+**Surfaces.** Put `data-ip-surface` on `.ip-paper` (or a parent). They are grouped as paper
+(`paper` notebook, `xuan`, `grid` 格仔簿, `jiugong` 九宮格, `vellum`, `kraft`), wood (`wood` oak, `pinewood`, `teak`) and bamboo
+(`bamboo` slats, `mat`, `weave`), plastic (`gloss`, `matte`, `rib`), metal (`steel`, `brushed`, `silver`, `brass`, `bronze`, `gilt`), cloth (`linen`, `silk`, `canvas`) elements (`glass`, `fire`, `water`, `wind`, `earth`, `bricks`), stone (`marble`, `stone`, `ceramic`, `terracotta`) nature (`cork`, `sand`, `ice`, `snow`) and materials (`leather`, `concrete`, `plaster`, `rust`, `wicker`, `cardboard`). Paper also has `ruled`, and cloth has `denim` and `felt`. The grain stays behind the type.
+**Inks** are separate: `data-ip-ink="lamp|pine|oil|walnut|green"` on the same element. They differ
+in colour, weight and corner: lamp black is a hairline pen, pine soot (松煙) is a thick blue brush, 毛筆 is soot black with a
+stroke that swells and lifts, oil soot (油煙) is brick sepia, walnut is a heavy orange-brown cut
+with sharp corners, and bamboo green is a hairline. Later pens are gold, silver, bronze, pastel, crayon, chalk, pencil, sketch, the element pens glass, fire, water, wind, earth and bricks, and ruled, marble, stone, ceramic, terracotta, cork, sand, ice, denim, felt, leather, concrete, plaster, rust, wicker, cardboard and snow. 宣紙 uses the brush. A 揮春 (`.ip-faichun`) is the one place for the crimson sheet and a gold brush: the words run down the strip and do not follow the page surface or the page ink. Load a brush face such as Ma Shan Zheng for it. Picking a board in the demo sets its usual ink; the ink
+row can change the pen on its own. The accent follows that pen: lamp black keeps the vermilion, and every other pen colours the filled button, the switch and the selected mark. Button corners follow the pen too.
+`.ip-surface` is a mini card for picking a board: give each button its own `data-ip-surface` so the
+swatch keeps that grain. Regenerate with `node packages/inkpaperui-css/scripts/write-surfaces.mjs`.
 
 A dark "ink at night" theme can come later (paper `#1A1917`, ink `#EDEAE4`) once the light theme is
 settled.
@@ -67,7 +85,12 @@ settled.
 | Body | `system-ui` | Long text stays plain and easy to read |
 
 Sizes follow gamifiedUI's three steps (`sm` 0.75rem, `md` 0.875rem, `lg` 1rem) plus a display size
-for page titles.
+for page titles and a title size (1.5rem, `.ip-title`) for section headings, so a section reads
+apart from the cards inside it.
+
+Patrick Hand has one thin weight, which faded on screens in testing. `.ip-display`, `.ip-title` and
+`.ip-heading` trace it again with a text stroke `--ip-pen-weight` wide (0.03em); set it to 0 for the
+bare hairline.
 
 ## Icons
 
@@ -75,7 +98,7 @@ A 24 by 24 grid, 2px stroke, round caps, no fills except the accent dot some ico
 active star, the selected heart). Same names as gamifiedui-icons where a match exists (`home`,
 `heart`, `star`, `search`, `pin`, `clock`, `money`, `basket`, `gear`, `close`, `arrow-right`,
 `chat`, `exit` and the rest of gamifiedui-icons' set), so a game's icon calls work in either kit.
-Food icons (`bowl`, `coffee`, `milk-tea`, `egg-waffle`, `dim-sum`) stay simple enough to read at
+Food icons (`bowl`, `coffee`, `milk-tea`, `egg-waffle`, `dim-sum`, `tea`, `rice-bowl`, `wok`, `egg-tart`, `pineapple-bun`, `fishball`) stay simple enough to read at
 16px. Each icon has a draw-on variant for hover.
 
 ## States

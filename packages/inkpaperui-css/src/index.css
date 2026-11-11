@@ -10,6 +10,7 @@
 @import "./components/dialog.css";
 @import "./components/choice.css";
 @import "./components/badge.css";
+@import "./components/marker.css";
 @import "./components/alert.css";
 @import "./components/tooltip.css";
 @import "./components/accordion.css";
@@ -20,6 +21,8 @@
 @import "./components/toast.css";
 @import "./components/drawer.css";
 @import "./components/panel.css";
+@import "./components/surface.css";
+@import "./components/faichun.css";
 @import "./components/slider.css";
 @import "./components/quantity.css";
 @import "./components/rating.css";

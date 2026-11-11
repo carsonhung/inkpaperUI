@@ -33,7 +33,7 @@
     padding: 0.6rem 0.4rem 0.45rem;
     border: var(--ip-line) solid var(--color-ip-ink);
     border-radius: var(--ip-shape-a);
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     color: var(--color-ip-ink);
     cursor: pointer;
     transition:
@@ -132,7 +132,7 @@
     padding: 0 0.25rem;
     border: var(--ip-line-thin) solid var(--color-ip-ink);
     border-radius: 50% 46% 52% 48%;
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     color: var(--color-ip-ink);
     font-family: var(--font-ip-hand);
     font-size: var(--ip-text-sm);

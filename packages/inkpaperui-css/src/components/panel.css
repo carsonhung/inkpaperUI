@@ -7,7 +7,7 @@
     padding: 1rem 1.25rem;
     border: var(--ip-line) solid var(--color-ip-ink);
     border-radius: var(--ip-shape-b);
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     color: var(--color-ip-ink);
   }
 
@@ -24,6 +24,6 @@
 
   .ip-panel-deep {
     border-color: transparent;
-    background: var(--color-ip-paper-deep);
+    background: var(--ip-bg-paper-deep);
   }
 }

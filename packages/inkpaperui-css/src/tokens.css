@@ -14,6 +14,15 @@
   --color-ip-danger: #c42a1e;
   --color-ip-veil: #1111114d;
 
+  /* Highlighter tints for sorting things into kinds (a topic, a step type, a course). Ink text
+     sits on them at 12:1 or more. They never mark an action or a state; that stays the accent's job. */
+  --color-ip-marker-yellow: #fbe38e;
+  --color-ip-marker-green: #c5e8c9;
+  --color-ip-marker-blue: #c4dcf5;
+  --color-ip-marker-pink: #f6c7d6;
+  --color-ip-marker-orange: #f9cfa8;
+  --color-ip-marker-violet: #d9cdf2;
+
   --font-ip-hand: "Patrick Hand", "LXGW WenKai TC", "LXGW WenKai", cursive;
   --font-ip-body: ui-sans-serif, system-ui, sans-serif;
 }
@@ -34,7 +43,12 @@
     --ip-text-sm: 0.75rem;
     --ip-text-md: 0.875rem;
     --ip-text-lg: 1rem;
+    --ip-text-title: 1.5rem;
     --ip-text-display: 2rem;
+
+    /* Patrick Hand has a single thin weight; headings trace it once more with a pen this wide so
+       they read from across a room. 0 gives the bare hairline back. */
+    --ip-pen-weight: 0.03em;
 
     --ip-motion-fast: 120ms;
     --ip-motion-base: 220ms;
@@ -43,6 +57,16 @@
     --ip-z-dropdown: 500;
     --ip-z-modal: 1000;
     --ip-z-toast: 1100;
+
+    /* Surfaces: data-ip-surface="paper|xuan|kraft|wood|bamboo" on .ip-paper.
+       Grain stays behind the type. The pen follows the board.
+       揮春 keeps its own red and gold; it does not follow the page surface. */
+    --ip-faichun: #9a1c24;
+    --ip-faichun-ink: #fff6e0;
+
+    --ip-bg-page: radial-gradient(rgba(70, 62, 54, 0.055) 0.6px, transparent 0.7px) 0 0 / 5px 7px, radial-gradient(rgba(70, 62, 54, 0.04) 0.45px, transparent 0.55px) 2px 3px / 9px 11px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(rgba(70, 62, 54, 0.07) 0.6px, transparent 0.7px) 0 0 / 5px 7px, radial-gradient(rgba(70, 62, 54, 0.05) 0.45px, transparent 0.55px) 2px 3px / 9px 11px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(rgba(70, 62, 54, 0.08) 0.6px, transparent 0.7px) 0 0 / 5px 7px, radial-gradient(rgba(70, 62, 54, 0.05) 0.45px, transparent 0.55px) 2px 3px / 9px 11px, var(--color-ip-paper-deep);
 
     /* Pen marks used as masks over a colour, so they are drawn in black and never painted as is:
        a tick, an arrowhead (accordion, menu cursor, breadcrumb), a padlock (stepper), outlined and
@@ -55,6 +79,1144 @@
     --ip-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8.6 5.2c2.4 2.1 4.6 4.3 6.8 6.9-2.1 2.4-4.4 4.6-6.6 6.7' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     --ip-tick: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 12.8 9.6 17.6 19.8 5.8' fill='none' stroke='black' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     --ip-scribble: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M2 5.2C14 3.4 24 6.4 37 4.6S62 3 75 4.9s27 .4 43-1.3' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* Pale oak, grain across the board. */
+  [data-ip-surface="wood"] {
+    --color-ip-paper: #f4e7d6;
+    --color-ip-paper-deep: #ead9c4;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22280%22%20height%3D%22168%22%20viewBox%3D%220%200%20280%20168%22%3E%0A%20%20%3Cpath%20fill%3D%22rgba(150%2C98%2C46%2C0.14)%22%20d%3D%22M0%2026c46-14%2092%2016%20150%201s86-16%20130%206v7c-44-18-96%2012-150%200S52%2020%200%2036z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(128%2C82%2C34%2C0.12)%22%20d%3D%22M0%2072c54-18%2096%2020%20158%202s78-12%20122%2010v5c-48-16-96%2010-150-1S58%2064%200%2080z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(168%2C116%2C58%2C0.11)%22%20d%3D%22M0%20118c48-10%20104%2016%20162%202s78-8%20118%207v7c-44-12-100%2012-160%200S54%20112%200%20128z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(140%2C90%2C42%2C0.1)%22%20d%3D%22M78%20168c18-46%2036-86%2062-128%2026%2042%2044%2082%2062%20128%206%200-8-36-28-74-18-34-28-42-34-42s-16%208-34%2042c-20%2038-34%2074-28%2074z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(160%2C108%2C52%2C0.09)%22%20d%3D%22M104%20168c12-34%2024-64%2036-96%2012%2032%2024%2062%2036%2096%204%200-6-26-16-54-10-26-16-32-20-32s-10%206-20%2032c-10%2028-20%2054-16%2054z%22%2F%3E%0A%20%20%3Cg%20fill%3D%22rgba(120%2C76%2C34%2C0.22)%22%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2228%22%20cy%3D%2240%22%20rx%3D%221.5%22%20ry%3D%220.7%22%2F%3E%3Cellipse%20cx%3D%2262%22%20cy%3D%2244%22%20rx%3D%221.2%22%20ry%3D%220.55%22%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22118%22%20cy%3D%2230%22%20rx%3D%221.4%22%20ry%3D%220.6%22%2F%3E%3Cellipse%20cx%3D%22176%22%20cy%3D%2286%22%20rx%3D%221.5%22%20ry%3D%220.65%22%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22214%22%20cy%3D%2248%22%20rx%3D%221.2%22%20ry%3D%220.5%22%2F%3E%3Cellipse%20cx%3D%22246%22%20cy%3D%22122%22%20rx%3D%221.4%22%20ry%3D%220.6%22%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2284%22%20cy%3D%22104%22%20rx%3D%221.3%22%20ry%3D%220.55%22%2F%3E%3Cellipse%20cx%3D%22150%22%20cy%3D%22140%22%20rx%3D%221.2%22%20ry%3D%220.5%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 0 0 / 240px 100px, var(--color-ip-paper);
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22280%22%20height%3D%22168%22%20viewBox%3D%220%200%20280%20168%22%3E%0A%20%20%3Cpath%20fill%3D%22rgba(150%2C98%2C46%2C0.14)%22%20d%3D%22M0%2026c46-14%2092%2016%20150%201s86-16%20130%206v7c-44-18-96%2012-150%200S52%2020%200%2036z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(128%2C82%2C34%2C0.12)%22%20d%3D%22M0%2072c54-18%2096%2020%20158%202s78-12%20122%2010v5c-48-16-96%2010-150-1S58%2064%200%2080z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(168%2C116%2C58%2C0.11)%22%20d%3D%22M0%20118c48-10%20104%2016%20162%202s78-8%20118%207v7c-44-12-100%2012-160%200S54%20112%200%20128z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(140%2C90%2C42%2C0.1)%22%20d%3D%22M78%20168c18-46%2036-86%2062-128%2026%2042%2044%2082%2062%20128%206%200-8-36-28-74-18-34-28-42-34-42s-16%208-34%2042c-20%2038-34%2074-28%2074z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(160%2C108%2C52%2C0.09)%22%20d%3D%22M104%20168c12-34%2024-64%2036-96%2012%2032%2024%2062%2036%2096%204%200-6-26-16-54-10-26-16-32-20-32s-10%206-20%2032c-10%2028-20%2054-16%2054z%22%2F%3E%0A%20%20%3Cg%20fill%3D%22rgba(120%2C76%2C34%2C0.22)%22%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2228%22%20cy%3D%2240%22%20rx%3D%221.5%22%20ry%3D%220.7%22%2F%3E%3Cellipse%20cx%3D%2262%22%20cy%3D%2244%22%20rx%3D%221.2%22%20ry%3D%220.55%22%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22118%22%20cy%3D%2230%22%20rx%3D%221.4%22%20ry%3D%220.6%22%2F%3E%3Cellipse%20cx%3D%22176%22%20cy%3D%2286%22%20rx%3D%221.5%22%20ry%3D%220.65%22%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22214%22%20cy%3D%2248%22%20rx%3D%221.2%22%20ry%3D%220.5%22%2F%3E%3Cellipse%20cx%3D%22246%22%20cy%3D%22122%22%20rx%3D%221.4%22%20ry%3D%220.6%22%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2284%22%20cy%3D%22104%22%20rx%3D%221.3%22%20ry%3D%220.55%22%2F%3E%3Cellipse%20cx%3D%22150%22%20cy%3D%22140%22%20rx%3D%221.2%22%20ry%3D%220.5%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 0 0 / 240px 100px, var(--color-ip-paper);
+    --ip-bg-paper-deep: linear-gradient(rgba(90, 60, 30, 0.05), rgba(90, 60, 30, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22280%22%20height%3D%22168%22%20viewBox%3D%220%200%20280%20168%22%3E%0A%20%20%3Cpath%20fill%3D%22rgba(150%2C98%2C46%2C0.14)%22%20d%3D%22M0%2026c46-14%2092%2016%20150%201s86-16%20130%206v7c-44-18-96%2012-150%200S52%2020%200%2036z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(128%2C82%2C34%2C0.12)%22%20d%3D%22M0%2072c54-18%2096%2020%20158%202s78-12%20122%2010v5c-48-16-96%2010-150-1S58%2064%200%2080z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(168%2C116%2C58%2C0.11)%22%20d%3D%22M0%20118c48-10%20104%2016%20162%202s78-8%20118%207v7c-44-12-100%2012-160%200S54%20112%200%20128z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(140%2C90%2C42%2C0.1)%22%20d%3D%22M78%20168c18-46%2036-86%2062-128%2026%2042%2044%2082%2062%20128%206%200-8-36-28-74-18-34-28-42-34-42s-16%208-34%2042c-20%2038-34%2074-28%2074z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(160%2C108%2C52%2C0.09)%22%20d%3D%22M104%20168c12-34%2024-64%2036-96%2012%2032%2024%2062%2036%2096%204%200-6-26-16-54-10-26-16-32-20-32s-10%206-20%2032c-10%2028-20%2054-16%2054z%22%2F%3E%0A%20%20%3Cg%20fill%3D%22rgba(120%2C76%2C34%2C0.22)%22%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2228%22%20cy%3D%2240%22%20rx%3D%221.5%22%20ry%3D%220.7%22%2F%3E%3Cellipse%20cx%3D%2262%22%20cy%3D%2244%22%20rx%3D%221.2%22%20ry%3D%220.55%22%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22118%22%20cy%3D%2230%22%20rx%3D%221.4%22%20ry%3D%220.6%22%2F%3E%3Cellipse%20cx%3D%22176%22%20cy%3D%2286%22%20rx%3D%221.5%22%20ry%3D%220.65%22%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22214%22%20cy%3D%2248%22%20rx%3D%221.2%22%20ry%3D%220.5%22%2F%3E%3Cellipse%20cx%3D%22246%22%20cy%3D%22122%22%20rx%3D%221.4%22%20ry%3D%220.6%22%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2284%22%20cy%3D%22104%22%20rx%3D%221.3%22%20ry%3D%220.55%22%2F%3E%3Cellipse%20cx%3D%22150%22%20cy%3D%22140%22%20rx%3D%221.2%22%20ry%3D%220.5%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 0 0 / 240px 100px, var(--color-ip-paper-deep);
+  }
+
+  /* Pale pine, grain running down the board. */
+  [data-ip-surface="pinewood"] {
+    --color-ip-paper: #f3f0e8;
+    --color-ip-paper-deep: #e7e2d6;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22280%22%20viewBox%3D%220%200%20240%20280%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22plank%22%20x1%3D%220%22%20x2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22rgba(110%2C86%2C54%2C0.2)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.05%22%20stop-color%3D%22rgba(110%2C86%2C54%2C0)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.46%22%20stop-color%3D%22rgba(150%2C120%2C78%2C0.05)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.5%22%20stop-color%3D%22rgba(96%2C74%2C46%2C0.22)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.55%22%20stop-color%3D%22rgba(110%2C86%2C54%2C0)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.94%22%20stop-color%3D%22rgba(110%2C86%2C54%2C0)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22rgba(96%2C74%2C46%2C0.22)%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22240%22%20height%3D%22280%22%20fill%3D%22url(%23plank)%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(124%2C92%2C52%2C0.13)%22%20d%3D%22M28%200c3%2040-4%2086%202%20150s-3%2080%202%20130h5c-2-44%205-92-1-146S32%2044%2030%200z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(132%2C100%2C60%2C0.1)%22%20d%3D%22M78%200c-4%2052%206%20104-2%20176s5%2068-1%20104h4c2-32-4-76%202-132s-4-96%201-148z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(124%2C92%2C52%2C0.12)%22%20d%3D%22M156%200c4%2048-5%20100%202%20168s-3%2072%201%20112h5c-1-36%204-80-2-140S158%2048%20160%200z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(140%2C108%2C68%2C0.09)%22%20d%3D%22M204%200c5%2044-3%20108%203%20180s-4%2060%201%20100h6c-2-32%204-72-2-128S202%2048%20206%200z%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%2274%22%20cy%3D%2264%22%20rx%3D%2218%22%20ry%3D%2214%22%20fill%3D%22rgba(138%2C94%2C48%2C0.18)%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%2274%22%20cy%3D%2264%22%20rx%3D%228%22%20ry%3D%226%22%20fill%3D%22rgba(112%2C72%2C34%2C0.16)%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%22186%22%20cy%3D%22188%22%20rx%3D%2215%22%20ry%3D%2212%22%20fill%3D%22rgba(138%2C94%2C48%2C0.16)%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%22186%22%20cy%3D%22188%22%20rx%3D%226%22%20ry%3D%225%22%20fill%3D%22rgba(112%2C72%2C34%2C0.15)%22%2F%3E%0A%3C%2Fsvg%3E") 0 0 / 240px 280px, var(--color-ip-paper);
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22280%22%20viewBox%3D%220%200%20240%20280%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22plank%22%20x1%3D%220%22%20x2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22rgba(110%2C86%2C54%2C0.2)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.05%22%20stop-color%3D%22rgba(110%2C86%2C54%2C0)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.46%22%20stop-color%3D%22rgba(150%2C120%2C78%2C0.05)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.5%22%20stop-color%3D%22rgba(96%2C74%2C46%2C0.22)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.55%22%20stop-color%3D%22rgba(110%2C86%2C54%2C0)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.94%22%20stop-color%3D%22rgba(110%2C86%2C54%2C0)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22rgba(96%2C74%2C46%2C0.22)%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22240%22%20height%3D%22280%22%20fill%3D%22url(%23plank)%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(124%2C92%2C52%2C0.13)%22%20d%3D%22M28%200c3%2040-4%2086%202%20150s-3%2080%202%20130h5c-2-44%205-92-1-146S32%2044%2030%200z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(132%2C100%2C60%2C0.1)%22%20d%3D%22M78%200c-4%2052%206%20104-2%20176s5%2068-1%20104h4c2-32-4-76%202-132s-4-96%201-148z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(124%2C92%2C52%2C0.12)%22%20d%3D%22M156%200c4%2048-5%20100%202%20168s-3%2072%201%20112h5c-1-36%204-80-2-140S158%2048%20160%200z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(140%2C108%2C68%2C0.09)%22%20d%3D%22M204%200c5%2044-3%20108%203%20180s-4%2060%201%20100h6c-2-32%204-72-2-128S202%2048%20206%200z%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%2274%22%20cy%3D%2264%22%20rx%3D%2218%22%20ry%3D%2214%22%20fill%3D%22rgba(138%2C94%2C48%2C0.18)%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%2274%22%20cy%3D%2264%22%20rx%3D%228%22%20ry%3D%226%22%20fill%3D%22rgba(112%2C72%2C34%2C0.16)%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%22186%22%20cy%3D%22188%22%20rx%3D%2215%22%20ry%3D%2212%22%20fill%3D%22rgba(138%2C94%2C48%2C0.16)%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%22186%22%20cy%3D%22188%22%20rx%3D%226%22%20ry%3D%225%22%20fill%3D%22rgba(112%2C72%2C34%2C0.15)%22%2F%3E%0A%3C%2Fsvg%3E") 0 0 / 240px 280px, var(--color-ip-paper);
+    --ip-bg-paper-deep: linear-gradient(rgba(80, 64, 40, 0.05), rgba(80, 64, 40, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22280%22%20viewBox%3D%220%200%20240%20280%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22plank%22%20x1%3D%220%22%20x2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22rgba(110%2C86%2C54%2C0.2)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.05%22%20stop-color%3D%22rgba(110%2C86%2C54%2C0)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.46%22%20stop-color%3D%22rgba(150%2C120%2C78%2C0.05)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.5%22%20stop-color%3D%22rgba(96%2C74%2C46%2C0.22)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.55%22%20stop-color%3D%22rgba(110%2C86%2C54%2C0)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.94%22%20stop-color%3D%22rgba(110%2C86%2C54%2C0)%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22rgba(96%2C74%2C46%2C0.22)%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22240%22%20height%3D%22280%22%20fill%3D%22url(%23plank)%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(124%2C92%2C52%2C0.13)%22%20d%3D%22M28%200c3%2040-4%2086%202%20150s-3%2080%202%20130h5c-2-44%205-92-1-146S32%2044%2030%200z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(132%2C100%2C60%2C0.1)%22%20d%3D%22M78%200c-4%2052%206%20104-2%20176s5%2068-1%20104h4c2-32-4-76%202-132s-4-96%201-148z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(124%2C92%2C52%2C0.12)%22%20d%3D%22M156%200c4%2048-5%20100%202%20168s-3%2072%201%20112h5c-1-36%204-80-2-140S158%2048%20160%200z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(140%2C108%2C68%2C0.09)%22%20d%3D%22M204%200c5%2044-3%20108%203%20180s-4%2060%201%20100h6c-2-32%204-72-2-128S202%2048%20206%200z%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%2274%22%20cy%3D%2264%22%20rx%3D%2218%22%20ry%3D%2214%22%20fill%3D%22rgba(138%2C94%2C48%2C0.18)%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%2274%22%20cy%3D%2264%22%20rx%3D%228%22%20ry%3D%226%22%20fill%3D%22rgba(112%2C72%2C34%2C0.16)%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%22186%22%20cy%3D%22188%22%20rx%3D%2215%22%20ry%3D%2212%22%20fill%3D%22rgba(138%2C94%2C48%2C0.16)%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%22186%22%20cy%3D%22188%22%20rx%3D%226%22%20ry%3D%225%22%20fill%3D%22rgba(112%2C72%2C34%2C0.15)%22%2F%3E%0A%3C%2Fsvg%3E") 0 0 / 240px 280px, var(--color-ip-paper-deep);
+  }
+
+  /* Honey teak, a tighter grain than oak. */
+  [data-ip-surface="teak"] {
+    --color-ip-paper: #f6e6cc;
+    --color-ip-paper-deep: #edd4b0;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%2252%22%20viewBox%3D%220%200%20240%2052%22%3E%0A%20%20%3Cpath%20fill%3D%22rgba(168%2C108%2C40%2C0.16)%22%20d%3D%22M0%208c44-6%2078%208%20124%201s74-8%20116%204v4c-42-10-80%206-124%200S48%2010%200%2016z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(146%2C90%2C28%2C0.13)%22%20d%3D%22M0%2024c36%205%2086-7%20132%200s74%207%20108-2v4c-36%206-78-5-124%200S40%2032%200%2030z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(180%2C122%2C48%2C0.12)%22%20d%3D%22M0%2040c52-4%2090%206%20146%200s64-5%2094%203v4c-36-6-90%205-146%200S48%2042%200%2048z%22%2F%3E%0A%20%20%3Cg%20fill%3D%22rgba(130%2C82%2C30%2C0.2)%22%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2236%22%20cy%3D%2218%22%20rx%3D%221.3%22%20ry%3D%220.55%22%2F%3E%3Cellipse%20cx%3D%2292%22%20cy%3D%2230%22%20rx%3D%221.2%22%20ry%3D%220.5%22%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22150%22%20cy%3D%2214%22%20rx%3D%221.4%22%20ry%3D%220.55%22%2F%3E%3Cellipse%20cx%3D%22204%22%20cy%3D%2236%22%20rx%3D%221.2%22%20ry%3D%220.5%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 0 0 / 240px 52px, var(--color-ip-paper);
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%2252%22%20viewBox%3D%220%200%20240%2052%22%3E%0A%20%20%3Cpath%20fill%3D%22rgba(168%2C108%2C40%2C0.16)%22%20d%3D%22M0%208c44-6%2078%208%20124%201s74-8%20116%204v4c-42-10-80%206-124%200S48%2010%200%2016z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(146%2C90%2C28%2C0.13)%22%20d%3D%22M0%2024c36%205%2086-7%20132%200s74%207%20108-2v4c-36%206-78-5-124%200S40%2032%200%2030z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(180%2C122%2C48%2C0.12)%22%20d%3D%22M0%2040c52-4%2090%206%20146%200s64-5%2094%203v4c-36-6-90%205-146%200S48%2042%200%2048z%22%2F%3E%0A%20%20%3Cg%20fill%3D%22rgba(130%2C82%2C30%2C0.2)%22%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2236%22%20cy%3D%2218%22%20rx%3D%221.3%22%20ry%3D%220.55%22%2F%3E%3Cellipse%20cx%3D%2292%22%20cy%3D%2230%22%20rx%3D%221.2%22%20ry%3D%220.5%22%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22150%22%20cy%3D%2214%22%20rx%3D%221.4%22%20ry%3D%220.55%22%2F%3E%3Cellipse%20cx%3D%22204%22%20cy%3D%2236%22%20rx%3D%221.2%22%20ry%3D%220.5%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 0 0 / 240px 52px, var(--color-ip-paper);
+    --ip-bg-paper-deep: linear-gradient(rgba(120, 80, 30, 0.05), rgba(120, 80, 30, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%2252%22%20viewBox%3D%220%200%20240%2052%22%3E%0A%20%20%3Cpath%20fill%3D%22rgba(168%2C108%2C40%2C0.16)%22%20d%3D%22M0%208c44-6%2078%208%20124%201s74-8%20116%204v4c-42-10-80%206-124%200S48%2010%200%2016z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(146%2C90%2C28%2C0.13)%22%20d%3D%22M0%2024c36%205%2086-7%20132%200s74%207%20108-2v4c-36%206-78-5-124%200S40%2032%200%2030z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22rgba(180%2C122%2C48%2C0.12)%22%20d%3D%22M0%2040c52-4%2090%206%20146%200s64-5%2094%203v4c-36-6-90%205-146%200S48%2042%200%2048z%22%2F%3E%0A%20%20%3Cg%20fill%3D%22rgba(130%2C82%2C30%2C0.2)%22%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2236%22%20cy%3D%2218%22%20rx%3D%221.3%22%20ry%3D%220.55%22%2F%3E%3Cellipse%20cx%3D%2292%22%20cy%3D%2230%22%20rx%3D%221.2%22%20ry%3D%220.5%22%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22150%22%20cy%3D%2214%22%20rx%3D%221.4%22%20ry%3D%220.55%22%2F%3E%3Cellipse%20cx%3D%22204%22%20cy%3D%2236%22%20rx%3D%221.2%22%20ry%3D%220.5%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 0 0 / 240px 52px, var(--color-ip-paper-deep);
+  }
+
+  /* Bamboo slats. */
+  [data-ip-surface="bamboo"] {
+    --color-ip-paper: #efe2cc;
+    --color-ip-paper-deep: #e6d4b6;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2278%22%20height%3D%22132%22%20viewBox%3D%220%200%2078%20132%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22culm%22%20x1%3D%220%22%20x2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23e6d4b6%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.14%22%20stop-color%3D%22%23f6efe2%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.4%22%20stop-color%3D%22%23fbf6ee%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.72%22%20stop-color%3D%22%23efe2cc%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e4d2b6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%2278%22%20height%3D%22132%22%20fill%3D%22url(%23culm)%22%2F%3E%0A%20%20%3Crect%20y%3D%2260%22%20width%3D%2278%22%20height%3D%227%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20y%3D%2262.5%22%20width%3D%2278%22%20height%3D%222%22%20fill%3D%22%23f8f3ea%22%2F%3E%0A%20%20%3Crect%20width%3D%222%22%20height%3D%22132%22%20fill%3D%22%23e6d4b6%22%2F%3E%0A%3C%2Fsvg%3E") 0 0 / 78px 132px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2278%22%20height%3D%22132%22%20viewBox%3D%220%200%2078%20132%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22culm%22%20x1%3D%220%22%20x2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23e6d4b6%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.14%22%20stop-color%3D%22%23f6efe2%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.4%22%20stop-color%3D%22%23fbf6ee%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.72%22%20stop-color%3D%22%23efe2cc%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e4d2b6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%2278%22%20height%3D%22132%22%20fill%3D%22url(%23culm)%22%2F%3E%0A%20%20%3Crect%20y%3D%2260%22%20width%3D%2278%22%20height%3D%227%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20y%3D%2262.5%22%20width%3D%2278%22%20height%3D%222%22%20fill%3D%22%23f8f3ea%22%2F%3E%0A%20%20%3Crect%20width%3D%222%22%20height%3D%22132%22%20fill%3D%22%23e6d4b6%22%2F%3E%0A%3C%2Fsvg%3E") 0 0 / 78px 132px;
+    --ip-bg-paper-deep: linear-gradient(rgba(100, 70, 30, 0.06), rgba(100, 70, 30, 0.06)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2278%22%20height%3D%22132%22%20viewBox%3D%220%200%2078%20132%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22culm%22%20x1%3D%220%22%20x2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23e6d4b6%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.14%22%20stop-color%3D%22%23f6efe2%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.4%22%20stop-color%3D%22%23fbf6ee%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.72%22%20stop-color%3D%22%23efe2cc%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e4d2b6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%2278%22%20height%3D%22132%22%20fill%3D%22url(%23culm)%22%2F%3E%0A%20%20%3Crect%20y%3D%2260%22%20width%3D%2278%22%20height%3D%227%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20y%3D%2262.5%22%20width%3D%2278%22%20height%3D%222%22%20fill%3D%22%23f8f3ea%22%2F%3E%0A%20%20%3Crect%20width%3D%222%22%20height%3D%22132%22%20fill%3D%22%23e6d4b6%22%2F%3E%0A%3C%2Fsvg%3E") 0 0 / 78px 132px;
+  }
+
+  /* A bamboo mat: strips across, wider and quieter than the slats. */
+  [data-ip-surface="mat"] {
+    --color-ip-paper: #f4ead8;
+    --color-ip-paper-deep: #e4d4bc;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22180%22%20height%3D%2236%22%20viewBox%3D%220%200%20180%2036%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22skin%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fbf6ee%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.38%22%20stop-color%3D%22%23f4ead8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.82%22%20stop-color%3D%22%23eadcc6%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e4d4bc%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22180%22%20height%3D%2236%22%20fill%3D%22url(%23skin)%22%2F%3E%0A%20%20%3Crect%20y%3D%2233%22%20width%3D%22180%22%20height%3D%223%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20x%3D%2286%22%20y%3D%225%22%20width%3D%222%22%20height%3D%227%22%20rx%3D%221%22%20fill%3D%22rgba(120%2C82%2C40%2C0.35)%22%2F%3E%0A%20%20%3Crect%20x%3D%2286%22%20y%3D%2222%22%20width%3D%222%22%20height%3D%227%22%20rx%3D%221%22%20fill%3D%22rgba(120%2C82%2C40%2C0.35)%22%2F%3E%0A%3C%2Fsvg%3E") 0 0 / 180px 36px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22180%22%20height%3D%2236%22%20viewBox%3D%220%200%20180%2036%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22skin%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fbf6ee%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.38%22%20stop-color%3D%22%23f4ead8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.82%22%20stop-color%3D%22%23eadcc6%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e4d4bc%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22180%22%20height%3D%2236%22%20fill%3D%22url(%23skin)%22%2F%3E%0A%20%20%3Crect%20y%3D%2233%22%20width%3D%22180%22%20height%3D%223%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20x%3D%2286%22%20y%3D%225%22%20width%3D%222%22%20height%3D%227%22%20rx%3D%221%22%20fill%3D%22rgba(120%2C82%2C40%2C0.35)%22%2F%3E%0A%20%20%3Crect%20x%3D%2286%22%20y%3D%2222%22%20width%3D%222%22%20height%3D%227%22%20rx%3D%221%22%20fill%3D%22rgba(120%2C82%2C40%2C0.35)%22%2F%3E%0A%3C%2Fsvg%3E") 0 0 / 180px 36px;
+    --ip-bg-paper-deep: linear-gradient(rgba(100, 70, 30, 0.05), rgba(100, 70, 30, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22180%22%20height%3D%2236%22%20viewBox%3D%220%200%20180%2036%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22skin%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fbf6ee%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.38%22%20stop-color%3D%22%23f4ead8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.82%22%20stop-color%3D%22%23eadcc6%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e4d4bc%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22180%22%20height%3D%2236%22%20fill%3D%22url(%23skin)%22%2F%3E%0A%20%20%3Crect%20y%3D%2233%22%20width%3D%22180%22%20height%3D%223%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20x%3D%2286%22%20y%3D%225%22%20width%3D%222%22%20height%3D%227%22%20rx%3D%221%22%20fill%3D%22rgba(120%2C82%2C40%2C0.35)%22%2F%3E%0A%20%20%3Crect%20x%3D%2286%22%20y%3D%2222%22%20width%3D%222%22%20height%3D%227%22%20rx%3D%221%22%20fill%3D%22rgba(120%2C82%2C40%2C0.35)%22%2F%3E%0A%3C%2Fsvg%3E") 0 0 / 180px 36px;
+  }
+
+  /* A loose bamboo weave. The crossings stay faint so they do not cut the type. */
+  [data-ip-surface="weave"] {
+    --color-ip-paper: #f3e6d0;
+    --color-ip-paper-deep: #e6d4b6;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2296%22%20height%3D%2240%22%20viewBox%3D%220%200%2096%2040%22%3E%0A%20%20%3Crect%20width%3D%2296%22%20height%3D%2240%22%20fill%3D%22%23e6d4b6%22%2F%3E%0A%20%20%3Crect%20y%3D%224%22%20width%3D%2296%22%20height%3D%2212%22%20rx%3D%222%22%20fill%3D%22%23f8f1e4%22%2F%3E%0A%20%20%3Crect%20y%3D%2224%22%20width%3D%2296%22%20height%3D%2212%22%20rx%3D%222%22%20fill%3D%22%23f8f1e4%22%2F%3E%0A%20%20%3Crect%20x%3D%2218%22%20width%3D%228%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20x%3D%2262%22%20width%3D%228%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20x%3D%2240%22%20y%3D%2220%22%20width%3D%228%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20x%3D%2284%22%20y%3D%2220%22%20width%3D%228%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%3C%2Fsvg%3E") 0 0 / 96px 40px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2296%22%20height%3D%2240%22%20viewBox%3D%220%200%2096%2040%22%3E%0A%20%20%3Crect%20width%3D%2296%22%20height%3D%2240%22%20fill%3D%22%23e6d4b6%22%2F%3E%0A%20%20%3Crect%20y%3D%224%22%20width%3D%2296%22%20height%3D%2212%22%20rx%3D%222%22%20fill%3D%22%23f8f1e4%22%2F%3E%0A%20%20%3Crect%20y%3D%2224%22%20width%3D%2296%22%20height%3D%2212%22%20rx%3D%222%22%20fill%3D%22%23f8f1e4%22%2F%3E%0A%20%20%3Crect%20x%3D%2218%22%20width%3D%228%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20x%3D%2262%22%20width%3D%228%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20x%3D%2240%22%20y%3D%2220%22%20width%3D%228%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20x%3D%2284%22%20y%3D%2220%22%20width%3D%228%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%3C%2Fsvg%3E") 0 0 / 96px 40px;
+    --ip-bg-paper-deep: linear-gradient(rgba(100, 70, 30, 0.05), rgba(100, 70, 30, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2296%22%20height%3D%2240%22%20viewBox%3D%220%200%2096%2040%22%3E%0A%20%20%3Crect%20width%3D%2296%22%20height%3D%2240%22%20fill%3D%22%23e6d4b6%22%2F%3E%0A%20%20%3Crect%20y%3D%224%22%20width%3D%2296%22%20height%3D%2212%22%20rx%3D%222%22%20fill%3D%22%23f8f1e4%22%2F%3E%0A%20%20%3Crect%20y%3D%2224%22%20width%3D%2296%22%20height%3D%2212%22%20rx%3D%222%22%20fill%3D%22%23f8f1e4%22%2F%3E%0A%20%20%3Crect%20x%3D%2218%22%20width%3D%228%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20x%3D%2262%22%20width%3D%228%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20x%3D%2240%22%20y%3D%2220%22%20width%3D%228%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%20%20%3Crect%20x%3D%2284%22%20y%3D%2220%22%20width%3D%228%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%23e2d0b0%22%2F%3E%0A%3C%2Fsvg%3E") 0 0 / 96px 40px;
+  }
+
+  /* Gloss plastic: one soft diagonal sheen. */
+  [data-ip-surface="gloss"] {
+    --color-ip-paper: #f4f7fb;
+    --color-ip-paper-deep: #e6ebf2;
+    --ip-bg-page: repeating-linear-gradient(118deg, #fbfcfe 0px, #e6edf5 70px, #f8fafc 120px, #e4ebf3 180px), var(--color-ip-paper);
+    --ip-bg-paper: repeating-linear-gradient(118deg, #f7f9fc 0px, #e3eaf3 70px, #f6f8fb 120px, #e0e7f0 180px), var(--color-ip-paper);
+    --ip-bg-paper-deep: repeating-linear-gradient(118deg, #eef2f7 0px, #e4e8ee 70px, #eef2f7 140px), var(--color-ip-paper-deep);
+  }
+
+  /* Matte plastic: a cool even pepper, no shine. */
+  [data-ip-surface="matte"] {
+    --color-ip-paper: #eef0f3;
+    --color-ip-paper-deep: #e4e7ec;
+    --ip-bg-page: radial-gradient(rgba(70, 80, 100, 0.09) 0.45px, transparent 0.6px) 0 0 / 3px 4px, radial-gradient(rgba(70, 80, 100, 0.05) 0.35px, transparent 0.5px) 1px 2px / 5px 6px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(rgba(70, 80, 100, 0.11) 0.45px, transparent 0.6px) 0 0 / 3px 4px, radial-gradient(rgba(70, 80, 100, 0.06) 0.35px, transparent 0.5px) 1px 2px / 5px 6px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(rgba(70, 80, 100, 0.12) 0.45px, transparent 0.6px) 0 0 / 3px 4px, var(--color-ip-paper-deep);
+  }
+
+  /* Ribbed plastic. The ridge is a colour band, not a line through the type. */
+  [data-ip-surface="rib"] {
+    --color-ip-paper: #f2f4f7;
+    --color-ip-paper-deep: #e4e8ee;
+    --ip-bg-page: repeating-linear-gradient(to bottom, #f7f9fb 0px, #e6ebf2 8px, #f7f9fb 16px), var(--color-ip-paper);
+    --ip-bg-paper: repeating-linear-gradient(to bottom, #f5f7fa 0px, #e3e8f0 8px, #f5f7fa 16px), var(--color-ip-paper);
+    --ip-bg-paper-deep: repeating-linear-gradient(to bottom, #eef1f5 0px, #e4e8ee 8px, #eef1f5 16px), var(--color-ip-paper-deep);
+  }
+
+  /* Cool steel, a fine vertical brush. */
+  [data-ip-surface="steel"] {
+    --color-ip-paper: #eef1f4;
+    --color-ip-paper-deep: #e3e7ed;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2280%22%20viewBox%3D%220%200%2032%2080%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22st%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dde3ea%22%2F%3E%3Cstop%20offset%3D%220.18%22%20stop-color%3D%22%23f4f6f9%22%2F%3E%3Cstop%20offset%3D%220.45%22%20stop-color%3D%22%23e6ebf1%22%2F%3E%3Cstop%20offset%3D%220.72%22%20stop-color%3D%22%23f7f8fa%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e0e5eb%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2232%22%20height%3D%2280%22%20fill%3D%22url(%23st)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 32px 80px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2280%22%20viewBox%3D%220%200%2032%2080%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22st%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dde3ea%22%2F%3E%3Cstop%20offset%3D%220.18%22%20stop-color%3D%22%23f4f6f9%22%2F%3E%3Cstop%20offset%3D%220.45%22%20stop-color%3D%22%23e6ebf1%22%2F%3E%3Cstop%20offset%3D%220.72%22%20stop-color%3D%22%23f7f8fa%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e0e5eb%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2232%22%20height%3D%2280%22%20fill%3D%22url(%23st)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 32px 80px;
+    --ip-bg-paper-deep: linear-gradient(rgba(60, 70, 90, 0.05), rgba(60, 70, 90, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2280%22%20viewBox%3D%220%200%2032%2080%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22st%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dde3ea%22%2F%3E%3Cstop%20offset%3D%220.18%22%20stop-color%3D%22%23f4f6f9%22%2F%3E%3Cstop%20offset%3D%220.45%22%20stop-color%3D%22%23e6ebf1%22%2F%3E%3Cstop%20offset%3D%220.72%22%20stop-color%3D%22%23f7f8fa%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e0e5eb%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2232%22%20height%3D%2280%22%20fill%3D%22url(%23st)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 32px 80px;
+  }
+
+  /* Brushed aluminium, grain across the board. */
+  [data-ip-surface="brushed"] {
+    --color-ip-paper: #f3f4f5;
+    --color-ip-paper-deep: #e6e8eb;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2280%22%20height%3D%2214%22%20viewBox%3D%220%200%2080%2014%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22br%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f7f7f8%22%2F%3E%3Cstop%20offset%3D%220.45%22%20stop-color%3D%22%23e6e8eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f3f4f5%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2280%22%20height%3D%2214%22%20fill%3D%22url(%23br)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 80px 14px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2280%22%20height%3D%2214%22%20viewBox%3D%220%200%2080%2014%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22br%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f7f7f8%22%2F%3E%3Cstop%20offset%3D%220.45%22%20stop-color%3D%22%23e6e8eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f3f4f5%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2280%22%20height%3D%2214%22%20fill%3D%22url(%23br)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 80px 14px;
+    --ip-bg-paper-deep: linear-gradient(rgba(60, 64, 72, 0.05), rgba(60, 64, 72, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2280%22%20height%3D%2214%22%20viewBox%3D%220%200%2080%2014%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22br%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f7f7f8%22%2F%3E%3Cstop%20offset%3D%220.45%22%20stop-color%3D%22%23e6e8eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f3f4f5%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2280%22%20height%3D%2214%22%20fill%3D%22url(%23br)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 80px 14px;
+  }
+
+  /* Bright silver, cooler and lighter than steel. */
+  [data-ip-surface="silver"] {
+    --color-ip-paper: #f6f7f9;
+    --color-ip-paper-deep: #e7eaef;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2248%22%20height%3D%22100%22%20viewBox%3D%220%200%2048%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sv%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23e7ebf0%22%2F%3E%3Cstop%20offset%3D%220.28%22%20stop-color%3D%22%23fbfcfe%22%2F%3E%3Cstop%20offset%3D%220.55%22%20stop-color%3D%22%23eef1f5%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e3e7ed%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2248%22%20height%3D%22100%22%20fill%3D%22url(%23sv)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 48px 100px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2248%22%20height%3D%22100%22%20viewBox%3D%220%200%2048%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sv%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23e7ebf0%22%2F%3E%3Cstop%20offset%3D%220.28%22%20stop-color%3D%22%23fbfcfe%22%2F%3E%3Cstop%20offset%3D%220.55%22%20stop-color%3D%22%23eef1f5%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e3e7ed%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2248%22%20height%3D%22100%22%20fill%3D%22url(%23sv)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 48px 100px;
+    --ip-bg-paper-deep: linear-gradient(rgba(70, 80, 100, 0.05), rgba(70, 80, 100, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2248%22%20height%3D%22100%22%20viewBox%3D%220%200%2048%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sv%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23e7ebf0%22%2F%3E%3Cstop%20offset%3D%220.28%22%20stop-color%3D%22%23fbfcfe%22%2F%3E%3Cstop%20offset%3D%220.55%22%20stop-color%3D%22%23eef1f5%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e3e7ed%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2248%22%20height%3D%22100%22%20fill%3D%22url(%23sv)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 48px 100px;
+  }
+
+  /* Pale brass. Stops stay light enough for dark pens. */
+  [data-ip-surface="brass"] {
+    --color-ip-paper: #f6edd8;
+    --color-ip-paper-deep: #ead9b8;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2290%22%20height%3D%2218%22%20viewBox%3D%220%200%2090%2018%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bs%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fbf6e8%22%2F%3E%3Cstop%20offset%3D%220.5%22%20stop-color%3D%22%23e8d7b4%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f6edd8%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2290%22%20height%3D%2218%22%20fill%3D%22url(%23bs)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 90px 18px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2290%22%20height%3D%2218%22%20viewBox%3D%220%200%2090%2018%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bs%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fbf6e8%22%2F%3E%3Cstop%20offset%3D%220.5%22%20stop-color%3D%22%23e8d7b4%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f6edd8%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2290%22%20height%3D%2218%22%20fill%3D%22url(%23bs)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 90px 18px;
+    --ip-bg-paper-deep: linear-gradient(rgba(120, 90, 30, 0.05), rgba(120, 90, 30, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2290%22%20height%3D%2218%22%20viewBox%3D%220%200%2090%2018%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bs%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fbf6e8%22%2F%3E%3Cstop%20offset%3D%220.5%22%20stop-color%3D%22%23e8d7b4%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f6edd8%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2290%22%20height%3D%2218%22%20fill%3D%22url(%23bs)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 90px 18px;
+  }
+
+  /* Duller, redder metal than brass. */
+  [data-ip-surface="bronze"] {
+    --color-ip-paper: #f0e2d4;
+    --color-ip-paper-deep: #e6d4bc;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2290%22%20height%3D%2220%22%20viewBox%3D%220%200%2090%2020%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bz%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f6ebe2%22%2F%3E%3Cstop%20offset%3D%220.48%22%20stop-color%3D%22%23e4d2b6%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f0e2d4%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2290%22%20height%3D%2220%22%20fill%3D%22url(%23bz)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 90px 20px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2290%22%20height%3D%2220%22%20viewBox%3D%220%200%2090%2020%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bz%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f6ebe2%22%2F%3E%3Cstop%20offset%3D%220.48%22%20stop-color%3D%22%23e4d2b6%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f0e2d4%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2290%22%20height%3D%2220%22%20fill%3D%22url(%23bz)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 90px 20px;
+    --ip-bg-paper-deep: linear-gradient(rgba(110, 70, 40, 0.05), rgba(110, 70, 40, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2290%22%20height%3D%2220%22%20viewBox%3D%220%200%2090%2020%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bz%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f6ebe2%22%2F%3E%3Cstop%20offset%3D%220.48%22%20stop-color%3D%22%23e4d2b6%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f0e2d4%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2290%22%20height%3D%2220%22%20fill%3D%22url(%23bz)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 90px 20px;
+  }
+
+  /* Antique gold sheet. Darker than cream so it still reads as metal. */
+  [data-ip-surface="gilt"] {
+    --color-ip-paper: #f6e8c4;
+    --color-ip-paper-deep: #ead6a8;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%2216%22%20viewBox%3D%220%200%20120%2016%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22gi%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fbf6e6%22%2F%3E%3Cstop%20offset%3D%220.45%22%20stop-color%3D%22%23ead6a8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f6ecd4%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22120%22%20height%3D%2216%22%20fill%3D%22url(%23gi)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 120px 16px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%2216%22%20viewBox%3D%220%200%20120%2016%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22gi%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fbf6e6%22%2F%3E%3Cstop%20offset%3D%220.45%22%20stop-color%3D%22%23ead6a8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f6ecd4%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22120%22%20height%3D%2216%22%20fill%3D%22url(%23gi)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 120px 16px;
+    --ip-bg-paper-deep: linear-gradient(rgba(120, 90, 30, 0.05), rgba(120, 90, 30, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%2216%22%20viewBox%3D%220%200%20120%2016%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22gi%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fbf6e6%22%2F%3E%3Cstop%20offset%3D%220.45%22%20stop-color%3D%22%23ead6a8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f6ecd4%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22120%22%20height%3D%2216%22%20fill%3D%22url(%23gi)%22%2F%3E%3C%2Fsvg%3E") 0 0 / 120px 16px;
+  }
+
+  /* Linen: a fine plain weave in two close creams. */
+  [data-ip-surface="linen"] {
+    --color-ip-paper: #f3eee6;
+    --color-ip-paper-deep: #e7e0d2;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%228%22%20viewBox%3D%220%200%208%208%22%3E%3Crect%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23f7f2ea%22%2F%3E%3Crect%20width%3D%224%22%20height%3D%224%22%20fill%3D%22%23e8e0d2%22%2F%3E%3Crect%20x%3D%224%22%20y%3D%224%22%20width%3D%224%22%20height%3D%224%22%20fill%3D%22%23e8e0d2%22%2F%3E%3C%2Fsvg%3E") 0 0 / 8px 8px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%228%22%20viewBox%3D%220%200%208%208%22%3E%3Crect%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23f7f2ea%22%2F%3E%3Crect%20width%3D%224%22%20height%3D%224%22%20fill%3D%22%23e8e0d2%22%2F%3E%3Crect%20x%3D%224%22%20y%3D%224%22%20width%3D%224%22%20height%3D%224%22%20fill%3D%22%23e8e0d2%22%2F%3E%3C%2Fsvg%3E") 0 0 / 8px 8px;
+    --ip-bg-paper-deep: linear-gradient(rgba(90, 70, 40, 0.05), rgba(90, 70, 40, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%228%22%20viewBox%3D%220%200%208%208%22%3E%3Crect%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23f7f2ea%22%2F%3E%3Crect%20width%3D%224%22%20height%3D%224%22%20fill%3D%22%23e8e0d2%22%2F%3E%3Crect%20x%3D%224%22%20y%3D%224%22%20width%3D%224%22%20height%3D%224%22%20fill%3D%22%23e8e0d2%22%2F%3E%3C%2Fsvg%3E") 0 0 / 8px 8px;
+  }
+
+  /* Silk: a diagonal satin sheen. */
+  [data-ip-surface="silk"] {
+    --color-ip-paper: #faf6f1;
+    --color-ip-paper-deep: #f0e6da;
+    --ip-bg-page: repeating-linear-gradient(118deg, #fbf8f4 0px, #f0e6da 22px, #fbf8f4 44px), var(--color-ip-paper);
+    --ip-bg-paper: repeating-linear-gradient(118deg, #faf6f2 0px, #eadfd2 22px, #faf6f2 44px), var(--color-ip-paper);
+    --ip-bg-paper-deep: repeating-linear-gradient(118deg, #f3ece4 0px, #e6ddd0 22px, #f3ece4 44px), var(--color-ip-paper-deep);
+  }
+
+  /* Canvas: a coarser tan weave. */
+  [data-ip-surface="canvas"] {
+    --color-ip-paper: #efe6d8;
+    --color-ip-paper-deep: #e4d8c4;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23efe4d4%22%2F%3E%3Crect%20y%3D%222%22%20width%3D%2224%22%20height%3D%228%22%20rx%3D%221%22%20fill%3D%22%23f6efe4%22%2F%3E%3Crect%20y%3D%2214%22%20width%3D%2224%22%20height%3D%228%22%20rx%3D%221%22%20fill%3D%22%23f6efe4%22%2F%3E%3Crect%20x%3D%222%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%221%22%20fill%3D%22%23e4d8c4%22%2F%3E%3Crect%20x%3D%2214%22%20y%3D%2212%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%221%22%20fill%3D%22%23e4d8c4%22%2F%3E%3C%2Fsvg%3E") 0 0 / 24px 24px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23efe4d4%22%2F%3E%3Crect%20y%3D%222%22%20width%3D%2224%22%20height%3D%228%22%20rx%3D%221%22%20fill%3D%22%23f6efe4%22%2F%3E%3Crect%20y%3D%2214%22%20width%3D%2224%22%20height%3D%228%22%20rx%3D%221%22%20fill%3D%22%23f6efe4%22%2F%3E%3Crect%20x%3D%222%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%221%22%20fill%3D%22%23e4d8c4%22%2F%3E%3Crect%20x%3D%2214%22%20y%3D%2212%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%221%22%20fill%3D%22%23e4d8c4%22%2F%3E%3C%2Fsvg%3E") 0 0 / 24px 24px;
+    --ip-bg-paper-deep: linear-gradient(rgba(90, 70, 40, 0.05), rgba(90, 70, 40, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23efe4d4%22%2F%3E%3Crect%20y%3D%222%22%20width%3D%2224%22%20height%3D%228%22%20rx%3D%221%22%20fill%3D%22%23f6efe4%22%2F%3E%3Crect%20y%3D%2214%22%20width%3D%2224%22%20height%3D%228%22%20rx%3D%221%22%20fill%3D%22%23f6efe4%22%2F%3E%3Crect%20x%3D%222%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%221%22%20fill%3D%22%23e4d8c4%22%2F%3E%3Crect%20x%3D%2214%22%20y%3D%2212%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%221%22%20fill%3D%22%23e4d8c4%22%2F%3E%3C%2Fsvg%3E") 0 0 / 24px 24px;
+  }
+
+  /* Glass: a cool pane with one long reflection. */
+  [data-ip-surface="glass"] {
+    --color-ip-paper: #f4f8fc;
+    --color-ip-paper-deep: #e4eef6;
+    --ip-bg-page: linear-gradient(128deg, rgba(255, 255, 255, 0.55), transparent 42%), repeating-linear-gradient(128deg, #f7fbfe 0px, #dceaf6 90px, #f4f8fc 150px), var(--color-ip-paper);
+    --ip-bg-paper: linear-gradient(128deg, rgba(255, 255, 255, 0.5), transparent 42%), repeating-linear-gradient(128deg, #f5f9fd 0px, #d5e4f0 90px, #f2f7fb 150px), var(--color-ip-paper);
+    --ip-bg-paper-deep: repeating-linear-gradient(128deg, #eaf2f8 0px, #d5e4f0 90px, #eaf2f8 150px), var(--color-ip-paper-deep);
+  }
+
+  /* Fire: a pale hearth glow, no flame drawn through the type. */
+  [data-ip-surface="fire"] {
+    --color-ip-paper: #fff1e4;
+    --color-ip-paper-deep: #f6d7c0;
+    --ip-bg-page: radial-gradient(ellipse at 14% 16%, rgba(240, 110, 30, 0.18), transparent 30%), radial-gradient(ellipse at 72% 28%, rgba(220, 70, 20, 0.14), transparent 26%), radial-gradient(ellipse at 48% 108%, rgba(210, 70, 16, 0.22), transparent 52%), var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(ellipse at 20% 24%, rgba(230, 90, 20, 0.2), transparent 32%), radial-gradient(ellipse at 80% 70%, rgba(210, 70, 16, 0.14), transparent 30%), var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(ellipse at 40% 80%, rgba(190, 60, 16, 0.18), transparent 48%), var(--color-ip-paper-deep);
+  }
+
+  /* Water: wide soft ripples. */
+  [data-ip-surface="water"] {
+    --color-ip-paper: #eef6fb;
+    --color-ip-paper-deep: #dceaf4;
+    --ip-bg-page: repeating-linear-gradient(to bottom, #f7fbfe 0px, #d4e6f2 16px, #f4f9fc 32px), var(--color-ip-paper);
+    --ip-bg-paper: repeating-linear-gradient(to bottom, #f5fafd 0px, #cfe0ef 16px, #f2f8fc 32px), var(--color-ip-paper);
+    --ip-bg-paper-deep: repeating-linear-gradient(to bottom, #e8f2f8 0px, #d4e6f2 16px, #e8f2f8 32px), var(--color-ip-paper-deep);
+  }
+
+  /* Wind: long faint streaks. */
+  [data-ip-surface="wind"] {
+    --color-ip-paper: #f6f7f4;
+    --color-ip-paper-deep: #e8ebe4;
+    --ip-bg-page: repeating-linear-gradient(102deg, transparent 0 34px, rgba(80, 100, 90, 0.07) 34px 58px, transparent 58px 96px), var(--color-ip-paper);
+    --ip-bg-paper: repeating-linear-gradient(102deg, transparent 0 34px, rgba(70, 90, 80, 0.09) 34px 58px, transparent 58px 96px), var(--color-ip-paper);
+    --ip-bg-paper-deep: repeating-linear-gradient(102deg, transparent 0 34px, rgba(70, 90, 80, 0.1) 34px 58px, transparent 58px 96px), var(--color-ip-paper-deep);
+  }
+
+  /* Earth: quiet packed clay. */
+  [data-ip-surface="earth"] {
+    --color-ip-paper: #f0e6d8;
+    --color-ip-paper-deep: #e7d8c8;
+    --ip-bg-page: radial-gradient(ellipse at 28% 40%, rgba(120, 80, 40, 0.1), transparent 62%) 0 0 / 180px 140px, radial-gradient(ellipse at 72% 68%, rgba(90, 60, 30, 0.08), transparent 58%) 40px 30px / 220px 160px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(ellipse at 28% 40%, rgba(120, 80, 40, 0.13), transparent 62%) 0 0 / 180px 140px, radial-gradient(ellipse at 72% 68%, rgba(90, 60, 30, 0.1), transparent 58%) 40px 30px / 220px 160px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(ellipse at 28% 40%, rgba(110, 70, 30, 0.14), transparent 62%) 0 0 / 180px 140px, var(--color-ip-paper-deep);
+  }
+
+  /* Bricks: a pale running bond. Mortar stays close to the brick so it does not cut the type. */
+  [data-ip-surface="bricks"] {
+    --color-ip-paper: #f3e6da;
+    --color-ip-paper-deep: #e8d4c6;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2256%22%20height%3D%2232%22%20viewBox%3D%220%200%2056%2032%22%3E%3Crect%20width%3D%2256%22%20height%3D%2232%22%20fill%3D%22%23e8d4c6%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f7eee6%22%2F%3E%3Crect%20x%3D%2229%22%20y%3D%221%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f3e6da%22%2F%3E%3Crect%20x%3D%22-12%22%20y%3D%2217%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f3e6da%22%2F%3E%3Crect%20x%3D%2216%22%20y%3D%2217%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f7eee6%22%2F%3E%3Crect%20x%3D%2244%22%20y%3D%2217%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f3e6da%22%2F%3E%3C%2Fsvg%3E") 0 0 / 56px 32px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2256%22%20height%3D%2232%22%20viewBox%3D%220%200%2056%2032%22%3E%3Crect%20width%3D%2256%22%20height%3D%2232%22%20fill%3D%22%23e8d4c6%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f7eee6%22%2F%3E%3Crect%20x%3D%2229%22%20y%3D%221%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f3e6da%22%2F%3E%3Crect%20x%3D%22-12%22%20y%3D%2217%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f3e6da%22%2F%3E%3Crect%20x%3D%2216%22%20y%3D%2217%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f7eee6%22%2F%3E%3Crect%20x%3D%2244%22%20y%3D%2217%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f3e6da%22%2F%3E%3C%2Fsvg%3E") 0 0 / 56px 32px;
+    --ip-bg-paper-deep: linear-gradient(rgba(110, 70, 40, 0.05), rgba(110, 70, 40, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2256%22%20height%3D%2232%22%20viewBox%3D%220%200%2056%2032%22%3E%3Crect%20width%3D%2256%22%20height%3D%2232%22%20fill%3D%22%23e8d4c6%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f7eee6%22%2F%3E%3Crect%20x%3D%2229%22%20y%3D%221%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f3e6da%22%2F%3E%3Crect%20x%3D%22-12%22%20y%3D%2217%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f3e6da%22%2F%3E%3Crect%20x%3D%2216%22%20y%3D%2217%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f7eee6%22%2F%3E%3Crect%20x%3D%2244%22%20y%3D%2217%22%20width%3D%2226%22%20height%3D%2214%22%20fill%3D%22%23f3e6da%22%2F%3E%3C%2Fsvg%3E") 0 0 / 56px 32px;
+  }
+
+  /* Ruled: exercise-book lines, wide enough to sit behind the type. */
+  [data-ip-surface="ruled"] {
+    --color-ip-paper: #fbf8f1;
+    --color-ip-paper-deep: #f0eadc;
+    --ip-bg-page: repeating-linear-gradient(to bottom, #fbf8f1 0 26px, #d4e2f0 26px 28px), var(--color-ip-paper);
+    --ip-bg-paper: repeating-linear-gradient(to bottom, #f7f3ea 0 26px, #cfe0ef 26px 28px), var(--color-ip-paper);
+    --ip-bg-paper-deep: repeating-linear-gradient(to bottom, #f0eadc 0 26px, #d4e2f0 26px 28px), var(--color-ip-paper-deep);
+  }
+
+  /* Marble: cloudy veins, not cracks. */
+  [data-ip-surface="marble"] {
+    --color-ip-paper: #f6f7f8;
+    --color-ip-paper-deep: #e7eaed;
+    --ip-bg-page: radial-gradient(ellipse at 18% 22%, rgba(150, 160, 172, 0.2), transparent 34%), radial-gradient(ellipse at 72% 16%, rgba(168, 174, 182, 0.16), transparent 26%), radial-gradient(ellipse at 58% 78%, rgba(140, 150, 162, 0.18), transparent 40%), radial-gradient(ellipse at 88% 58%, rgba(160, 168, 176, 0.12), transparent 30%), var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(ellipse at 22% 30%, rgba(140, 150, 162, 0.22), transparent 36%), radial-gradient(ellipse at 76% 70%, rgba(150, 158, 168, 0.16), transparent 32%), var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(ellipse at 40% 40%, rgba(130, 140, 152, 0.16), transparent 46%), var(--color-ip-paper-deep);
+  }
+
+  /* Stone: a warm grey pepper. */
+  [data-ip-surface="stone"] {
+    --color-ip-paper: #eeece8;
+    --color-ip-paper-deep: #e2dfd8;
+    --ip-bg-page: radial-gradient(circle at 20% 30%, rgba(80, 78, 70, 0.1) 0 1px, transparent 1.6px) 0 0 / 8px 10px, radial-gradient(circle at 70% 60%, rgba(70, 68, 60, 0.08) 0 1px, transparent 1.4px) 3px 4px / 11px 9px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(circle at 20% 30%, rgba(80, 78, 70, 0.13) 0 1px, transparent 1.6px) 0 0 / 8px 10px, radial-gradient(circle at 70% 60%, rgba(70, 68, 60, 0.1) 0 1px, transparent 1.4px) 3px 4px / 11px 9px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(circle at 20% 30%, rgba(70, 68, 60, 0.14) 0 1px, transparent 1.6px) 0 0 / 8px 10px, var(--color-ip-paper-deep);
+  }
+
+  /* Ceramic: a warm porcelain glaze. */
+  [data-ip-surface="ceramic"] {
+    --color-ip-paper: #fbf9f6;
+    --color-ip-paper-deep: #f1ebe4;
+    --ip-bg-page: radial-gradient(ellipse at 28% 0%, rgba(255, 255, 255, 0.85), transparent 46%), linear-gradient(165deg, rgba(255, 255, 255, 0.45), transparent 42%), var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(ellipse at 30% 0%, rgba(255, 255, 255, 0.8), transparent 48%), var(--color-ip-paper);
+    --ip-bg-paper-deep: linear-gradient(165deg, #f7f4f0, #efeae3), var(--color-ip-paper-deep);
+  }
+
+  /* Terracotta: pale fired clay. */
+  [data-ip-surface="terracotta"] {
+    --color-ip-paper: #f8e6da;
+    --color-ip-paper-deep: #edd4c6;
+    --ip-bg-page: radial-gradient(ellipse at 30% 40%, rgba(160, 70, 40, 0.1), transparent 62%) 0 0 / 180px 140px, radial-gradient(ellipse at 74% 70%, rgba(140, 60, 30, 0.08), transparent 55%) 30px 20px / 200px 150px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(ellipse at 30% 40%, rgba(160, 70, 40, 0.13), transparent 62%) 0 0 / 180px 140px, radial-gradient(ellipse at 74% 70%, rgba(140, 60, 30, 0.1), transparent 55%) 30px 20px / 200px 150px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(ellipse at 40% 50%, rgba(140, 55, 28, 0.12), transparent 60%), var(--color-ip-paper-deep);
+  }
+
+  /* Cork: a coarse tan grain. */
+  [data-ip-surface="cork"] {
+    --color-ip-paper: #f4ead8;
+    --color-ip-paper-deep: #e8dcc4;
+    --ip-bg-page: radial-gradient(circle at 30% 40%, rgba(120, 80, 30, 0.14) 0 1.2px, transparent 2px) 0 0 / 7px 7px, radial-gradient(circle at 70% 60%, rgba(100, 70, 30, 0.1) 0 1px, transparent 1.6px) 3px 2px / 9px 8px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(circle at 30% 40%, rgba(120, 80, 30, 0.16) 0 1.2px, transparent 2px) 0 0 / 7px 7px, radial-gradient(circle at 70% 60%, rgba(100, 70, 30, 0.12) 0 1px, transparent 1.6px) 3px 2px / 9px 8px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(circle at 30% 40%, rgba(110, 70, 24, 0.16) 0 1.2px, transparent 2px) 0 0 / 7px 7px, var(--color-ip-paper-deep);
+  }
+
+  /* Sand: pale dunes in close colours. Dark flecks read as dirt. */
+  [data-ip-surface="sand"] {
+    --color-ip-paper: #f7f0d8;
+    --color-ip-paper-deep: #efe2c0;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22220%22%20height%3D%22120%22%20viewBox%3D%220%200%20220%20120%22%3E%3Crect%20width%3D%22220%22%20height%3D%22120%22%20fill%3D%22%23f7f0d8%22%2F%3E%3Cpath%20fill%3D%22%23f3e6c0%22%20d%3D%22M0%2034c44-16%2078%2010%20124-6s68-8%2096%208v16c-32-12-70%2010-116%202S48%2046%200%2054z%22%2F%3E%3Cpath%20fill%3D%22%23efe0b4%22%20d%3D%22M0%2078c40-18%2072%208%20118-10s64%202%20102%2010v14c-40-10-78%2012-122%202S46%2086%200%2096z%22%2F%3E%3Cpath%20fill%3D%22%23f1e4ba%22%20d%3D%22M0%20108c50-12%2086%208%20132-6s58%202%2088%208v10H0z%22%2F%3E%3C%2Fsvg%3E") 0 0 / 220px 120px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22220%22%20height%3D%22120%22%20viewBox%3D%220%200%20220%20120%22%3E%3Crect%20width%3D%22220%22%20height%3D%22120%22%20fill%3D%22%23f7f0d8%22%2F%3E%3Cpath%20fill%3D%22%23f3e6c0%22%20d%3D%22M0%2034c44-16%2078%2010%20124-6s68-8%2096%208v16c-32-12-70%2010-116%202S48%2046%200%2054z%22%2F%3E%3Cpath%20fill%3D%22%23efe0b4%22%20d%3D%22M0%2078c40-18%2072%208%20118-10s64%202%20102%2010v14c-40-10-78%2012-122%202S46%2086%200%2096z%22%2F%3E%3Cpath%20fill%3D%22%23f1e4ba%22%20d%3D%22M0%20108c50-12%2086%208%20132-6s58%202%2088%208v10H0z%22%2F%3E%3C%2Fsvg%3E") 0 0 / 220px 120px;
+    --ip-bg-paper-deep: linear-gradient(rgba(140, 110, 40, 0.05), rgba(140, 110, 40, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22220%22%20height%3D%22120%22%20viewBox%3D%220%200%20220%20120%22%3E%3Crect%20width%3D%22220%22%20height%3D%22120%22%20fill%3D%22%23f7f0d8%22%2F%3E%3Cpath%20fill%3D%22%23f3e6c0%22%20d%3D%22M0%2034c44-16%2078%2010%20124-6s68-8%2096%208v16c-32-12-70%2010-116%202S48%2046%200%2054z%22%2F%3E%3Cpath%20fill%3D%22%23efe0b4%22%20d%3D%22M0%2078c40-18%2072%208%20118-10s64%202%20102%2010v14c-40-10-78%2012-122%202S46%2086%200%2096z%22%2F%3E%3Cpath%20fill%3D%22%23f1e4ba%22%20d%3D%22M0%20108c50-12%2086%208%20132-6s58%202%2088%208v10H0z%22%2F%3E%3C%2Fsvg%3E") 0 0 / 220px 120px;
+  }
+
+  /* Ice: wide cool facets. */
+  [data-ip-surface="ice"] {
+    --color-ip-paper: #f4fafc;
+    --color-ip-paper-deep: #e4f1f6;
+    --ip-bg-page: repeating-linear-gradient(132deg, #f7fcfe 0 22px, #d9e8ef 22px 40px, #f4fafc 40px 78px), var(--color-ip-paper);
+    --ip-bg-paper: repeating-linear-gradient(132deg, #f4fafc 0 22px, #d4e4ee 22px 40px, #f2f8fc 40px 78px), var(--color-ip-paper);
+    --ip-bg-paper-deep: repeating-linear-gradient(132deg, #eaf3f7 0 22px, #d9e8ef 22px 40px, #eaf3f7 40px 78px), var(--color-ip-paper-deep);
+  }
+
+  /* Denim: a pale twill. The two blues stay close so the diagonal does not cut the type. */
+  [data-ip-surface="denim"] {
+    --color-ip-paper: #e7eef8;
+    --color-ip-paper-deep: #d8e2f2;
+    --ip-bg-page: repeating-linear-gradient(45deg, #eef3fa 0 7px, #e3ecf6 7px 9px), var(--color-ip-paper);
+    --ip-bg-paper: repeating-linear-gradient(45deg, #eaf0f8 0 7px, #dce7f4 7px 9px), var(--color-ip-paper);
+    --ip-bg-paper-deep: repeating-linear-gradient(45deg, #e4ecf6 0 7px, #d8e3f2 7px 9px), var(--color-ip-paper-deep);
+  }
+
+  /* Leather: a pale pebbled hide. The pebbles stay close so they do not read as dirt. */
+  [data-ip-surface="leather"] {
+    --color-ip-paper: #f4e8d8;
+    --color-ip-paper-deep: #eadcc8;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2272%22%20height%3D%2252%22%20viewBox%3D%220%200%2072%2052%22%3E%3Crect%20width%3D%2272%22%20height%3D%2252%22%20fill%3D%22%23f4e8d8%22%2F%3E%3Cellipse%20cx%3D%2212%22%20cy%3D%2212%22%20rx%3D%228%22%20ry%3D%226%22%20fill%3D%22%23efe0cc%22%2F%3E%3Cellipse%20cx%3D%2232%22%20cy%3D%2210%22%20rx%3D%227%22%20ry%3D%225%22%20fill%3D%22%23f7eee2%22%2F%3E%3Cellipse%20cx%3D%2252%22%20cy%3D%2214%22%20rx%3D%229%22%20ry%3D%226%22%20fill%3D%22%23ead8c2%22%2F%3E%3Cellipse%20cx%3D%2218%22%20cy%3D%2232%22%20rx%3D%228%22%20ry%3D%226%22%20fill%3D%22%23f3e4d2%22%2F%3E%3Cellipse%20cx%3D%2240%22%20cy%3D%2234%22%20rx%3D%229%22%20ry%3D%226%22%20fill%3D%22%23efe0cc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2236%22%20rx%3D%227%22%20ry%3D%225%22%20fill%3D%22%23f6ebe0%22%2F%3E%3C%2Fsvg%3E") 0 0 / 72px 52px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2272%22%20height%3D%2252%22%20viewBox%3D%220%200%2072%2052%22%3E%3Crect%20width%3D%2272%22%20height%3D%2252%22%20fill%3D%22%23f4e8d8%22%2F%3E%3Cellipse%20cx%3D%2212%22%20cy%3D%2212%22%20rx%3D%228%22%20ry%3D%226%22%20fill%3D%22%23efe0cc%22%2F%3E%3Cellipse%20cx%3D%2232%22%20cy%3D%2210%22%20rx%3D%227%22%20ry%3D%225%22%20fill%3D%22%23f7eee2%22%2F%3E%3Cellipse%20cx%3D%2252%22%20cy%3D%2214%22%20rx%3D%229%22%20ry%3D%226%22%20fill%3D%22%23ead8c2%22%2F%3E%3Cellipse%20cx%3D%2218%22%20cy%3D%2232%22%20rx%3D%228%22%20ry%3D%226%22%20fill%3D%22%23f3e4d2%22%2F%3E%3Cellipse%20cx%3D%2240%22%20cy%3D%2234%22%20rx%3D%229%22%20ry%3D%226%22%20fill%3D%22%23efe0cc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2236%22%20rx%3D%227%22%20ry%3D%225%22%20fill%3D%22%23f6ebe0%22%2F%3E%3C%2Fsvg%3E") 0 0 / 72px 52px;
+    --ip-bg-paper-deep: linear-gradient(rgba(110, 70, 30, 0.05), rgba(110, 70, 30, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2272%22%20height%3D%2252%22%20viewBox%3D%220%200%2072%2052%22%3E%3Crect%20width%3D%2272%22%20height%3D%2252%22%20fill%3D%22%23f4e8d8%22%2F%3E%3Cellipse%20cx%3D%2212%22%20cy%3D%2212%22%20rx%3D%228%22%20ry%3D%226%22%20fill%3D%22%23efe0cc%22%2F%3E%3Cellipse%20cx%3D%2232%22%20cy%3D%2210%22%20rx%3D%227%22%20ry%3D%225%22%20fill%3D%22%23f7eee2%22%2F%3E%3Cellipse%20cx%3D%2252%22%20cy%3D%2214%22%20rx%3D%229%22%20ry%3D%226%22%20fill%3D%22%23ead8c2%22%2F%3E%3Cellipse%20cx%3D%2218%22%20cy%3D%2232%22%20rx%3D%228%22%20ry%3D%226%22%20fill%3D%22%23f3e4d2%22%2F%3E%3Cellipse%20cx%3D%2240%22%20cy%3D%2234%22%20rx%3D%229%22%20ry%3D%226%22%20fill%3D%22%23efe0cc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2236%22%20rx%3D%227%22%20ry%3D%225%22%20fill%3D%22%23f6ebe0%22%2F%3E%3C%2Fsvg%3E") 0 0 / 72px 52px;
+  }
+
+  /* Felt: a soft nap. */
+  [data-ip-surface="felt"] {
+    --color-ip-paper: #f4f0ea;
+    --color-ip-paper-deep: #e8e3db;
+    --ip-bg-page: radial-gradient(circle at 25% 35%, rgba(100, 80, 60, 0.07) 0 0.6px, transparent 1px) 0 0 / 6px 9px, radial-gradient(circle at 70% 60%, rgba(90, 70, 55, 0.05) 0 0.5px, transparent 0.9px) 3px 4px / 8px 7px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(circle at 25% 35%, rgba(100, 80, 60, 0.09) 0 0.6px, transparent 1px) 0 0 / 6px 9px, radial-gradient(circle at 70% 60%, rgba(90, 70, 55, 0.06) 0 0.5px, transparent 0.9px) 3px 4px / 8px 7px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(circle at 25% 35%, rgba(90, 70, 50, 0.1) 0 0.6px, transparent 1px) 0 0 / 6px 9px, var(--color-ip-paper-deep);
+  }
+
+  /* Concrete: cool grey aggregate. */
+  [data-ip-surface="concrete"] {
+    --color-ip-paper: #f1f3f4;
+    --color-ip-paper-deep: #e4e6e8;
+    --ip-bg-page: radial-gradient(circle at 30% 40%, #e3e5e7 0 1.1px, transparent 1.3px) 0 0 / 11px 13px, radial-gradient(circle at 75% 25%, #e7e9eb 0 0.7px, transparent 0.9px) 5px 6px / 15px 11px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(circle at 30% 40%, #e0e2e4 0 1.1px, transparent 1.3px) 0 0 / 11px 13px, radial-gradient(circle at 75% 25%, #e4e6e8 0 0.7px, transparent 0.9px) 5px 6px / 15px 11px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(circle at 30% 40%, #dfe1e3 0 1.1px, transparent 1.3px) 0 0 / 11px 13px, var(--color-ip-paper-deep);
+  }
+
+  /* Plaster: a smooth trowel cloud. */
+  [data-ip-surface="plaster"] {
+    --color-ip-paper: #f4f1ec;
+    --color-ip-paper-deep: #e8e4dc;
+    --ip-bg-page: radial-gradient(ellipse at 28% 36%, rgba(120, 110, 100, 0.07), transparent 58%) 0 0 / 200px 150px, radial-gradient(ellipse at 74% 70%, rgba(140, 130, 118, 0.06), transparent 52%) 40px 20px / 220px 160px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(ellipse at 28% 36%, rgba(120, 110, 100, 0.09), transparent 58%) 0 0 / 200px 150px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(ellipse at 40% 50%, rgba(110, 100, 90, 0.08), transparent 55%), var(--color-ip-paper-deep);
+  }
+
+  /* Rust: a pale orange bloom, not pits through the type. */
+  [data-ip-surface="rust"] {
+    --color-ip-paper: #f8ebe0;
+    --color-ip-paper-deep: #f0ddd0;
+    --ip-bg-page: radial-gradient(ellipse at 22% 30%, rgba(180, 90, 40, 0.12), transparent 42%) 0 0 / 160px 120px, radial-gradient(ellipse at 72% 64%, rgba(160, 70, 30, 0.1), transparent 46%) 30px 20px / 180px 130px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(ellipse at 24% 34%, rgba(170, 80, 30, 0.14), transparent 44%) 0 0 / 160px 120px, radial-gradient(ellipse at 76% 68%, rgba(150, 60, 24, 0.1), transparent 46%) 30px 20px / 180px 130px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(ellipse at 40% 50%, rgba(150, 60, 24, 0.12), transparent 50%), var(--color-ip-paper-deep);
+  }
+
+  /* Wicker: an open straw weave. */
+  [data-ip-surface="wicker"] {
+    --color-ip-paper: #f6edd8;
+    --color-ip-paper-deep: #efe0c4;
+    --ip-bg-page: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%2264%22%20viewBox%3D%220%200%20120%2064%22%3E%3Crect%20width%3D%22120%22%20height%3D%2264%22%20fill%3D%22%23f7f0e2%22%2F%3E%3Crect%20y%3D%228%22%20width%3D%22120%22%20height%3D%2216%22%20fill%3D%22%23f1e6d0%22%2F%3E%3Crect%20y%3D%2240%22%20width%3D%22120%22%20height%3D%2216%22%20fill%3D%22%23efe2cc%22%2F%3E%3Crect%20x%3D%2210%22%20width%3D%2216%22%20height%3D%2264%22%20fill%3D%22%23f4ead8%22%2F%3E%3Crect%20x%3D%2252%22%20width%3D%2216%22%20height%3D%2264%22%20fill%3D%22%23f0e4ce%22%2F%3E%3Crect%20x%3D%2294%22%20width%3D%2216%22%20height%3D%2264%22%20fill%3D%22%23f3e8d4%22%2F%3E%3C%2Fsvg%3E") 0 0 / 120px 64px;
+    --ip-bg-paper: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%2264%22%20viewBox%3D%220%200%20120%2064%22%3E%3Crect%20width%3D%22120%22%20height%3D%2264%22%20fill%3D%22%23f7f0e2%22%2F%3E%3Crect%20y%3D%228%22%20width%3D%22120%22%20height%3D%2216%22%20fill%3D%22%23f1e6d0%22%2F%3E%3Crect%20y%3D%2240%22%20width%3D%22120%22%20height%3D%2216%22%20fill%3D%22%23efe2cc%22%2F%3E%3Crect%20x%3D%2210%22%20width%3D%2216%22%20height%3D%2264%22%20fill%3D%22%23f4ead8%22%2F%3E%3Crect%20x%3D%2252%22%20width%3D%2216%22%20height%3D%2264%22%20fill%3D%22%23f0e4ce%22%2F%3E%3Crect%20x%3D%2294%22%20width%3D%2216%22%20height%3D%2264%22%20fill%3D%22%23f3e8d4%22%2F%3E%3C%2Fsvg%3E") 0 0 / 120px 64px;
+    --ip-bg-paper-deep: linear-gradient(rgba(120, 90, 40, 0.05), rgba(120, 90, 40, 0.05)), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%2264%22%20viewBox%3D%220%200%20120%2064%22%3E%3Crect%20width%3D%22120%22%20height%3D%2264%22%20fill%3D%22%23f7f0e2%22%2F%3E%3Crect%20y%3D%228%22%20width%3D%22120%22%20height%3D%2216%22%20fill%3D%22%23f1e6d0%22%2F%3E%3Crect%20y%3D%2240%22%20width%3D%22120%22%20height%3D%2216%22%20fill%3D%22%23efe2cc%22%2F%3E%3Crect%20x%3D%2210%22%20width%3D%2216%22%20height%3D%2264%22%20fill%3D%22%23f4ead8%22%2F%3E%3Crect%20x%3D%2252%22%20width%3D%2216%22%20height%3D%2264%22%20fill%3D%22%23f0e4ce%22%2F%3E%3Crect%20x%3D%2294%22%20width%3D%2216%22%20height%3D%2264%22%20fill%3D%22%23f3e8d4%22%2F%3E%3C%2Fsvg%3E") 0 0 / 120px 64px;
+  }
+
+  /* Cardboard: wide flutes. The darker band stays broad so it does not cut the type. */
+  [data-ip-surface="cardboard"] {
+    --color-ip-paper: #f4e8d8;
+    --color-ip-paper-deep: #eadcc8;
+    --ip-bg-page: repeating-linear-gradient(to bottom, #f6ecde 0 12px, #e8d8c0 12px 16px, #f3e6d4 16px 28px), var(--color-ip-paper);
+    --ip-bg-paper: repeating-linear-gradient(to bottom, #f3e8d8 0 12px, #e4d4bc 12px 16px, #f0e2d0 16px 28px), var(--color-ip-paper);
+    --ip-bg-paper-deep: repeating-linear-gradient(to bottom, #efe2d2 0 12px, #e4d4bc 12px 16px, #eadcc8 16px 28px), var(--color-ip-paper-deep);
+  }
+
+  /* Snow: soft drifts, quieter than ice. */
+  [data-ip-surface="snow"] {
+    --color-ip-paper: #f8fbfc;
+    --color-ip-paper-deep: #eef3f6;
+    --ip-bg-page: radial-gradient(ellipse at 18% 78%, rgba(170, 190, 200, 0.16), transparent 46%), radial-gradient(ellipse at 74% 28%, rgba(190, 206, 214, 0.12), transparent 40%), var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(ellipse at 24% 70%, rgba(160, 184, 196, 0.16), transparent 48%), radial-gradient(ellipse at 80% 24%, rgba(180, 198, 208, 0.12), transparent 38%), var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(ellipse at 40% 80%, rgba(150, 176, 188, 0.14), transparent 50%), var(--color-ip-paper-deep);
+  }
+
+  /* 宣紙: ivory, soft clouds and fibre. */
+  [data-ip-surface="xuan"] {
+    --color-ip-paper: #f7f3ea;
+    --color-ip-paper-deep: #efe8d8;
+    --ip-bg-page: radial-gradient(ellipse at 30% 40%, rgba(150, 120, 70, 0.07), transparent 62%) 0 0 / 200px 150px, radial-gradient(ellipse at 72% 62%, rgba(120, 90, 50, 0.055), transparent 58%) 60px 40px / 240px 170px, radial-gradient(rgba(50, 40, 28, 0.05) 0.4px, transparent 0.5px) 0 0 / 6px 8px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(ellipse at 30% 40%, rgba(150, 120, 70, 0.09), transparent 62%) 0 0 / 200px 150px, radial-gradient(ellipse at 72% 62%, rgba(120, 90, 50, 0.07), transparent 58%) 60px 40px / 240px 170px, radial-gradient(rgba(50, 40, 28, 0.06) 0.4px, transparent 0.5px) 0 0 / 6px 8px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(ellipse at 30% 40%, rgba(150, 120, 70, 0.1), transparent 62%) 0 0 / 200px 150px, radial-gradient(ellipse at 72% 62%, rgba(120, 90, 50, 0.08), transparent 58%) 60px 40px / 240px 170px, radial-gradient(rgba(50, 40, 28, 0.07) 0.4px, transparent 0.5px) 0 0 / 6px 8px, var(--color-ip-paper-deep);
+  }
+
+  /* Kraft wrap: a mottled brown sheet. */
+  [data-ip-surface="kraft"] {
+    --color-ip-paper: #d8c4a2;
+    --color-ip-paper-deep: #cbb892;
+    --ip-bg-page: radial-gradient(ellipse at 40% 45%, rgba(90, 55, 25, 0.1), transparent 65%) 0 0 / 180px 140px, radial-gradient(ellipse at 75% 30%, rgba(70, 40, 15, 0.08), transparent 60%) 40px 70px / 220px 160px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(ellipse at 40% 45%, rgba(90, 55, 25, 0.13), transparent 65%) 0 0 / 180px 140px, radial-gradient(ellipse at 75% 30%, rgba(70, 40, 15, 0.1), transparent 60%) 40px 70px / 220px 160px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(ellipse at 40% 45%, rgba(90, 55, 25, 0.14), transparent 65%) 0 0 / 180px 140px, radial-gradient(ellipse at 75% 30%, rgba(70, 40, 15, 0.11), transparent 60%) 40px 70px / 220px 160px, var(--color-ip-paper-deep);
+  }
+
+  /* 格仔簿: a cool exercise-book grid. The lines stay light so they sit behind the type. */
+  [data-ip-surface="grid"] {
+    --color-ip-paper: #f4f7fb;
+    --color-ip-paper-deep: #e7eef6;
+    --ip-bg-page: repeating-linear-gradient(to right, transparent 0 19px, rgba(86, 126, 176, 0.28) 19px 20px), repeating-linear-gradient(to bottom, transparent 0 19px, rgba(86, 126, 176, 0.28) 19px 20px), var(--color-ip-paper);
+    --ip-bg-paper: repeating-linear-gradient(to right, transparent 0 19px, rgba(86, 126, 176, 0.34) 19px 20px), repeating-linear-gradient(to bottom, transparent 0 19px, rgba(86, 126, 176, 0.34) 19px 20px), var(--color-ip-paper);
+    --ip-bg-paper-deep: repeating-linear-gradient(to right, transparent 0 19px, rgba(86, 126, 176, 0.3) 19px 20px), repeating-linear-gradient(to bottom, transparent 0 19px, rgba(86, 126, 176, 0.3) 19px 20px), var(--color-ip-paper-deep);
+  }
+
+  /* 九宮格: one 36px square per character, split into nine. The outer line is the character box. */
+  [data-ip-surface="jiugong"] {
+    --color-ip-paper: #fff6f2;
+    --color-ip-paper-deep: #f6e6e0;
+    --ip-bg-page: repeating-linear-gradient(to right, transparent 0 11px, rgba(176, 48, 42, 0.18) 11px 12px, transparent 12px 23px, rgba(176, 48, 42, 0.18) 23px 24px, transparent 24px 35px, rgba(168, 36, 32, 0.42) 35px 36px), repeating-linear-gradient(to bottom, transparent 0 11px, rgba(176, 48, 42, 0.18) 11px 12px, transparent 12px 23px, rgba(176, 48, 42, 0.18) 23px 24px, transparent 24px 35px, rgba(168, 36, 32, 0.42) 35px 36px), var(--color-ip-paper);
+    --ip-bg-paper: repeating-linear-gradient(to right, transparent 0 11px, rgba(176, 48, 42, 0.24) 11px 12px, transparent 12px 23px, rgba(176, 48, 42, 0.24) 23px 24px, transparent 24px 35px, rgba(168, 36, 32, 0.5) 35px 36px), repeating-linear-gradient(to bottom, transparent 0 11px, rgba(176, 48, 42, 0.24) 11px 12px, transparent 12px 23px, rgba(176, 48, 42, 0.24) 23px 24px, transparent 24px 35px, rgba(168, 36, 32, 0.5) 35px 36px), var(--color-ip-paper);
+    --ip-bg-paper-deep: repeating-linear-gradient(to right, transparent 0 11px, rgba(176, 48, 42, 0.2) 11px 12px, transparent 12px 23px, rgba(176, 48, 42, 0.2) 23px 24px, transparent 24px 35px, rgba(168, 36, 32, 0.44) 35px 36px), repeating-linear-gradient(to bottom, transparent 0 11px, rgba(176, 48, 42, 0.2) 11px 12px, transparent 12px 23px, rgba(176, 48, 42, 0.2) 23px 24px, transparent 24px 35px, rgba(168, 36, 32, 0.44) 35px 36px), var(--color-ip-paper-deep);
+  }
+
+  /* Vellum: a warmer, cloudier sheet than the notebook speckle. */
+  [data-ip-surface="vellum"] {
+    --color-ip-paper: #f6ecd4;
+    --color-ip-paper-deep: #efe2c4;
+    --ip-bg-page: radial-gradient(ellipse at 28% 36%, rgba(170, 130, 60, 0.1), transparent 60%) 0 0 / 220px 160px, radial-gradient(ellipse at 74% 68%, rgba(140, 100, 40, 0.08), transparent 58%) 50px 30px / 260px 180px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(ellipse at 28% 36%, rgba(170, 130, 60, 0.13), transparent 60%) 0 0 / 220px 160px, radial-gradient(ellipse at 74% 68%, rgba(140, 100, 40, 0.1), transparent 58%) 50px 30px / 260px 180px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(ellipse at 28% 36%, rgba(170, 130, 60, 0.14), transparent 60%) 0 0 / 220px 160px, var(--color-ip-paper-deep);
+  }
+
+  /* Explicit paper matches :root, so a game can reset without clearing the attribute. */
+  [data-ip-surface="paper"] {
+    --color-ip-paper: #f2f0ec;
+    --color-ip-paper-deep: #e8e5df;
+    --ip-bg-page: radial-gradient(rgba(70, 62, 54, 0.055) 0.6px, transparent 0.7px) 0 0 / 5px 7px, radial-gradient(rgba(70, 62, 54, 0.04) 0.45px, transparent 0.55px) 2px 3px / 9px 11px, var(--color-ip-paper);
+    --ip-bg-paper: radial-gradient(rgba(70, 62, 54, 0.07) 0.6px, transparent 0.7px) 0 0 / 5px 7px, radial-gradient(rgba(70, 62, 54, 0.05) 0.45px, transparent 0.55px) 2px 3px / 9px 11px, var(--color-ip-paper);
+    --ip-bg-paper-deep: radial-gradient(rgba(70, 62, 54, 0.08) 0.6px, transparent 0.7px) 0 0 / 5px 7px, radial-gradient(rgba(70, 62, 54, 0.05) 0.45px, transparent 0.55px) 2px 3px / 9px 11px, var(--color-ip-paper-deep);
+  }
+
+
+  /* Inks: data-ip-ink on the same element as the surface. Listed after the surfaces so the
+     pen wins when both are set. Colour, weight and corner each jump, and text stays ≥ 4.5:1
+     on the darkest sheet (kraft). */
+  [data-ip-ink="lamp"] {
+    --color-ip-ink: #111111;
+    --color-ip-ink-soft: #5e5a55;
+    --color-ip-ink-faint: #d9d6d1;
+    --color-ip-veil: #1111114d;
+    --color-ip-accent: #e6392b;
+    --color-ip-accent-ink: #c42a1e;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 1.25px;
+    --ip-line-thin: 1px;
+    --ip-line-bold: 2px;
+    --ip-shape-a: 6px 4px 7px 3px / 4px 7px 3px 6px;
+    --ip-shape-b: 4px 7px 3px 6px / 7px 3px 6px 4px;
+    --ip-shape-c: 7px 3px 5px 6px / 3px 6px 7px 4px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%209C18%206%2030%2012%2048%208S78%204%2096%2010%20112%206%20118%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* 松煙: a clearly blue brush, thick and round. */
+  [data-ip-ink="pine"] {
+    --color-ip-ink: #1a3f90;
+    --color-ip-ink-soft: #2a4a9e;
+    --color-ip-ink-faint: #c5d0ea;
+    --color-ip-veil: #1a3f9066;
+    --color-ip-accent: #2a56c4;
+    --color-ip-accent-ink: #1a3f90;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 4px;
+    --ip-line-thin: 2.5px;
+    --ip-line-bold: 5px;
+    --ip-shape-a: 16px 12px 18px 14px / 12px 18px 14px 16px;
+    --ip-shape-b: 14px 18px 12px 16px / 18px 12px 16px 14px;
+    --ip-shape-c: 18px 14px 16px 12px / 14px 16px 18px 12px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%209C20%201%2040%2015%2060%206S95%200%20120%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* 油煙: brick sepia, a middle weight. */
+  [data-ip-ink="oil"] {
+    --color-ip-ink: #6b2e24;
+    --color-ip-ink-soft: #7a3a32;
+    --color-ip-ink-faint: #e4cfc8;
+    --color-ip-veil: #6b2e2466;
+    --color-ip-accent: #8d4034;
+    --color-ip-accent-ink: #6b2e24;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 2.5px;
+    --ip-line-thin: 2px;
+    --ip-line-bold: 3.5px;
+    --ip-shape-a: 8px 6px 9px 5px / 6px 9px 5px 8px;
+    --ip-shape-b: 6px 9px 5px 8px / 9px 5px 8px 6px;
+    --ip-shape-c: 9px 5px 7px 8px / 5px 8px 9px 6px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%2010C16%204%2032%2013%2050%206S82%203%20104%2011%20118%205%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Walnut: orange-brown, the heaviest cut stroke, sharp corners. */
+  [data-ip-ink="walnut"] {
+    --color-ip-ink: #6b3a12;
+    --color-ip-ink-soft: #6b3e1f;
+    --color-ip-ink-faint: #e6d0b4;
+    --color-ip-veil: #6b3a1266;
+    --color-ip-accent: #8a4c18;
+    --color-ip-accent-ink: #6b3a12;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 5px;
+    --ip-line-thin: 3px;
+    --ip-line-bold: 6px;
+    --ip-shape-a: 2px 3px 2px 4px / 3px 2px 4px 2px;
+    --ip-shape-b: 3px 2px 4px 2px / 2px 4px 2px 3px;
+    --ip-shape-c: 2px 4px 3px 2px / 4px 2px 3px 2px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%2011%20L18%204%20L34%2012%20L50%203%20L66%2012%20L82%204%20L98%2012%20L116%205%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22square%22%20stroke-linejoin%3D%22square%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Bamboo green: a hairline. */
+  [data-ip-ink="green"] {
+    --color-ip-ink: #0f4d22;
+    --color-ip-ink-soft: #1a5c30;
+    --color-ip-ink-faint: #c5dcc8;
+    --color-ip-veil: #0f4d2266;
+    --color-ip-accent: #1a6a32;
+    --color-ip-accent-ink: #0f4d22;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 1px;
+    --ip-line-thin: 1px;
+    --ip-line-bold: 2px;
+    --ip-shape-a: 18px 4px 20px 6px / 4px 20px 6px 18px;
+    --ip-shape-b: 6px 20px 4px 18px / 20px 6px 18px 4px;
+    --ip-shape-c: 20px 6px 16px 4px / 6px 18px 20px 4px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%208C40%207%2080%209%20120%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* 毛筆: soot black, a stroke that swells and lifts, with a round turn. */
+  [data-ip-ink="brush"] {
+    --color-ip-ink: #161410;
+    --color-ip-ink-soft: #3a342e;
+    --color-ip-ink-faint: #d9d3cc;
+    --color-ip-veil: #16141066;
+    --color-ip-accent: #4a433c;
+    --color-ip-accent-ink: #161410;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 3.5px;
+    --ip-line-thin: 2px;
+    --ip-line-bold: 5px;
+    --ip-shape-a: 18px 14px 22px 12px / 14px 22px 12px 18px;
+    --ip-shape-b: 14px 22px 12px 20px / 22px 12px 20px 14px;
+    --ip-shape-c: 22px 12px 18px 14px / 12px 20px 22px 14px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2028%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20fill%3D%22black%22%20d%3D%22M3%2015c2-1%204%203%209%203%2010%200%2018%204%2036%203%2022-1%2042%201%2056-1%208-1%2012-5%2011-3-4%203-16%202-28%203-18%201-38-3-56-2-8%200-16-3-22-2-4%201-6%200-6-1z%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* 泥金: antique gold dark enough for a light board. 揮春 keeps its own cream. */
+  [data-ip-ink="gold"] {
+    --color-ip-ink: #5e4c10;
+    --color-ip-ink-soft: #624e12;
+    --color-ip-ink-faint: #e4d4a4;
+    --color-ip-veil: #5e4c1066;
+    --color-ip-accent: #a6842e;
+    --color-ip-accent-ink: #5e4c10;
+    --color-ip-on-accent: #fff8e6;
+    --ip-line: 2.5px;
+    --ip-line-thin: 1.75px;
+    --ip-line-bold: 3.5px;
+    --ip-shape-a: 8px 6px 10px 5px / 6px 10px 5px 8px;
+    --ip-shape-b: 6px 10px 5px 8px / 10px 5px 8px 6px;
+    --ip-shape-c: 10px 5px 8px 6px / 5px 8px 10px 6px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%209C18%206%2030%2012%2048%208S78%204%2096%2010%20112%206%20118%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Cool grey, dark enough for a light board. A hairline, like lamp in metal. */
+  [data-ip-ink="silver"] {
+    --color-ip-ink: #3a4150;
+    --color-ip-ink-soft: #4a5260;
+    --color-ip-ink-faint: #c8ccd4;
+    --color-ip-veil: #3a415066;
+    --color-ip-accent: #4a5260;
+    --color-ip-accent-ink: #3a4150;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 1.25px;
+    --ip-line-thin: 1px;
+    --ip-line-bold: 2px;
+    --ip-shape-a: 5px 4px 6px 3px / 4px 6px 3px 5px;
+    --ip-shape-b: 4px 6px 3px 5px / 6px 3px 5px 4px;
+    --ip-shape-c: 6px 3px 5px 4px / 3px 5px 6px 3px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%208C30%207.4%2060%208.6%2090%208S110%207.6%20120%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Red-brown metal, between oil and walnut. */
+  [data-ip-ink="bronze"] {
+    --color-ip-ink: #6b3a22;
+    --color-ip-ink-soft: #734028;
+    --color-ip-ink-faint: #e4cfc4;
+    --color-ip-veil: #6b3a2266;
+    --color-ip-accent: #7a4630;
+    --color-ip-accent-ink: #6b3a22;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 3px;
+    --ip-line-thin: 2px;
+    --ip-line-bold: 4px;
+    --ip-shape-a: 4px 3px 5px 3px / 3px 5px 3px 4px;
+    --ip-shape-b: 3px 5px 3px 4px / 5px 3px 4px 3px;
+    --ip-shape-c: 5px 3px 4px 3px / 3px 4px 5px 3px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%2010C18%205%2032%2012%2052%207S82%204%20104%2011%20118%206%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Dusty plum, a soft powdery stroke. */
+  [data-ip-ink="pastel"] {
+    --color-ip-ink: #584058;
+    --color-ip-ink-soft: #5c4060;
+    --color-ip-ink-faint: #ddd0dc;
+    --color-ip-veil: #58405866;
+    --color-ip-accent: #6a5070;
+    --color-ip-accent-ink: #584058;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 3.5px;
+    --ip-line-thin: 2.5px;
+    --ip-line-bold: 4.5px;
+    --ip-shape-a: 18px 16px 20px 14px / 16px 20px 14px 18px;
+    --ip-shape-b: 16px 20px 14px 18px / 20px 14px 18px 16px;
+    --ip-shape-c: 20px 14px 18px 16px / 14px 18px 20px 14px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%209C16%203%2028%2013%2048%207S78%202%20100%209%20116%2012%20120%207%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Waxy and uneven, a little thicker than pastel. */
+  [data-ip-ink="crayon"] {
+    --color-ip-ink: #7a3820;
+    --color-ip-ink-soft: #8a3018;
+    --color-ip-ink-faint: #e8c8bc;
+    --color-ip-veil: #7a382066;
+    --color-ip-accent: #a04428;
+    --color-ip-accent-ink: #7a3820;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 4.5px;
+    --ip-line-thin: 3px;
+    --ip-line-bold: 6px;
+    --ip-shape-a: 10px 8px 12px 7px / 8px 12px 7px 10px;
+    --ip-shape-b: 8px 12px 7px 10px / 12px 7px 10px 8px;
+    --ip-shape-c: 12px 7px 10px 8px / 7px 10px 12px 7px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%2011C12%203%2020%2014%2036%206S58%2014%2078%205%20100%2013%20118%207%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22square%22%20stroke-linejoin%3D%22square%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Dry gaps in the stroke. The grey stays dark enough on a light board. */
+  [data-ip-ink="chalk"] {
+    --color-ip-ink: #4e4c48;
+    --color-ip-ink-soft: #544a46;
+    --color-ip-ink-faint: #d4d0c8;
+    --color-ip-veil: #4e4c4866;
+    --color-ip-accent: #5e5c58;
+    --color-ip-accent-ink: #4e4c48;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 3px;
+    --ip-line-thin: 2px;
+    --ip-line-bold: 4px;
+    --ip-shape-a: 14px 12px 16px 10px / 12px 16px 10px 14px;
+    --ip-shape-b: 12px 16px 10px 14px / 16px 10px 14px 12px;
+    --ip-shape-c: 16px 10px 14px 12px / 10px 14px 16px 10px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%208h22M32%209h20M60%207h24M92%208h22%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Fine coloured pencil. */
+  [data-ip-ink="pencil"] {
+    --color-ip-ink: #245068;
+    --color-ip-ink-soft: #2a5670;
+    --color-ip-ink-faint: #c5d4de;
+    --color-ip-veil: #24506866;
+    --color-ip-accent: #2a5670;
+    --color-ip-accent-ink: #245068;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 1.25px;
+    --ip-line-thin: 1px;
+    --ip-line-bold: 2px;
+    --ip-shape-a: 3px 2px 4px 2px / 2px 4px 2px 3px;
+    --ip-shape-b: 2px 4px 2px 3px / 4px 2px 3px 2px;
+    --ip-shape-c: 4px 2px 3px 2px / 2px 3px 4px 2px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%208C24%207%2040%209%2064%208S96%207%20120%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.3%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Graphite, a broken line, sharper than chalk. */
+  [data-ip-ink="sketch"] {
+    --color-ip-ink: #2e2e2c;
+    --color-ip-ink-soft: #4a4844;
+    --color-ip-ink-faint: #d0ceca;
+    --color-ip-veil: #2e2e2c66;
+    --color-ip-accent: #4a4844;
+    --color-ip-accent-ink: #2e2e2c;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 1.75px;
+    --ip-line-thin: 1.25px;
+    --ip-line-bold: 2.5px;
+    --ip-shape-a: 2px 2px 3px 2px / 2px 3px 2px 2px;
+    --ip-shape-b: 2px 3px 2px 2px / 3px 2px 2px 2px;
+    --ip-shape-c: 3px 2px 2px 2px / 2px 2px 3px 2px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%209h14M22%207h10M40%2010h18M66%208h8M82%209h16M104%207h12%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22square%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Cool grey-blue, a hairline, like a mark on glass. */
+  [data-ip-ink="glass"] {
+    --color-ip-ink: #2c4558;
+    --color-ip-ink-soft: #3a5264;
+    --color-ip-ink-faint: #c9d6e0;
+    --color-ip-veil: #2c455866;
+    --color-ip-accent: #3a5264;
+    --color-ip-accent-ink: #2c4558;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 1.25px;
+    --ip-line-thin: 1px;
+    --ip-line-bold: 2px;
+    --ip-shape-a: 4px;
+    --ip-shape-b: 6px 4px 6px 4px;
+    --ip-shape-c: 4px 6px 4px 6px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%208C30%207%2050%209%2080%208S110%207%20120%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Ember, a thick uneven stroke. */
+  [data-ip-ink="fire"] {
+    --color-ip-ink: #7a3820;
+    --color-ip-ink-soft: #8a3018;
+    --color-ip-ink-faint: #efcfc0;
+    --color-ip-veil: #7a382066;
+    --color-ip-accent: #a04428;
+    --color-ip-accent-ink: #7a3820;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 3.5px;
+    --ip-line-thin: 2.5px;
+    --ip-line-bold: 5px;
+    --ip-shape-a: 10px 4px 12px 6px / 6px 12px 4px 10px;
+    --ip-shape-b: 6px 12px 4px 8px / 12px 4px 10px 6px;
+    --ip-shape-c: 12px 6px 8px 4px / 4px 10px 6px 12px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%2012C10%202%2018%2014%2030%204S48%2015%2064%203%2082%2014%20100%205%20114%2012%20118%206%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Deep water, a smooth flowing line. */
+  [data-ip-ink="water"] {
+    --color-ip-ink: #1a4a68;
+    --color-ip-ink-soft: #245068;
+    --color-ip-ink-faint: #c5d8e6;
+    --color-ip-veil: #1a4a6866;
+    --color-ip-accent: #245068;
+    --color-ip-accent-ink: #1a4a68;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 2.5px;
+    --ip-line-thin: 1.75px;
+    --ip-line-bold: 3.5px;
+    --ip-shape-a: 16px 12px 18px 14px / 14px 18px 12px 16px;
+    --ip-shape-b: 14px 18px 12px 16px / 18px 12px 16px 14px;
+    --ip-shape-c: 18px 14px 16px 12px / 12px 16px 14px 18px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%2010C16%204%2028%2014%2048%208S78%203%20100%2010%20116%206%20120%209%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Cool air, a long thin sweep. */
+  [data-ip-ink="wind"] {
+    --color-ip-ink: #3a4844;
+    --color-ip-ink-soft: #44504c;
+    --color-ip-ink-faint: #d0d6d2;
+    --color-ip-veil: #3a484466;
+    --color-ip-accent: #44504c;
+    --color-ip-accent-ink: #3a4844;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 1.5px;
+    --ip-line-thin: 1px;
+    --ip-line-bold: 2.25px;
+    --ip-shape-a: 18px 8px 20px 10px / 10px 20px 8px 18px;
+    --ip-shape-b: 10px 20px 8px 16px / 20px 8px 18px 10px;
+    --ip-shape-c: 20px 10px 16px 8px / 8px 18px 10px 20px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%209C40%204%2070%2012%20120%206%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Clay, a heavy blunt stroke. */
+  [data-ip-ink="earth"] {
+    --color-ip-ink: #5c4032;
+    --color-ip-ink-soft: #6a4a3a;
+    --color-ip-ink-faint: #e4d4c6;
+    --color-ip-veil: #5c403266;
+    --color-ip-accent: #6a4a3a;
+    --color-ip-accent-ink: #5c4032;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 4px;
+    --ip-line-thin: 3px;
+    --ip-line-bold: 5.5px;
+    --ip-shape-a: 3px;
+    --ip-shape-b: 4px 2px 3px 2px;
+    --ip-shape-c: 2px 4px 2px 3px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M4%209h28M40%208h22M70%2010h20M98%208h16%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22square%22%20stroke-linejoin%3D%22square%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Brick red, a squared stroke. */
+  [data-ip-ink="bricks"] {
+    --color-ip-ink: #7a3a2c;
+    --color-ip-ink-soft: #6f382c;
+    --color-ip-ink-faint: #efd4c8;
+    --color-ip-veil: #7a3a2c66;
+    --color-ip-accent: #8a4534;
+    --color-ip-accent-ink: #7a3a2c;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 3px;
+    --ip-line-thin: 2px;
+    --ip-line-bold: 4px;
+    --ip-shape-a: 2px;
+    --ip-shape-b: 2px 3px 2px 2px;
+    --ip-shape-c: 3px 2px 2px 2px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%208h18M28%208h18M54%208h18M80%208h18M106%208h12%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22square%22%20stroke-linejoin%3D%22square%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Fountain blue, a steady line for ruled paper. */
+  [data-ip-ink="ruled"] {
+    --color-ip-ink: #1a3f6e;
+    --color-ip-ink-soft: #2a4a78;
+    --color-ip-ink-faint: #c5d4e6;
+    --color-ip-veil: #1a3f6e66;
+    --color-ip-accent: #2a4a78;
+    --color-ip-accent-ink: #1a3f6e;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 1.5px;
+    --ip-line-thin: 1px;
+    --ip-line-bold: 2.25px;
+    --ip-shape-a: 6px;
+    --ip-shape-b: 8px 5px 8px 5px;
+    --ip-shape-c: 5px 8px 5px 8px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%208C40%207.5%2080%208.5%20120%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Cool stone grey, a slow curve. */
+  [data-ip-ink="marble"] {
+    --color-ip-ink: #3a424c;
+    --color-ip-ink-soft: #434e58;
+    --color-ip-ink-faint: #d0d4d8;
+    --color-ip-veil: #3a424c66;
+    --color-ip-accent: #434e58;
+    --color-ip-accent-ink: #3a424c;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 2px;
+    --ip-line-thin: 1.25px;
+    --ip-line-bold: 3px;
+    --ip-shape-a: 10px 6px 12px 8px / 8px 12px 6px 10px;
+    --ip-shape-b: 8px 12px 6px 10px / 12px 6px 10px 8px;
+    --ip-shape-c: 12px 8px 10px 6px / 6px 10px 8px 12px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%2010C24%204%2048%2012%2072%206S100%204%20120%209%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Granite, a heavy broken stroke. */
+  [data-ip-ink="stone"] {
+    --color-ip-ink: #3e4440;
+    --color-ip-ink-soft: #4a524c;
+    --color-ip-ink-faint: #d2d4d0;
+    --color-ip-veil: #3e444066;
+    --color-ip-accent: #4a524c;
+    --color-ip-accent-ink: #3e4440;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 3.5px;
+    --ip-line-thin: 2.5px;
+    --ip-line-bold: 5px;
+    --ip-shape-a: 2px;
+    --ip-shape-b: 3px 2px 2px 3px;
+    --ip-shape-c: 2px 3px 3px 2px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M4%2010h16M28%207h12M48%2011h18M74%208h10M92%2010h14%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22square%22%20stroke-linejoin%3D%22square%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Celadon, a fine glaze line. */
+  [data-ip-ink="ceramic"] {
+    --color-ip-ink: #1f4a44;
+    --color-ip-ink-soft: #2a5850;
+    --color-ip-ink-faint: #c8ddd6;
+    --color-ip-veil: #1f4a4466;
+    --color-ip-accent: #2a5850;
+    --color-ip-accent-ink: #1f4a44;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 1.25px;
+    --ip-line-thin: 1px;
+    --ip-line-bold: 2px;
+    --ip-shape-a: 14px;
+    --ip-shape-b: 16px 12px 16px 12px;
+    --ip-shape-c: 12px 16px 12px 16px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%208C36%206%2072%2010%20120%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Burnt clay, heavier and rounder than brick. */
+  [data-ip-ink="terracotta"] {
+    --color-ip-ink: #6b3024;
+    --color-ip-ink-soft: #7a3a28;
+    --color-ip-ink-faint: #efd0c4;
+    --color-ip-veil: #6b302466;
+    --color-ip-accent: #7a3a28;
+    --color-ip-accent-ink: #6b3024;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 4px;
+    --ip-line-thin: 3px;
+    --ip-line-bold: 5.5px;
+    --ip-shape-a: 12px 8px 14px 8px / 8px 14px 8px 12px;
+    --ip-shape-b: 8px 14px 8px 10px / 14px 8px 12px 8px;
+    --ip-shape-c: 14px 8px 10px 8px / 8px 12px 8px 14px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%2010C14%203%2026%2014%2042%206S70%2014%2092%205%20112%2012%20118%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Umber, a bumpy stroke. */
+  [data-ip-ink="cork"] {
+    --color-ip-ink: #5c4024;
+    --color-ip-ink-soft: #6a4c2c;
+    --color-ip-ink-faint: #e6d6c0;
+    --color-ip-veil: #5c402466;
+    --color-ip-accent: #6a4c2c;
+    --color-ip-accent-ink: #5c4024;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 3px;
+    --ip-line-thin: 2px;
+    --ip-line-bold: 4.5px;
+    --ip-shape-a: 8px 4px 6px 5px / 5px 8px 4px 6px;
+    --ip-shape-b: 5px 8px 4px 6px / 8px 4px 6px 5px;
+    --ip-shape-c: 6px 5px 8px 4px / 4px 6px 5px 8px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%209C10%204%2016%2013%2026%207S40%2013%2052%206%2068%2013%2082%207%2098%2012%20118%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Ochre, a low dune. */
+  [data-ip-ink="sand"] {
+    --color-ip-ink: #5c4018;
+    --color-ip-ink-soft: #644418;
+    --color-ip-ink-faint: #ead8b0;
+    --color-ip-veil: #5c401866;
+    --color-ip-accent: #644418;
+    --color-ip-accent-ink: #5c4018;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 1.75px;
+    --ip-line-thin: 1.25px;
+    --ip-line-bold: 2.5px;
+    --ip-shape-a: 4px 6px 3px 5px / 5px 3px 6px 4px;
+    --ip-shape-b: 5px 3px 6px 4px / 3px 6px 4px 5px;
+    --ip-shape-c: 3px 5px 4px 6px / 6px 4px 5px 3px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%2011C18%206%2034%2013%2054%208S86%205%20108%2011%20120%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Cold blue, a sharp hairline. */
+  [data-ip-ink="ice"] {
+    --color-ip-ink: #1c4a62;
+    --color-ip-ink-soft: #2a5060;
+    --color-ip-ink-faint: #c8dce6;
+    --color-ip-veil: #1c4a6266;
+    --color-ip-accent: #2a5060;
+    --color-ip-accent-ink: #1c4a62;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 1.25px;
+    --ip-line-thin: 1px;
+    --ip-line-bold: 2px;
+    --ip-shape-a: 2px;
+    --ip-shape-b: 3px 2px 2px 3px;
+    --ip-shape-c: 2px 3px 3px 2px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%208%20L20%205%20L40%2010%20L60%204%20L80%209%20L100%206%20L120%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.3%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Indigo, a twill stroke. */
+  [data-ip-ink="denim"] {
+    --color-ip-ink: #24305a;
+    --color-ip-ink-soft: #2e3a68;
+    --color-ip-ink-faint: #c8d0e4;
+    --color-ip-veil: #24305a66;
+    --color-ip-accent: #2e3a68;
+    --color-ip-accent-ink: #24305a;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 2.5px;
+    --ip-line-thin: 1.75px;
+    --ip-line-bold: 3.5px;
+    --ip-shape-a: 4px;
+    --ip-shape-b: 6px 3px 5px 3px;
+    --ip-shape-c: 3px 6px 3px 5px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%2011%20L18%205%20L34%2011%20L50%205%20L66%2011%20L82%205%20L98%2011%20L114%205%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Cognac, a heavy hide stroke. */
+  [data-ip-ink="leather"] {
+    --color-ip-ink: #5c3418;
+    --color-ip-ink-soft: #6a3c1c;
+    --color-ip-ink-faint: #e8d4c0;
+    --color-ip-veil: #5c341866;
+    --color-ip-accent: #6a3c1c;
+    --color-ip-accent-ink: #5c3418;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 4px;
+    --ip-line-thin: 3px;
+    --ip-line-bold: 5.5px;
+    --ip-shape-a: 6px 3px 5px 3px;
+    --ip-shape-b: 3px 6px 3px 5px;
+    --ip-shape-c: 5px 3px 6px 3px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%2010C14%204%2024%2014%2040%206S64%2014%2084%205%20104%2013%20118%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%224.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Wool, a thick soft stroke. */
+  [data-ip-ink="felt"] {
+    --color-ip-ink: #4e403c;
+    --color-ip-ink-soft: #5a4842;
+    --color-ip-ink-faint: #ddd4cc;
+    --color-ip-veil: #4e403c66;
+    --color-ip-accent: #5a4842;
+    --color-ip-accent-ink: #4e403c;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 4.5px;
+    --ip-line-thin: 3.5px;
+    --ip-line-bold: 6px;
+    --ip-shape-a: 16px;
+    --ip-shape-b: 18px 14px 18px 14px;
+    --ip-shape-c: 14px 18px 14px 18px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%209C20%205%2040%2013%2060%208S90%204%20120%209%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Cool grey, a squared aggregate stroke. */
+  [data-ip-ink="concrete"] {
+    --color-ip-ink: #3a4450;
+    --color-ip-ink-soft: #45505a;
+    --color-ip-ink-faint: #d0d4d8;
+    --color-ip-veil: #3a445066;
+    --color-ip-accent: #45505a;
+    --color-ip-accent-ink: #3a4450;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 2.5px;
+    --ip-line-thin: 1.75px;
+    --ip-line-bold: 3.5px;
+    --ip-shape-a: 2px;
+    --ip-shape-b: 3px 2px 2px 2px;
+    --ip-shape-c: 2px 3px 2px 2px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M4%208h18M30%209h14M52%207h16M76%209h12M96%208h16%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22square%22%20stroke-linejoin%3D%22square%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Warm grey, a smooth trowel line. */
+  [data-ip-ink="plaster"] {
+    --color-ip-ink: #4a453e;
+    --color-ip-ink-soft: #564e46;
+    --color-ip-ink-faint: #ddd6ce;
+    --color-ip-veil: #4a453e66;
+    --color-ip-accent: #564e46;
+    --color-ip-accent-ink: #4a453e;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 2px;
+    --ip-line-thin: 1.25px;
+    --ip-line-bold: 3px;
+    --ip-shape-a: 8px;
+    --ip-shape-b: 10px 6px 10px 6px;
+    --ip-shape-c: 6px 10px 6px 10px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%208C30%206%2060%2010%2090%208S110%207%20120%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Orange-brown, an uneven pit. */
+  [data-ip-ink="rust"] {
+    --color-ip-ink: #6a3414;
+    --color-ip-ink-soft: #7a4018;
+    --color-ip-ink-faint: #efd4bc;
+    --color-ip-veil: #6a341466;
+    --color-ip-accent: #7a4018;
+    --color-ip-accent-ink: #6a3414;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 3.5px;
+    --ip-line-thin: 2.5px;
+    --ip-line-bold: 5px;
+    --ip-shape-a: 8px 3px 10px 4px / 4px 10px 3px 8px;
+    --ip-shape-b: 4px 10px 3px 8px / 10px 3px 8px 4px;
+    --ip-shape-c: 10px 4px 8px 3px / 3px 8px 4px 10px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%2011C12%203%2022%2014%2036%205S56%2014%2074%204%2096%2013%20118%207%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Straw, a woven stroke. */
+  [data-ip-ink="wicker"] {
+    --color-ip-ink: #5a4420;
+    --color-ip-ink-soft: #644c28;
+    --color-ip-ink-faint: #e6d8bc;
+    --color-ip-veil: #5a442066;
+    --color-ip-accent: #644c28;
+    --color-ip-accent-ink: #5a4420;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 2.5px;
+    --ip-line-thin: 1.75px;
+    --ip-line-bold: 3.5px;
+    --ip-shape-a: 4px 8px 4px 8px;
+    --ip-shape-b: 8px 4px 8px 4px;
+    --ip-shape-c: 4px 6px 8px 4px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M2%206h20M28%2010h18M52%205h16M74%2011h18M98%206h16%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Flat brown, a straight flute. */
+  [data-ip-ink="cardboard"] {
+    --color-ip-ink: #5a4030;
+    --color-ip-ink-soft: #644838;
+    --color-ip-ink-faint: #e6d6c6;
+    --color-ip-veil: #5a403066;
+    --color-ip-accent: #644838;
+    --color-ip-accent-ink: #5a4030;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 3px;
+    --ip-line-thin: 2px;
+    --ip-line-bold: 4px;
+    --ip-shape-a: 3px;
+    --ip-shape-b: 4px 2px 3px 2px;
+    --ip-shape-c: 2px 4px 2px 3px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%208h120%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.2%22%20stroke-linecap%3D%22square%22%20stroke-linejoin%3D%22square%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Cold grey, a hairline on snow. */
+  [data-ip-ink="snow"] {
+    --color-ip-ink: #3e4c58;
+    --color-ip-ink-soft: #45505a;
+    --color-ip-ink-faint: #d2d8de;
+    --color-ip-veil: #3e4c5866;
+    --color-ip-accent: #45505a;
+    --color-ip-accent-ink: #3e4c58;
+    --color-ip-on-accent: #ffffff;
+    --ip-line: 1.25px;
+    --ip-line-thin: 1px;
+    --ip-line-bold: 2px;
+    --ip-shape-a: 3px;
+    --ip-shape-b: 4px 2px 4px 2px;
+    --ip-shape-c: 2px 4px 2px 4px;
+    --ip-scribble: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%2016%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%208C36%207%2072%209%20120%208%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.3%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  }
+
+  /* Set on the ink element. A var() on :root is substituted there, so buttons would keep the lamp corners. */
+  [data-ip-ink] {
+    --ip-shape: var(--ip-shape-a);
   }
 
   :lang(zh-Hans) {

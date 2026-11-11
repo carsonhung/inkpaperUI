@@ -41,7 +41,7 @@
     border: var(--ip-line) solid var(--color-ip-ink);
     border-inline-start: calc(var(--ip-line) * 3) solid var(--ip-toast-tone);
     border-radius: var(--ip-shape-b);
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     box-shadow: 4px 5px 0 -1px var(--color-ip-ink-faint);
     color: var(--color-ip-ink);
     animation: ip-toast-in var(--ip-motion-base) ease-out both;
@@ -95,7 +95,7 @@
 
   @media (hover: hover) {
     .ip-toast-close:hover {
-      background: var(--color-ip-paper-deep);
+      background: var(--ip-bg-paper-deep);
     }
   }
 

@@ -25,7 +25,7 @@
     margin: 1.4rem auto 1rem;
     border: var(--ip-line) solid var(--color-ip-ink);
     border-radius: 52% 48% 55% 45% / 48% 55% 45% 52%;
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     animation: ip-reward-drop var(--ip-motion-slow) cubic-bezier(0.3, 1.5, 0.6, 1) both;
   }
 

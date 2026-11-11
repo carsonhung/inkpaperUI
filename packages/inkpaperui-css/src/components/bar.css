@@ -13,7 +13,7 @@
     overflow: hidden;
     border: var(--ip-line) solid var(--color-ip-ink);
     border-radius: 5px 8px 6px 9px / 8px 5px 9px 6px;
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
   }
 
   .ip-bar::before {

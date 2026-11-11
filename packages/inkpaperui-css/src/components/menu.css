@@ -117,7 +117,7 @@
     min-width: max(100%, 13rem);
     border: var(--ip-line) solid var(--color-ip-ink);
     border-radius: var(--ip-shape-b);
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-paper);
     box-shadow: 4px 5px 0 -1px var(--color-ip-ink-faint);
   }
 

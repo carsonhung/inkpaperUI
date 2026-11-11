@@ -1,7 +1,7 @@
 /* The page and its type: paper underneath, hand lettering for headings, plain sans for reading. */
 @layer components {
   .ip-paper {
-    background: var(--color-ip-paper);
+    background: var(--ip-bg-page);
     color: var(--color-ip-ink);
     font-family: var(--font-ip-body);
     line-height: 1.5;
@@ -19,19 +19,32 @@
     letter-spacing: 0.02em;
   }
 
-  .ip-display {
+  .ip-display,
+  .ip-title,
+  .ip-heading {
     font-family: var(--font-ip-hand);
+    font-synthesis: none;
+    text-transform: uppercase;
+    -webkit-text-stroke: var(--ip-pen-weight) currentColor;
+  }
+
+  .ip-display {
     font-size: var(--ip-text-display);
     line-height: 1.1;
     letter-spacing: 0.04em;
-    text-transform: uppercase;
+  }
+
+  /* The step between the page title and a card heading: one per section, so a reader can tell a
+     section from the parts inside it at a glance. */
+  .ip-title {
+    font-size: var(--ip-text-title);
+    line-height: 1.2;
+    letter-spacing: 0.05em;
   }
 
   .ip-heading {
-    font-family: var(--font-ip-hand);
     font-size: var(--ip-text-lg);
     letter-spacing: 0.06em;
-    text-transform: uppercase;
   }
 
   .ip-hint {
